@@ -181,5 +181,6 @@
         <image name="dialog" width="267" height="211"/>
         <image name="doll_smile" width="250" height="400"/>
         <image name="star_orange" width="559" height="102"/>
+        <image name="top_bar" width="267" height="211"/>
     </resources>
 </document>
