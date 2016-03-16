@@ -5,10 +5,64 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--State0 Error View Controller-->
+        <scene sceneID="YAG-VC-dQ1">
+            <objects>
+                <viewController id="loB-YG-Tvc" customClass="State0_ErrorViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="S9I-54-5gh"/>
+                        <viewControllerLayoutGuide type="bottom" id="ah6-LW-LJ1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="chF-Q7-31Y">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KdA-lb-qGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="107" y="-344"/>
+        </scene>
+        <!--State8 Wrong View Controller-->
+        <scene sceneID="7jk-qI-7dH">
+            <objects>
+                <viewController id="clI-gW-QGl" customClass="State8_WrongViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X7R-Uk-gLM"/>
+                        <viewControllerLayoutGuide type="bottom" id="WNq-8s-qQ0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mQd-Bu-Ht5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Les-Jj-MXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1703" y="-263"/>
+        </scene>
+        <!--State3 Preparing View Controller-->
+        <scene sceneID="G7M-88-trw">
+            <objects>
+                <viewController id="PyS-nO-BjJ" customClass="State3_PreparingViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xhw-zn-iWg"/>
+                        <viewControllerLayoutGuide type="bottom" id="7WB-ij-cv2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EJI-f6-5WF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9vy-sg-5O6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="849" y="1115"/>
+        </scene>
+        <!--State1 Splash View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="State1_SplashViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -21,6 +75,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="107" y="363"/>
         </scene>
     </scenes>
 </document>
