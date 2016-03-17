@@ -10,9 +10,14 @@ import UIKit
 
 class State3_PreparingViewController: UIViewController {
 
+    @IBOutlet weak var Btn_Success_Normal: UIImageView!
+    @IBOutlet weak var Doll_Smile: UIImageView!
+    @IBOutlet weak var Dialog: UIImageView!
+    @IBOutlet weak var Star_Orange: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "stripe.png")!)
+        
         // Do any additional setup after loading the view.
     }
 
