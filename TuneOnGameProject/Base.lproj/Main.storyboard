@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jt2-jM-mwv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ZhT-8y-VZU">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--State0 Error View Controller-->
@@ -78,6 +77,24 @@
             </objects>
             <point key="canvasLocation" x="107" y="363"/>
         </scene>
+        <!--Top bar View Controller-->
+        <scene sceneID="I9R-PO-mOW">
+            <objects>
+                <viewController id="nNo-A0-fwC" customClass="Top_barViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FZ5-QY-sx7"/>
+                        <viewControllerLayoutGuide type="bottom" id="XWX-cR-Xs4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iKx-AW-zgv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UTz-lI-Um6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="879" y="-370"/>
+        </scene>
         <!--State6 Quiz View Controller-->
         <scene sceneID="Qj7-tv-7DP">
             <objects>
@@ -94,41 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-a0-hru" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="849" y="363"/>
-        </scene>
-        <!--Top Bar View Controller-->
-        <scene sceneID="S3o-Lt-WnA">
-            <objects>
-                <viewController id="jt2-jM-mwv" customClass="Top_BarViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xoc-Wt-E8K"/>
-                        <viewControllerLayoutGuide type="bottom" id="VYA-kd-rb7"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wQB-Tm-qTT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="top_bar" translatesAutoresizingMaskIntoConstraints="NO" id="J1b-JK-p4Y">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="87"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="J1b-JK-p4Y" secondAttribute="height" multiplier="200:29" id="Fyk-Fp-EaV"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="J1b-JK-p4Y" firstAttribute="top" secondItem="wQB-Tm-qTT" secondAttribute="top" id="5pJ-EL-waU"/>
-                            <constraint firstAttribute="trailing" secondItem="J1b-JK-p4Y" secondAttribute="trailing" id="F1i-yP-B2P"/>
-                            <constraint firstItem="J1b-JK-p4Y" firstAttribute="leading" secondItem="wQB-Tm-qTT" secondAttribute="leading" id="Sbx-3D-ie3"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SL0-4S-oJf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="107" y="-1122"/>
+            <point key="canvasLocation" x="849" y="371"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="top_bar" width="1050" height="150"/>
-    </resources>
 </document>

@@ -19,8 +19,8 @@
 		D0C8672D1C998592007A7AA6 /* State0_ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C8672C1C998592007A7AA6 /* State0_ErrorViewController.swift */; };
 		D0C8672F1C9985C9007A7AA6 /* State8_WrongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C8672E1C9985C9007A7AA6 /* State8_WrongViewController.swift */; };
 		D0C867311C9985F4007A7AA6 /* State3_PreparingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C867301C9985F4007A7AA6 /* State3_PreparingViewController.swift */; };
-		E91EC1F61C999A7400124C4C /* Top_BarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91EC1F51C999A7400124C4C /* Top_BarViewController.swift */; };
 		E91EC1FB1C999B9800124C4C /* State6_QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91EC1FA1C999B9800124C4C /* State6_QuizViewController.swift */; };
+		E91EC1FD1C9A891900124C4C /* Top_barViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91EC1FC1C9A891900124C4C /* Top_barViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +59,8 @@
 		D0C8672C1C998592007A7AA6 /* State0_ErrorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State0_ErrorViewController.swift; sourceTree = "<group>"; };
 		D0C8672E1C9985C9007A7AA6 /* State8_WrongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State8_WrongViewController.swift; sourceTree = "<group>"; };
 		D0C867301C9985F4007A7AA6 /* State3_PreparingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State3_PreparingViewController.swift; sourceTree = "<group>"; };
-		E91EC1F51C999A7400124C4C /* Top_BarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Top_BarViewController.swift; sourceTree = "<group>"; };
 		E91EC1FA1C999B9800124C4C /* State6_QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State6_QuizViewController.swift; sourceTree = "<group>"; };
+		E91EC1FC1C9A891900124C4C /* Top_barViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Top_barViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +114,7 @@
 				D0893DD51C97FCE500617CAB /* AppDelegate.swift */,
 				D0893DD71C97FCE500617CAB /* ViewController.swift */,
 				D0893DD91C97FCE500617CAB /* Main.storyboard */,
-				E91EC1F51C999A7400124C4C /* Top_BarViewController.swift */,
+				E91EC1FC1C9A891900124C4C /* Top_barViewController.swift */,
 				D0C8672C1C998592007A7AA6 /* State0_ErrorViewController.swift */,
 				D0C8672A1C9984C5007A7AA6 /* State1_SplashViewController.swift */,
 				D0C867301C9985F4007A7AA6 /* State3_PreparingViewController.swift */,
@@ -281,9 +281,9 @@
 				D0C8672D1C998592007A7AA6 /* State0_ErrorViewController.swift in Sources */,
 				D0C8672F1C9985C9007A7AA6 /* State8_WrongViewController.swift in Sources */,
 				D0C8672B1C9984C5007A7AA6 /* State1_SplashViewController.swift in Sources */,
-				E91EC1F61C999A7400124C4C /* Top_BarViewController.swift in Sources */,
 				E91EC1FB1C999B9800124C4C /* State6_QuizViewController.swift in Sources */,
 				D0893DD61C97FCE500617CAB /* AppDelegate.swift in Sources */,
+				E91EC1FD1C9A891900124C4C /* Top_barViewController.swift in Sources */,
 				D0893DDE1C97FCE500617CAB /* TuneOnGameProject.xcdatamodeld in Sources */,
 				D0C867311C9985F4007A7AA6 /* State3_PreparingViewController.swift in Sources */,
 			);
