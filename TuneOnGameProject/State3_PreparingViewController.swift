@@ -12,7 +12,7 @@ class State3_PreparingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "stripe.png")!)
         // Do any additional setup after loading the view.
     }
 
