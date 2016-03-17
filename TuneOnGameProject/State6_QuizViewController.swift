@@ -12,13 +12,16 @@ class State6_QuizViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //copy topbar code from here
+        //constant
+        let screen_width = view.frame.width
+        
+        //top_bar code from here
         var top_bar: UIImageView
         var exp_bar: UIImageView
         var level_bar: UIImageView
         var money_bar: UIImageView
         
-        top_bar = UIImageView(frame: CGRect(x:0, y:0, width:view.frame.width, height:view.frame.width/7))
+        top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
         top_bar.backgroundColor = UIColorFromRGB(0xfba928)
         self.view.addSubview(top_bar)
         

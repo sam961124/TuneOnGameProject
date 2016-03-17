@@ -52,28 +52,8 @@
                     <view key="view" contentMode="scaleToFill" id="EJI-f6-5WF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dialog" translatesAutoresizingMaskIntoConstraints="NO" id="5DJ-jR-Xu5">
-                                <rect key="frame" x="326" y="341" width="208" height="151"/>
-                            </imageView>
-                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star_orange" translatesAutoresizingMaskIntoConstraints="NO" id="Bzi-El-CNH">
-                                <rect key="frame" x="40" y="478" width="540" height="102"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="doll_smile" translatesAutoresizingMaskIntoConstraints="NO" id="S0I-BH-kNN">
-                                <rect key="frame" x="135" y="358" width="160" height="222"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="btn_success_next_normal" translatesAutoresizingMaskIntoConstraints="NO" id="3hH-aH-yjE" userLabel="Btn Success Normal">
-                                <rect key="frame" x="206" y="125" width="189" height="164"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="Btn_Success_Normal" destination="3hH-aH-yjE" id="ZUZ-Cp-ohl"/>
-                        <outlet property="Dialog" destination="5DJ-jR-Xu5" id="4EA-L2-G8K"/>
-                        <outlet property="Doll_Smile" destination="S0I-BH-kNN" id="fr5-AQ-8et"/>
-                        <outlet property="Star_Orange" destination="Bzi-El-CNH" id="vvZ-Sd-n0c"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9vy-sg-5O6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -92,21 +72,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YtP-75-wDO">
-                                <rect key="frame" x="235" y="373" width="131" height="30"/>
+                                <rect key="frame" x="235" y="83" width="131" height="30"/>
                                 <state key="normal" title="Hello World"/>
                                 <connections>
                                     <segue destination="PyS-nO-BjJ" kind="presentation" id="1dC-no-f3V"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="title" translatesAutoresizingMaskIntoConstraints="NO" id="Z1k-sT-wWp">
-                                <rect key="frame" x="191" y="209" width="219" height="138"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.99641603231430054" green="0.9897112250328064" blue="0.90206277370452881" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <connections>
-                        <outlet property="TuneOnTitle" destination="Z1k-sT-wWp" id="nfl-1m-hKO"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -149,11 +123,4 @@
             <point key="canvasLocation" x="849" y="371"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="btn_success_next_normal" width="389" height="284"/>
-        <image name="dialog" width="267" height="211"/>
-        <image name="doll_smile" width="250" height="400"/>
-        <image name="star_orange" width="559" height="102"/>
-        <image name="title" width="640" height="400"/>
-    </resources>
 </document>
