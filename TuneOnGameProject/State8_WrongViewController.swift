@@ -38,6 +38,14 @@ class State8_WrongViewController: ViewController {
         money_bar.backgroundColor = UIColorFromRGB(0xffe155)
         self.view.addSubview(money_bar)
         //end here
+        //gradient_color from here
+        let top_color = UIColorFromRGB(0x4a7fa8)
+        let buttom_color = UIColorFromRGB(0xb1ebf2)
+        let gradient = CAGradientLayer()
+        gradient.frame = self.view.frame
+        gradient.colors = [top_color.CGColor, buttom_color.CGColor]
+        self.view.layer.insertSublayer(gradient, atIndex: 0)
+        //end here
         // Do any additional setup after loading the view.
     }
 

@@ -10,6 +10,8 @@ import UIKit
 
 class State1_SplashViewController: ViewController {
     
+    @IBOutlet weak var TuneOnTitle: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
