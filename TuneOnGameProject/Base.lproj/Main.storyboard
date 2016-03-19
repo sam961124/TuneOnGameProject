@@ -163,4 +163,10 @@
             <point key="canvasLocation" x="849" y="371"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btn_success_next_normal" width="389" height="284"/>
+        <image name="dialog" width="267" height="211"/>
+        <image name="doll_smile" width="250" height="400"/>
+        <image name="star_orange" width="559" height="102"/>
+    </resources>
 </document>
