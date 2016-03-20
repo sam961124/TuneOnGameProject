@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B0800001C9EFEA6007942C1 /* State4_YoutubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08FFFF1C9EFEA6007942C1 /* State4_YoutubeViewController.swift */; };
+		9B470AFB1C9E6DCC0001F50B /* State5_ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B470AFA1C9E6DCC0001F50B /* State5_ImageViewController.swift */; };
 		D0893DD61C97FCE500617CAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0893DD51C97FCE500617CAB /* AppDelegate.swift */; };
 		D0893DD81C97FCE500617CAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0893DD71C97FCE500617CAB /* ViewController.swift */; };
 		D0893DDB1C97FCE500617CAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0893DD91C97FCE500617CAB /* Main.storyboard */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B08FFFF1C9EFEA6007942C1 /* State4_YoutubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State4_YoutubeViewController.swift; sourceTree = "<group>"; };
+		9B470AFA1C9E6DCC0001F50B /* State5_ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State5_ImageViewController.swift; sourceTree = "<group>"; };
 		D0893DD21C97FCE500617CAB /* TuneOnGameProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuneOnGameProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0893DD51C97FCE500617CAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0893DD71C97FCE500617CAB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 				D0C8672A1C9984C5007A7AA6 /* State1_SplashViewController.swift */,
 				D76307061C9E6F55009B15A0 /* State2_MainViewController.swift */,
 				D0C867301C9985F4007A7AA6 /* State3_PreparingViewController.swift */,
+				9B08FFFF1C9EFEA6007942C1 /* State4_YoutubeViewController.swift */,
+				9B470AFA1C9E6DCC0001F50B /* State5_ImageViewController.swift */,
 				E91EC1FA1C999B9800124C4C /* State6_QuizViewController.swift */,
 				D76307081C9EB190009B15A0 /* State7_RightViewController.swift */,
 				D0C8672E1C9985C9007A7AA6 /* State8_WrongViewController.swift */,
@@ -220,6 +226,7 @@
 				TargetAttributes = {
 					D0893DD11C97FCE500617CAB = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = D6A4VXFG77;
 					};
 					D0893DE81C97FCE600617CAB = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -293,6 +300,7 @@
 				D76307071C9E6F55009B15A0 /* State2_MainViewController.swift in Sources */,
 				E91EC1FD1C9A891900124C4C /* Top_barViewController.swift in Sources */,
 				D0893DDE1C97FCE500617CAB /* TuneOnGameProject.xcdatamodeld in Sources */,
+				9B0800001C9EFEA6007942C1 /* State4_YoutubeViewController.swift in Sources */,
 				D0C867311C9985F4007A7AA6 /* State3_PreparingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,10 +444,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TuneOnGameProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = im.IOScodingGroup.TuneOnGameProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -449,10 +460,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TuneOnGameProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = im.IOScodingGroup.TuneOnGameProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

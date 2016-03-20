@@ -24,6 +24,7 @@ class State6_QuizViewController: ViewController {
         var exp_bar: UIImageView
         var level_bar: UIImageView
         var money_bar: UIImageView
+        var btn_home: UIImageView
         
         top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
         top_bar.backgroundColor = UIColorFromRGB(0xfba928)
@@ -44,6 +45,13 @@ class State6_QuizViewController: ViewController {
         money_bar.layer.masksToBounds = true
         money_bar.backgroundColor = UIColorFromRGB(0xffe155)
         self.view.addSubview(money_bar)
+        
+        btn_home = UIImageView(image: UIImage(named: "home.png"))
+        btn_home.frame.size.width = 0.8*level_bar.frame.minX
+        btn_home.center = CGPointMake(level_bar.frame.minX/2, top_bar.frame.height/2)
+        btn_home.contentMode = UIViewContentMode.ScaleAspectFit
+        self.view.addSubview(btn_home)
+
         //end here
         
         //red_bar code from here
