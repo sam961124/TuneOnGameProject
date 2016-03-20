@@ -49,10 +49,15 @@ class State2_MainViewController: ViewController {
         self.view.addSubview(money_bar)
         //end here
         
-        //
-        scrollView.backgroundColor = UIColor.blackColor()
-        scrollView.contentSize.width = screen_width
-        scrollView.contentSize.height = 2 * screen_height
+        //main page scroll area code from here
+        scrollView = UIScrollView(frame: CGRect( x:0, y:5*top_bar.frame.height/4, width: screen_width, height: screen_height-5*top_bar.frame.height/4))
+        scrollView.contentSize = CGSizeMake(view.frame.width, 2 * view.frame.height)
+        scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.addSubview(scrollView)
+        
+        var first_box: UIImageView
+        
+        
 
     }
 
