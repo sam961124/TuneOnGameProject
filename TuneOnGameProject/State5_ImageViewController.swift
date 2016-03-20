@@ -1,17 +1,18 @@
 //
-//  State3_PreparingViewController.swift
+//  State5_YoutubeViewController.swift
 //  TuneOnGameProject
 //
-//  Created by JustinKuo on 2016/3/16.
+//  Created by XX Lee on 2016/3/20.
 //  Copyright © 2016年 IM_IOS_CodingGroup. All rights reserved.
 //
 
 import UIKit
 
-class State3_PreparingViewController: ViewController {
+class State5_ImageViewController: ViewController {
 
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
+
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -47,57 +48,45 @@ class State3_PreparingViewController: ViewController {
         self.view.addSubview(money_bar)
         //end here
         
-        //btn_success_next code from here
-        let btn_success_next: UIButton = UIButton()
-        let success_next: UIImage = UIImage(named: "btn_success_next_normal.png")!
-        btn_success_next.highlighted = false
-        btn_success_next.contentMode = UIViewContentMode.ScaleAspectFit
-        btn_success_next.setImage(success_next, forState: UIControlState.Normal)
-        btn_success_next.setImage(UIImage(named: "btn_success_next_pressed.png"), forState: UIControlState.Highlighted)
-        btn_success_next.frame.size.width = screen_width/2
-        btn_success_next.frame.size.height = (screen_width/2)*(success_next.size.height)/(success_next.size.width)
-        btn_success_next.center = CGPointMake(screen_width/2, screen_height*2/5)
-        self.view.addSubview(btn_success_next)
-        btn_success_next.addTarget(self, action: "btn_success_next_click:", forControlEvents: UIControlEvents.TouchUpInside)
+        //background_youtube code from here
+        var background_youtube: UIImageView
+        background_youtube = UIImageView(frame: CGRect(x:0, y:2*top_bar.frame.height, width:screen_width, height:(screen_height*8)/20))
+        background_youtube.backgroundColor = UIColor(patternImage: UIImage(named: "background_youtube.png")!)
+        self.view.addSubview(background_youtube)
         //end here
         
         //star_orange code from here
         var star_orange: UIImageView
         star_orange = UIImageView(image: UIImage(named: "star_orange.png"))
+        star_orange.frame.size.height = screen_height
         star_orange.frame.size.width = screen_width*9/10
-        star_orange.frame.size.height = (screen_width*9/10)*(star_orange.image?.size.height)!/(star_orange.image?.size.width)!
         star_orange.center = CGPointMake(screen_width/2, screen_height*37/40)
         star_orange.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(star_orange)
         //end here
         
-        //doll_smile code from here
-        var doll_smile:UIImageView
-        doll_smile = UIImageView(image: UIImage(named: "doll_smile.png"))
-        doll_smile.frame.size.width = screen_width*3/8
-        doll_smile.frame.size.height = (screen_width*3/8)*(doll_smile.image?.size.height)!/(doll_smile.image?.size.width)!
-        doll_smile.center = CGPointMake(screen_width/4, (screen_height*37/40)-(doll_smile.frame.size.height/2)+(star_orange.frame.size.height/2))
-        doll_smile.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(doll_smile)
+        //doll_normal code from here
+        var doll_normal:UIImageView
+        doll_normal = UIImageView(image: UIImage(named: "doll_normal.png"))
+        doll_normal.frame.size.height = screen_height
+        doll_normal.frame.size.width = screen_width*3/8
+        doll_normal.center = CGPointMake(screen_width/4, screen_height*4/5)
+        doll_normal.contentMode = UIViewContentMode.ScaleAspectFit
+        self.view.addSubview(doll_normal)
         //end here
         
-        //dialog code from here
-        var dialog: UIImageView
-        dialog = UIImageView(image: UIImage(named: "dialog.png"))
-        dialog.frame.size.height = screen_height
-        dialog.frame.size.width = screen_width/2
-        dialog.center = CGPointMake(screen_width*11/16, screen_height*29/40)
-        dialog.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(dialog)
-        //end here
+        //start_answer code from here
+        var start_answer: UIImageView
+        let btn_height = (12*screen_height)/100
+        let btn_width = (40*screen_width)/100
         
-        // Do any additional setup after loading the view.
-    }
-    
-    func btn_success_next_click(button: UIButton) {
-        button.highlighted = true
-        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State0_ErrorViewController")
-        self.presentViewController(nextviewController, animated: false, completion: nil)
+
+        start_answer = UIImageView(image: UIImage(named: "btn_start_answer_normal.png"))
+        start_answer.frame.size.height = btn_height
+        start_answer.frame.size.width = btn_width
+        start_answer.center = CGPointMake(screen_width*65/100, screen_height*81/100)
+        self.view.addSubview(start_answer)
+        //end here
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,6 +94,7 @@ class State3_PreparingViewController: ViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
     /*
     // MARK: - Navigation
 
