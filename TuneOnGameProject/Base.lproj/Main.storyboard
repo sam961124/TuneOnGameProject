@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="1703" y="-263"/>
         </scene>
-        <!--State5 Youtube View Controller-->
+        <!--State4 Youtube View Controller-->
         <scene sceneID="YvN-q7-QFN">
             <objects>
-                <viewController id="sLB-dA-NMC" customClass="State5_YoutubeViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sLB-dA-NMC" customClass="State4_YoutubeViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="atA-cS-ys5"/>
                         <viewControllerLayoutGuide type="bottom" id="qwv-Lo-kGM"/>
@@ -58,6 +58,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VGd-RE-cNM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1669" y="505"/>
+        </scene>
+        <!--State5 Image View Controller-->
+        <scene sceneID="QYN-Nx-J5R">
+            <objects>
+                <viewController id="YYS-bT-KUg" customClass="State5_ImageViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G9F-jG-PyE"/>
+                        <viewControllerLayoutGuide type="bottom" id="aIi-AV-1XU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EIq-gf-LVS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IcF-Do-8lC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1723" y="1217"/>
         </scene>
         <!--State3 Preparing View Controller-->
         <scene sceneID="G7M-88-trw">

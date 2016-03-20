@@ -1,5 +1,5 @@
 //
-//  State5_YoutubeViewController.swift
+//  State4_YoutubeViewController.swift
 //  TuneOnGameProject
 //
 //  Created by XX Lee on 2016/3/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class State5_YoutubeViewController: ViewController {
+class State4_YoutubeViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +48,13 @@ class State5_YoutubeViewController: ViewController {
         self.view.addSubview(money_bar)
         //end here
         
+        //background_youtube code from here
+        var background_youtube: UIImageView
+        background_youtube = UIImageView(frame: CGRect(x:0, y:2*top_bar.frame.height, width:screen_width, height:(screen_height*8)/20))
+        background_youtube.backgroundColor = UIColor(patternImage: UIImage(named: "background_youtube.png")!)
+        self.view.addSubview(background_youtube)
+        //end here
+        
         //star_orange code from here
         var star_orange: UIImageView
         star_orange = UIImageView(image: UIImage(named: "star_orange.png"))
@@ -67,9 +74,24 @@ class State5_YoutubeViewController: ViewController {
         doll_normal.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(doll_normal)
         //end here
-
         
+        //play_again and start_answer code from here
+        var play_again: UIImageView
+        var start_answer: UIImageView
+        let btn_height = (12*screen_height)/100
+        let btn_width = (40*screen_width)/100
         
+        play_again = UIImageView(image: UIImage(named: "btn_play_again_normal.png"))
+        start_answer = UIImageView(image: UIImage(named: "btn_start_answer_normal.png"))
+        play_again.frame.size.height = btn_height
+        start_answer.frame.size.height = btn_height
+        play_again.frame.size.width = btn_width
+        start_answer.frame.size.width = btn_width
+        play_again.center = CGPointMake(screen_width*65/100, screen_height*67/100)
+        start_answer.center = CGPointMake(screen_width*65/100, screen_height*81/100)
+        self.view.addSubview(play_again)
+        self.view.addSubview(start_answer)
+        //end here
     }
 
     override func didReceiveMemoryWarning() {
