@@ -10,11 +10,7 @@ import UIKit
 
 class State3_PreparingViewController: ViewController {
 
-    @IBOutlet weak var Btn_Success_Normal: UIImageView!
-    @IBOutlet weak var Doll_Smile: UIImageView!
-    @IBOutlet weak var Dialog: UIImageView!
-    @IBOutlet weak var Star_Orange: UIImageView!
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
         //constant
         let screen_width = view.frame.width
@@ -51,21 +47,25 @@ class State3_PreparingViewController: ViewController {
         self.view.addSubview(money_bar)
         //end here
         
-        //btn_success_next_normal code from here
-        var btn_success_next_normal:UIImageView
-        btn_success_next_normal = UIImageView(image: UIImage(named: "btn_success_next_normal.png"))
-        btn_success_next_normal.frame.size.height = screen_height
-        btn_success_next_normal.frame.size.width = screen_width/2
-        btn_success_next_normal.center = CGPointMake(screen_width/2, screen_height*2/5)
-        btn_success_next_normal.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(btn_success_next_normal)
+        //btn_success_next code from here
+        let btn_success_next: UIButton = UIButton()
+        let success_next: UIImage = UIImage(named: "btn_success_next_normal.png")!
+        btn_success_next.highlighted = false
+        btn_success_next.contentMode = UIViewContentMode.ScaleAspectFit
+        btn_success_next.setImage(success_next, forState: UIControlState.Normal)
+        btn_success_next.setImage(UIImage(named: "btn_success_next_pressed.png"), forState: UIControlState.Highlighted)
+        btn_success_next.frame.size.width = screen_width/2
+        btn_success_next.frame.size.height = (screen_width/2)*(success_next.size.height)/(success_next.size.width)
+        btn_success_next.center = CGPointMake(screen_width/2, screen_height*2/5)
+        self.view.addSubview(btn_success_next)
+        btn_success_next.addTarget(self, action: "btn_success_next_click:", forControlEvents: UIControlEvents.TouchUpInside)
         //end here
         
         //star_orange code from here
         var star_orange: UIImageView
         star_orange = UIImageView(image: UIImage(named: "star_orange.png"))
-        star_orange.frame.size.height = screen_height
         star_orange.frame.size.width = screen_width*9/10
+        star_orange.frame.size.height = (screen_width*9/10)*(star_orange.image?.size.height)!/(star_orange.image?.size.width)!
         star_orange.center = CGPointMake(screen_width/2, screen_height*37/40)
         star_orange.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(star_orange)
@@ -74,9 +74,9 @@ class State3_PreparingViewController: ViewController {
         //doll_smile code from here
         var doll_smile:UIImageView
         doll_smile = UIImageView(image: UIImage(named: "doll_smile.png"))
-        doll_smile.frame.size.height = screen_height
         doll_smile.frame.size.width = screen_width*3/8
-        doll_smile.center = CGPointMake(screen_width/4, screen_height*4/5)
+        doll_smile.frame.size.height = (screen_width*3/8)*(doll_smile.image?.size.height)!/(doll_smile.image?.size.width)!
+        doll_smile.center = CGPointMake(screen_width/4, (screen_height*37/40)-(doll_smile.frame.size.height/2)+(star_orange.frame.size.height/2))
         doll_smile.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(doll_smile)
         //end here
@@ -92,6 +92,12 @@ class State3_PreparingViewController: ViewController {
         //end here
         
         // Do any additional setup after loading the view.
+    }
+    
+    func btn_success_next_click(button: UIButton) {
+        button.highlighted = true
+        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State0_ErrorViewController")
+        self.presentViewController(nextviewController, animated: false, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
