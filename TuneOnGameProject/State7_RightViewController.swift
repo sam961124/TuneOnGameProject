@@ -32,6 +32,11 @@ class State7_RightViewController: ViewController {
         shin = UIImageView(image: UIImage(named: "light_success.png"))
         shin.frame.size.width = screen_width
         shin.center = CGPointMake(screen_width/2, screen_height*2/5)
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotationAnimation.fromValue = 0.0
+        rotationAnimation.toValue = M_PI
+        rotationAnimation.duration = 5.0
+        shin.layer.addAnimation(rotationAnimation, forKey: nil)
         self.view.addSubview(shin)
         //end here
         

@@ -51,17 +51,47 @@ class State2_MainViewController: ViewController {
         
         //main page scroll area code from here
         scrollView = UIScrollView(frame: CGRect( x:0, y:5*top_bar.frame.height/4, width: screen_width, height: screen_height-5*top_bar.frame.height/4))
-        scrollView.contentSize = CGSizeMake(view.frame.width, 2 * view.frame.height)
+        scrollView.contentSize = CGSizeMake(view.frame.width, 2 * view.frame.width+15)
         scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         view.addSubview(scrollView)
+        //end here
+        
+        //box
         
         var first_box: UIImageView
-        first_box = UIImageView(frame: CGRect(x:10, y:10, width:scrollView.frame.width-20, height:(scrollView.frame.width-20)/2))
+        first_box = UIImageView(frame: CGRect(x:15, y:15, width:scrollView.frame.width-30, height:(scrollView.frame.width-30)/2))
         first_box.backgroundColor = UIColorFromRGB(0xfffb96)
         first_box.layer.cornerRadius = 10
         first_box.alpha = 0.5
         scrollView.addSubview(first_box)
+        var start_doll: UIImageView
+        start_doll = UIImageView(image: UIImage(named: "doll_upper.png"))
+        start_doll.frame.size.height = 10*first_box.frame.height/11
+        start_doll.center = CGPointMake(15+3*first_box.frame.width/4, 15+first_box.frame.height-(start_doll.frame.height/2))
+        start_doll.contentMode = UIViewContentMode.ScaleAspectFit
+        scrollView.addSubview(start_doll)
+        let start_game: UIButton = UIButton()
         
+        var second_box: UIImageView
+        second_box = UIImageView(frame: CGRect(x:15, y:30+first_box.frame.height, width:scrollView.frame.width-30, height:(scrollView.frame.width-30)/2))
+        second_box.backgroundColor = UIColorFromRGB(0xfffb96)
+        second_box.layer.cornerRadius = 10
+        second_box.alpha = 0.5
+        scrollView.addSubview(second_box)
+        
+        var third_box: UIImageView
+        third_box = UIImageView(frame: CGRect(x:15, y:45+first_box.frame.height+second_box.frame.height, width:scrollView.frame.width-30, height:(scrollView.frame.width-30)/2))
+        third_box.backgroundColor = UIColorFromRGB(0xfffb96)
+        third_box.layer.cornerRadius = 10
+        third_box.alpha = 0.5
+        scrollView.addSubview(third_box)
+        
+        var forth_box: UIImageView
+        forth_box = UIImageView(frame: CGRect(x:15, y:60+first_box.frame.height+second_box.frame.height+third_box.frame.height, width:scrollView.frame.width-30, height:(scrollView.frame.width-30)/2))
+        forth_box.backgroundColor = UIColorFromRGB(0xfffb96)
+        forth_box.layer.cornerRadius = 10
+        forth_box.alpha = 0.5
+        scrollView.addSubview(forth_box)
         
 
     }
