@@ -8,7 +8,7 @@
         <!--State0 Error View Controller-->
         <scene sceneID="YAG-VC-dQ1">
             <objects>
-                <viewController id="loB-YG-Tvc" customClass="State0_ErrorViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="State0_ErrorViewController" id="loB-YG-Tvc" customClass="State0_ErrorViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="S9I-54-5gh"/>
                         <viewControllerLayoutGuide type="bottom" id="ah6-LW-LJ1"/>
@@ -26,7 +26,7 @@
         <!--State8 Wrong View Controller-->
         <scene sceneID="7jk-qI-7dH">
             <objects>
-                <viewController id="clI-gW-QGl" customClass="State8_WrongViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="State8_WrongViewController" id="clI-gW-QGl" customClass="State8_WrongViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X7R-Uk-gLM"/>
                         <viewControllerLayoutGuide type="bottom" id="WNq-8s-qQ0"/>
@@ -44,7 +44,7 @@
         <!--State3 Preparing View Controller-->
         <scene sceneID="G7M-88-trw">
             <objects>
-                <viewController id="PyS-nO-BjJ" customClass="State3_PreparingViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="State3_PreparingViewController" id="PyS-nO-BjJ" customClass="State3_PreparingViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xhw-zn-iWg"/>
                         <viewControllerLayoutGuide type="bottom" id="7WB-ij-cv2"/>
@@ -62,7 +62,7 @@
         <!--State1 Splash View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="State1_SplashViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="State1_SplashViewController" id="BYZ-38-t0r" customClass="State1_SplashViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -89,7 +89,7 @@
         <!--Top bar View Controller-->
         <scene sceneID="I9R-PO-mOW">
             <objects>
-                <viewController id="nNo-A0-fwC" customClass="Top_barViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Top_barViewController" id="nNo-A0-fwC" customClass="Top_barViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FZ5-QY-sx7"/>
                         <viewControllerLayoutGuide type="bottom" id="XWX-cR-Xs4"/>
@@ -107,7 +107,7 @@
         <!--State6 Quiz View Controller-->
         <scene sceneID="Qj7-tv-7DP">
             <objects>
-                <viewController id="ZhT-8y-VZU" customClass="State6_QuizViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="State6_QuizViewController" id="ZhT-8y-VZU" customClass="State6_QuizViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="so3-5M-5DG"/>
                         <viewControllerLayoutGuide type="bottom" id="YdX-od-SbZ"/>

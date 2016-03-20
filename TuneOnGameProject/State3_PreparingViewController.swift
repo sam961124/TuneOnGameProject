@@ -10,11 +10,7 @@ import UIKit
 
 class State3_PreparingViewController: ViewController {
 
-    @IBOutlet weak var Btn_Success_Normal: UIImageView!
-    @IBOutlet weak var Doll_Smile: UIImageView!
-    @IBOutlet weak var Dialog: UIImageView!
-    @IBOutlet weak var Star_Orange: UIImageView!
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
         //constant
         let screen_width = view.frame.width
@@ -51,14 +47,17 @@ class State3_PreparingViewController: ViewController {
         self.view.addSubview(money_bar)
         //end here
         
-        //btn_success_next_normal code from here
-        var btn_success_next_normal:UIImageView
-        btn_success_next_normal = UIImageView(image: UIImage(named: "btn_success_next_normal.png"))
-        btn_success_next_normal.frame.size.height = screen_height
-        btn_success_next_normal.frame.size.width = screen_width/2
-        btn_success_next_normal.center = CGPointMake(screen_width/2, screen_height*2/5)
-        btn_success_next_normal.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(btn_success_next_normal)
+        //btn_success_next code from here
+        let btn_success_next: UIButton = UIButton()
+        btn_success_next.setTitle("btn_success_next", forState: UIControlState.Normal)
+        btn_success_next.setImage(UIImage(named: "btn_success_next_normal.png"), forState: UIControlState.Normal)
+        btn_success_next.setImage(UIImage(named: "btn_success_next_pressed.png"), forState: UIControlState.Highlighted)
+        btn_success_next.frame.size.height = screen_height
+        btn_success_next.frame.size.width = screen_width/2
+        btn_success_next.center = CGPointMake(screen_width/2, screen_height*2/5)
+        btn_success_next.contentMode = UIViewContentMode.ScaleAspectFit
+        self.view.addSubview(btn_success_next)
+        btn_success_next.addTarget(self, action: "btn_success_next_click:", forControlEvents: UIControlEvents.TouchUpInside)
         //end here
         
         //star_orange code from here
@@ -92,6 +91,12 @@ class State3_PreparingViewController: ViewController {
         //end here
         
         // Do any additional setup after loading the view.
+    }
+    
+    func btn_success_next_click(button: UIButton) {
+        button.highlighted = true
+        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State0_ErrorViewController")
+        self.presentViewController(nextviewController, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

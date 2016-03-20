@@ -18,15 +18,24 @@ class State1_SplashViewController: ViewController {
         
         //tune_on_title code from here
         var tune_on_title: UIImageView
+        let Tap = UITapGestureRecognizer(target: self, action: Selector("Tap:"))
+        Tap.numberOfTapsRequired = 1
         tune_on_title = UIImageView(image: UIImage(named: "title.png"))
         tune_on_title.frame.size.height = screen_height
         tune_on_title.frame.size.width = screen_width/2
         tune_on_title.center = CGPointMake(screen_width/2, screen_height/2)
         tune_on_title.contentMode = UIViewContentMode.ScaleAspectFit
+        tune_on_title.userInteractionEnabled = true
+        tune_on_title.addGestureRecognizer(Tap)
         self.view.addSubview(tune_on_title)
         // Do any additional setup after loading the view.
     }
 
+    func Tap(image: UIImageView){
+        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State3_PreparingViewController")
+        self.presentViewController(nextviewController, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
