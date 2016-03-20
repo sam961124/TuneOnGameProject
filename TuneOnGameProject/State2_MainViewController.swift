@@ -56,6 +56,11 @@ class State2_MainViewController: ViewController {
         view.addSubview(scrollView)
         
         var first_box: UIImageView
+        first_box = UIImageView(frame: CGRect(x:10, y:10, width:scrollView.frame.width-20, height:(scrollView.frame.width-20)/2))
+        first_box.backgroundColor = UIColorFromRGB(0xfffb96)
+        first_box.layer.cornerRadius = 10
+        first_box.alpha = 0.5
+        scrollView.addSubview(first_box)
         
         
 
