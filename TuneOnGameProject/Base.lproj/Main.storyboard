@@ -93,7 +93,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vgR-By-C4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1527" y="1165"/>
+            <point key="canvasLocation" x="1747" y="1116"/>
         </scene>
         <!--State1 Splash View Controller-->
         <scene sceneID="tne-QT-ifu">
