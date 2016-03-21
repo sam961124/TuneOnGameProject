@@ -9,10 +9,10 @@
 import UIKit
 
 class State5_ImageViewController: ViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -80,7 +80,7 @@ class State5_ImageViewController: ViewController {
         let btn_height = (12*screen_height)/100
         let btn_width = (40*screen_width)/100
         
-
+        
         start_answer = UIImageView(image: UIImage(named: "btn_start_answer_normal.png"))
         start_answer.frame.size.height = btn_height
         start_answer.frame.size.width = btn_width
@@ -88,21 +88,21 @@ class State5_ImageViewController: ViewController {
         self.view.addSubview(start_answer)
         //end here
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
