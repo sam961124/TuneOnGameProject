@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "star_200_200.png",
+      "filename" : "doll_upper.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "star_200_200-1.png",
       "scale" : "2x"
     },
     {

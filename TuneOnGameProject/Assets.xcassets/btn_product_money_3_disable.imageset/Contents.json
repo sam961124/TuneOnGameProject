@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "star_200_200.png",
+      "filename" : "btn_product_money_3_disable.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "star_200_200-1.png",
+      "filename" : "btn_product_money_3_disable-1.png",
       "scale" : "2x"
     },
     {
