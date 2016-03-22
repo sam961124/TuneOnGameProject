@@ -57,7 +57,6 @@ class State2_MainViewController: ViewController {
         //end here
         
         //box
-        
         var first_box: UIImageView
         first_box = UIImageView(frame: CGRect(x:15, y:15, width:scrollView.frame.width-30, height:(scrollView.frame.width-30)/2))
         first_box.backgroundColor = UIColorFromRGB(0xfffb96)
@@ -70,7 +69,19 @@ class State2_MainViewController: ViewController {
         start_doll.center = CGPointMake(15+3*first_box.frame.width/4, 15+first_box.frame.height-(start_doll.frame.height/2))
         start_doll.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(start_doll)
-        let start_game: UIButton = UIButton()
+        let btn_start_game: UIButton = UIButton()
+        let start_game: UIImage = UIImage(named: "btn_start_answer_normal.png")!
+        btn_start_game.highlighted = false
+        btn_start_game.contentMode = UIViewContentMode.ScaleAspectFit
+        btn_start_game.setImage(start_game, forState: UIControlState.Normal)
+        btn_start_game.setImage(UIImage(named: "btn_start_answer_pressed.png"), forState: UIControlState.Highlighted)
+        btn_start_game.frame.size.width = 2*first_box.frame.width/5
+        btn_start_game.frame.size.height = 3*first_box.frame.height/7
+        btn_start_game.center = CGPointMake(15+first_box.frame.width/4, 15+first_box.frame.height/2)
+        scrollView.addSubview(btn_start_game)
+        btn_start_game.addTarget(self, action: "btn_fail_next_click:", forControlEvents: UIControlEvents.TouchUpInside)
+
+        
         
         var second_box: UIImageView
         second_box = UIImageView(frame: CGRect(x:15, y:30+first_box.frame.height, width:scrollView.frame.width-30, height:(scrollView.frame.width-30)/2))
@@ -95,7 +106,13 @@ class State2_MainViewController: ViewController {
         
 
     }
-
+    
+    func btn_fail_next_click(button: UIButton) {
+        button.highlighted = true
+        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State1_SplashViewController")
+        self.presentViewController(nextviewController, animated: false, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
