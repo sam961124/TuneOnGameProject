@@ -30,7 +30,7 @@ class State6_QuizViewController: ViewController {
         top_bar.backgroundColor = UIColorFromRGB(0xfba928)
         self.view.addSubview(top_bar)
         
-        exp_bar = UIImageView(frame: CGRect(x:0, y:top_bar.frame.height, width:top_bar.frame.width, height:top_bar.frame.height/4))
+        exp_bar = UIImageView(frame: CGRect(x:0, y:top_bar.frame.height, width:screen_width, height:top_bar.frame.height/4))
         exp_bar.backgroundColor = UIColorFromRGB(0xffe155)
         self.view.addSubview(exp_bar)
         
@@ -51,7 +51,55 @@ class State6_QuizViewController: ViewController {
         btn_home.center = CGPointMake(level_bar.frame.minX/2, top_bar.frame.height/2)
         btn_home.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_home)
+        
+        //level label
+        var level_label: UILabel
+        var level = "15"
+        var level_string = "Lv " + level
+        level_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/4, height:0.8*level_bar.frame.height))
+        level_label.center = CGPointMake((level_bar.frame.minX+level_bar.frame.maxX)/2, (level_bar.frame.minY+level_bar.frame.maxY)/2)
+        level_label.text = level_string
+        level_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
+        level_label.adjustsFontSizeToFitWidth = true
+        level_label.numberOfLines = 0
+        level_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        level_label.minimumScaleFactor = 8/level_label.font.pointSize
+        level_label.textAlignment = NSTextAlignment.Center
+        level_label.textColor = UIColorFromRGB(0x812b2b)
+        self.view.addSubview(level_label)
 
+        //money label
+        var money_label: UILabel
+        var money = "9,750"
+        var money_string = money + " G"
+        money_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/2, height:0.8*money_bar.frame.height))
+        money_label.center = CGPointMake((money_bar.frame.minX+money_bar.frame.maxX)/2, (money_bar.frame.minY+money_bar.frame.maxY)/2)
+        money_label.text = money_string
+        money_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
+        money_label.adjustsFontSizeToFitWidth = true
+        money_label.numberOfLines = 0
+        money_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        money_label.minimumScaleFactor = 8/money_label.font.pointSize
+        money_label.textAlignment = NSTextAlignment.Center
+        money_label.textColor = UIColorFromRGB(0x812b2b)
+        self.view.addSubview(money_label)
+        
+        //exp label
+        var exp_label: UILabel
+        var exp_percent = "0"
+        var exp_string = "EXP (" + exp_percent + "/100)"
+        exp_label = UILabel(frame: CGRect(x:0, y:0, width:screen_width, height:top_bar.frame.height/4))
+        exp_label.center = CGPointMake(screen_width/2, (exp_bar.frame.minY+exp_bar.frame.maxY)/2)
+        exp_label.text = exp_string
+        exp_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
+        exp_label.adjustsFontSizeToFitWidth = true
+        exp_label.numberOfLines = 0
+        exp_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        exp_label.minimumScaleFactor = 8/money_label.font.pointSize
+        exp_label.textAlignment = NSTextAlignment.Center
+        exp_label.textColor = UIColorFromRGB(0x812b2b)
+        self.view.addSubview(exp_label)
+        
         //end here
         
         //red_bar code from here
@@ -85,6 +133,36 @@ class State6_QuizViewController: ViewController {
         star.center = CGPointMake(0.12*screen_width, 0.99*question_box.frame.maxY)
         star.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(star)
+        
+        var question_label: UILabel
+        var question = "請問我們這一家主題曲第一句歌詞是什麼？"
+        question_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*question_box.frame.width, height:0.8*question_box.frame.height))
+        question_label.center = CGPointMake((question_box.frame.minX+question_box.frame.maxX)/2, (question_box.frame.minY+question_box.frame.maxY)/2)
+        question_label.text = question
+        question_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
+        question_label.adjustsFontSizeToFitWidth = true
+        question_label.numberOfLines = 2
+        question_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        question_label.minimumScaleFactor = 8/question_label.font.pointSize
+        question_label.textAlignment = NSTextAlignment.Center
+        question_label.textColor = UIColorFromRGB(0xffe155)
+        self.view.addSubview(question_label)
+        
+        var reward_label: UILabel
+        var reward = "200"
+        var reward_string = reward + " G"
+        reward_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*pink_round.frame.width, height:0.7*pink_round.frame.height))
+        reward_label.center = CGPointMake((pink_round.frame.minX+pink_round.frame.maxX)/2, (pink_round.frame.minY+pink_round.frame.maxY)/2)
+        reward_label.text = reward_string
+        reward_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
+        reward_label.adjustsFontSizeToFitWidth = true
+        reward_label.numberOfLines = 0
+        reward_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        reward_label.minimumScaleFactor = 8/reward_label.font.pointSize
+        reward_label.textAlignment = NSTextAlignment.Center
+        reward_label.textColor = UIColorFromRGB(0xffe155)
+        self.view.addSubview(reward_label)
+
         //end here
         
         //four item code from here
@@ -137,13 +215,10 @@ class State6_QuizViewController: ViewController {
         btn_choice_3 = UIImageView(image: UIImage(named: "btn_choice_normal.9.png"))
         btn_choice_4 = UIImageView(image: UIImage(named: "btn_choice_normal.9.png"))
         btn_choice_1.frame.size.height = choice_area/6
+        btn_choice_1.frame.size.width = btn_choice_1.frame.size.height*5
         btn_choice_2.frame.size = btn_choice_1.frame.size
         btn_choice_3.frame.size = btn_choice_1.frame.size
         btn_choice_4.frame.size = btn_choice_1.frame.size
-        btn_choice_1.contentMode = UIViewContentMode.ScaleAspectFit
-        btn_choice_2.contentMode = UIViewContentMode.ScaleAspectFit
-        btn_choice_3.contentMode = UIViewContentMode.ScaleAspectFit
-        btn_choice_4.contentMode = UIViewContentMode.ScaleAspectFit
         btn_choice_1.center = CGPointMake(screen_width/2, question_box.frame.maxY + 0.2*choice_area)
         btn_choice_2.center = CGPointMake(screen_width/2, question_box.frame.maxY + 0.4*choice_area)
         btn_choice_3.center = CGPointMake(screen_width/2, question_box.frame.maxY + 0.6*choice_area)
@@ -152,6 +227,65 @@ class State6_QuizViewController: ViewController {
         self.view.addSubview(btn_choice_2)
         self.view.addSubview(btn_choice_3)
         self.view.addSubview(btn_choice_4)
+        
+        //choice label
+        var choice1_label: UILabel
+        var choice2_label: UILabel
+        var choice3_label: UILabel
+        var choice4_label: UILabel
+        let scale: CGFloat = 0.6
+        var choice1_string = "哈囉你好嗎"
+        var choice2_string = "衷心感謝"
+        var choice3_string = "珍重再見"
+        var choice4_string = "期待再相逢"
+        choice1_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice_1.frame.width, height:0.5*btn_choice_1.frame.height))
+        choice1_label.center = CGPointMake(screen_width/2, (btn_choice_1.frame.minY+btn_choice_1.frame.maxY)/2)
+        choice1_label.text = choice1_string
+        choice1_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
+        choice1_label.adjustsFontSizeToFitWidth = true
+        choice1_label.numberOfLines = 0
+        choice1_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        choice1_label.minimumScaleFactor = 8/choice1_label.font.pointSize
+        choice1_label.textAlignment = NSTextAlignment.Center
+        choice1_label.textColor = UIColorFromRGB(0x820c0c)
+        self.view.addSubview(choice1_label)
+        choice2_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice_1.frame.width, height:0.5*btn_choice_1.frame.height))
+        choice2_label.center = CGPointMake(screen_width/2, (btn_choice_2.frame.minY+btn_choice_2.frame.maxY)/2)
+        choice2_label.text = choice2_string
+        choice2_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
+        choice2_label.adjustsFontSizeToFitWidth = true
+        choice2_label.numberOfLines = 0
+        choice2_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        choice2_label.minimumScaleFactor = 8/choice1_label.font.pointSize
+        choice2_label.textAlignment = NSTextAlignment.Center
+        choice2_label.textColor = UIColorFromRGB(0x820c0c)
+        self.view.addSubview(choice2_label)
+        choice3_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice_1.frame.width, height:0.5*btn_choice_1.frame.height))
+        choice3_label.center = CGPointMake(screen_width/2, (btn_choice_3.frame.minY+btn_choice_3.frame.maxY)/2)
+        choice3_label.text = choice3_string
+        choice3_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
+        choice3_label.adjustsFontSizeToFitWidth = true
+        choice3_label.numberOfLines = 0
+        choice3_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        choice3_label.minimumScaleFactor = 8/choice1_label.font.pointSize
+        choice3_label.textAlignment = NSTextAlignment.Center
+        choice3_label.textColor = UIColorFromRGB(0x820c0c)
+        self.view.addSubview(choice3_label)
+        choice4_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice_1.frame.width, height:0.5*btn_choice_1.frame.height))
+        choice4_label.center = CGPointMake(screen_width/2, (btn_choice_4.frame.minY+btn_choice_4.frame.maxY)/2)
+        choice4_label.text = choice4_string
+        choice4_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
+        choice4_label.adjustsFontSizeToFitWidth = true
+        choice4_label.numberOfLines = 0
+        choice4_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        choice4_label.minimumScaleFactor = 8/choice1_label.font.pointSize
+        choice4_label.textAlignment = NSTextAlignment.Center
+        choice4_label.textColor = UIColorFromRGB(0x820c0c)
+        self.view.addSubview(choice4_label)
+
+
+
+        
         
         
         // Do any additional setup after loading the view.
