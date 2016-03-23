@@ -29,16 +29,22 @@ class State1_SplashViewController: ViewController {
         tune_on_title.userInteractionEnabled = true
         tune_on_title.addGestureRecognizer(Tap)
         self.view.addSubview(tune_on_title)
-        //end here
         
-        //welcome_back code from here
-//        let welcome_back: UITextView = UITextView()
-//        welcome_back.frame.size.height = screen_height/4
-//        welcome_back.frame.size.width = screen_width/4
-//        welcome_back.text = "歡迎回來"
-//        welcome_back.center = CGPointMake(screen_width/2, screen_height*3/4)
-//        welcome_back.textColor = UIColor.blackColor()
-//        self.view.addSubview(welcome_back)
+        //welcome_back
+        var welcome_label: UILabel
+        let welcome_string = "歡迎回來！"
+        welcome_label = UILabel(frame: CGRect(x:0, y:0, width:0.6*tune_on_title.frame.width, height:tune_on_title.frame.height/5))
+        welcome_label.center = CGPoint(x: screen_width/2, y: 0.7*screen_height)
+        welcome_label.text = welcome_string
+        welcome_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
+        welcome_label.adjustsFontSizeToFitWidth = true
+        welcome_label.numberOfLines = 0
+        welcome_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        welcome_label.minimumScaleFactor = 20/welcome_label.font.pointSize
+        welcome_label.textAlignment = NSTextAlignment.Center
+        welcome_label.textColor = UIColorFromRGB(0x820c0c)
+        self.view.addSubview(welcome_label)
+        
         //end here
         
         // Do any additional setup after loading the view.
