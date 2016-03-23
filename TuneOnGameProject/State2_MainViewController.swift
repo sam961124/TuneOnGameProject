@@ -96,6 +96,28 @@ class State2_MainViewController: ViewController {
         third_box.layer.cornerRadius = 10
         third_box.alpha = 0.5
         scrollView.addSubview(third_box)
+        var btn_purchase_1: UIImageView
+        btn_purchase_1 = UIImageView(image: UIImage(named: "btn_product_money_1_disable.png"))
+        btn_purchase_1.frame.size.height = 4*first_box.frame.height/5
+        btn_purchase_1.frame.size.width = first_box.frame.width/4
+        btn_purchase_1.center = CGPointMake(screen_width/2 - btn_purchase_1.frame.width - first_box.frame.width/16, 45 + first_box.frame.height + second_box.frame.height + third_box.frame.height/2)
+        btn_purchase_1.contentMode = UIViewContentMode.ScaleAspectFit
+        scrollView.addSubview(btn_purchase_1)
+        var btn_purchase_2: UIImageView
+        btn_purchase_2 = UIImageView(image: UIImage(named: "btn_product_money_2_disable.png"))
+        btn_purchase_2.frame.size.height = 4*first_box.frame.height/5
+        btn_purchase_2.frame.size.width = first_box.frame.width/4
+        btn_purchase_2.center = CGPointMake(screen_width/2, 45 + first_box.frame.height + second_box.frame.height + third_box.frame.height/2)
+        btn_purchase_2.contentMode = UIViewContentMode.ScaleAspectFit
+        scrollView.addSubview(btn_purchase_2)
+        var btn_purchase_3: UIImageView
+        btn_purchase_3 = UIImageView(image: UIImage(named: "btn_product_money_3_disable.png"))
+        btn_purchase_3.frame.size.height = 4*first_box.frame.height/5
+        btn_purchase_3.frame.size.width = first_box.frame.width/4
+        btn_purchase_3.center = CGPointMake(screen_width/2 + btn_purchase_1.frame.width + first_box.frame.width/16, 45 + first_box.frame.height + second_box.frame.height + third_box.frame.height/2)
+        btn_purchase_3.contentMode = UIViewContentMode.ScaleAspectFit
+        scrollView.addSubview(btn_purchase_3)
+        
         
         var forth_box: UIImageView
         forth_box = UIImageView(frame: CGRect(x:15, y:60+first_box.frame.height+second_box.frame.height+third_box.frame.height, width:scrollView.frame.width-30, height:(scrollView.frame.width-30)/2))
@@ -103,6 +125,27 @@ class State2_MainViewController: ViewController {
         forth_box.layer.cornerRadius = 10
         forth_box.alpha = 0.5
         scrollView.addSubview(forth_box)
+        var btn_purchase_4: UIImageView
+        btn_purchase_4 = UIImageView(image: UIImage(named: "btn_product_level_1_disable.png"))
+        btn_purchase_4.frame.size.height = 4*first_box.frame.height/5
+        btn_purchase_4.frame.size.width = first_box.frame.width/4
+        btn_purchase_4.center = CGPointMake(screen_width/2 - btn_purchase_1.frame.width - first_box.frame.width/16, 60 + first_box.frame.height + second_box.frame.height + third_box.frame.height + forth_box.frame.height/2)
+        btn_purchase_4.contentMode = UIViewContentMode.ScaleAspectFit
+        scrollView.addSubview(btn_purchase_4)
+        var btn_purchase_5: UIImageView
+        btn_purchase_5 = UIImageView(image: UIImage(named: "btn_product_level_2_disable.png"))
+        btn_purchase_5.frame.size.height = 4*first_box.frame.height/5
+        btn_purchase_5.frame.size.width = first_box.frame.width/4
+        btn_purchase_5.center = CGPointMake(screen_width/2, 60 + first_box.frame.height + second_box.frame.height + third_box.frame.height + forth_box.frame.height/2)
+        btn_purchase_5.contentMode = UIViewContentMode.ScaleAspectFit
+        scrollView.addSubview(btn_purchase_5)
+        var btn_purchase_6: UIImageView
+        btn_purchase_6 = UIImageView(image: UIImage(named: "btn_product_level_3_disable.png"))
+        btn_purchase_6.frame.size.height = 4*first_box.frame.height/5
+        btn_purchase_6.frame.size.width = first_box.frame.width/4
+        btn_purchase_6.center = CGPointMake(screen_width/2 + btn_purchase_1.frame.width + first_box.frame.width/16, 60 + first_box.frame.height + second_box.frame.height + third_box.frame.height + forth_box.frame.height/2)
+        btn_purchase_6.contentMode = UIViewContentMode.ScaleAspectFit
+        scrollView.addSubview(btn_purchase_6)
         
 
     }
