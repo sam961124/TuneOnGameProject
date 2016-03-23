@@ -118,62 +118,16 @@ class State0_ErrorViewController: ViewController {
         //end here
         
         //shadow code from here
-        var shadow_1:UIImageView
-        var shadow_2:UIImageView
-        var shadow_3:UIImageView
-        var shadow_4:UIImageView
-        var shadow_5:UIImageView
-        var shadow_6:UIImageView
-        var shadow_7:UIImageView
-        var shadow_8:UIImageView
-        shadow_1 = UIImageView(image: UIImage(named: "shadow.png"))
-        shadow_1.frame.size.width = screen_width/30
-        shadow_1.frame.size.height = (screen_width/30)*(shadow_1.image?.size.height)!/(shadow_1.image?.size.width)!
-        shadow_1.center = CGPointMake(screen_width*9/120, (screen_width*5/28)+(shadow_1.frame.size.height/2))
-        shadow_1.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(shadow_1)
-        shadow_2 = UIImageView(image: UIImage(named: "shadow.png"))
-        shadow_2.frame.size.width = screen_width/30
-        shadow_2.frame.size.height = (screen_width/30)*(shadow_2.image?.size.height)!/(shadow_2.image?.size.width)!
-        shadow_2.center = CGPointMake(screen_width*9/60, (screen_width*5/28)+(shadow_2.frame.size.height/2))
-        shadow_2.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(shadow_2)
-        shadow_3 = UIImageView(image: UIImage(named: "shadow.png"))
-        shadow_3.frame.size.width = screen_width/30
-        shadow_3.frame.size.height = (screen_width/30)*(shadow_3.image?.size.height)!/(shadow_3.image?.size.width)!
-        shadow_3.center = CGPointMake(screen_width*14/60, (screen_width*5/28)+(shadow_3.frame.size.height/2))
-        shadow_3.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(shadow_3)
-        shadow_4 = UIImageView(image: UIImage(named: "shadow.png"))
-        shadow_4.frame.size.width = screen_width/30
-        shadow_4.frame.size.height = (screen_width/30)*(shadow_4.image?.size.height)!/(shadow_4.image?.size.width)!
-        shadow_4.center = CGPointMake(screen_width*18/60, (screen_width*5/28)+(shadow_4.frame.size.height/2))
-        shadow_4.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(shadow_4)
-        shadow_5 = UIImageView(image: UIImage(named: "shadow.png"))
-        shadow_5.frame.size.width = screen_width/30
-        shadow_5.frame.size.height = (screen_width/30)*(shadow_5.image?.size.height)!/(shadow_5.image?.size.width)!
-        shadow_5.center = CGPointMake(screen_width*42/60, (screen_width*5/28)+(shadow_5.frame.size.height/2))
-        shadow_5.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(shadow_5)
-        shadow_6 = UIImageView(image: UIImage(named: "shadow.png"))
-        shadow_6.frame.size.width = screen_width/30
-        shadow_6.frame.size.height = (screen_width/30)*(shadow_6.image?.size.height)!/(shadow_6.image?.size.width)!
-        shadow_6.center = CGPointMake(screen_width*46/60, (screen_width*5/28)+(shadow_6.frame.size.height/2))
-        shadow_6.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(shadow_6)
-        shadow_7 = UIImageView(image: UIImage(named: "shadow.png"))
-        shadow_7.frame.size.width = screen_width/30
-        shadow_7.frame.size.height = (screen_width/30)*(shadow_7.image?.size.height)!/(shadow_7.image?.size.width)!
-        shadow_7.center = CGPointMake(screen_width*51/60, (screen_width*5/28)+(shadow_7.frame.size.height/2))
-        shadow_7.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(shadow_7)
-        shadow_8 = UIImageView(image: UIImage(named: "shadow.png"))
-        shadow_8.frame.size.width = screen_width/30
-        shadow_8.frame.size.height = (screen_width/30)*(shadow_8.image?.size.height)!/(shadow_8.image?.size.width)!
-        shadow_8.center = CGPointMake(screen_width*111/120, (screen_width*5/28)+(shadow_8.frame.size.height/2))
-        shadow_8.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(shadow_8)
+        let shadow_image = UIImage(named: "shadow.png")
+        let center: [CGFloat] = [9/120, 9/60, 14/60, 18/60, 42/60, 46/60, 51/60, 111/120]
+        for i in 0...7 {
+            let shadow: UIImageView = UIImageView(image: shadow_image)
+            shadow.frame.size.width = screen_width/30
+            shadow.frame.size.height = (screen_width/30)*(shadow_image!.size.height)/(shadow_image!.size.width)
+            shadow.contentMode = UIViewContentMode.ScaleAspectFit
+            shadow.center = CGPointMake(screen_width*center[i], (screen_width*5/28)+(shadow.frame.size.height/2))
+            self.view.addSubview(shadow)
+        }
         //end here
         
         //btn_fail_next code from here
