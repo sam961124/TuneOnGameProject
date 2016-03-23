@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PyS-nO-BjJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2e6-2u-8av">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -10,8 +10,8 @@
             <objects>
                 <viewController storyboardIdentifier="State0_ErrorViewController" id="loB-YG-Tvc" customClass="State0_ErrorViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="S9I-54-5gh"/>
-                        <viewControllerLayoutGuide type="bottom" id="ah6-LW-LJ1"/>
+                        <viewControllerLayoutGuide type="top" id="ffn-Ie-mdR"/>
+                        <viewControllerLayoutGuide type="bottom" id="JAI-6c-AcC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="chF-Q7-31Y">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -21,15 +21,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KdA-lb-qGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="147" y="-416"/>
+            <point key="canvasLocation" x="147" y="-415.99999999999989"/>
         </scene>
         <!--State8 Wrong View Controller-->
         <scene sceneID="7jk-qI-7dH">
             <objects>
                 <viewController storyboardIdentifier="State8_WrongViewController" id="clI-gW-QGl" customClass="State8_WrongViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="X7R-Uk-gLM"/>
-                        <viewControllerLayoutGuide type="bottom" id="WNq-8s-qQ0"/>
+                        <viewControllerLayoutGuide type="top" id="IeC-di-MV6"/>
+                        <viewControllerLayoutGuide type="bottom" id="BPw-7K-1jC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mQd-Bu-Ht5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -46,8 +46,8 @@
             <objects>
                 <viewController id="2e6-2u-8av" customClass="State2_MainViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9nD-AH-H57"/>
-                        <viewControllerLayoutGuide type="bottom" id="nsQ-I4-cnV"/>
+                        <viewControllerLayoutGuide type="top" id="QQt-6F-aKo"/>
+                        <viewControllerLayoutGuide type="bottom" id="PsC-lH-AIu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xJd-GG-0So">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -57,15 +57,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ayX-S5-Y7k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1537" y="451"/>
+            <point key="canvasLocation" x="1537" y="450.99999999999989"/>
         </scene>
         <!--State3 Preparing View Controller-->
         <scene sceneID="G7M-88-trw">
             <objects>
                 <viewController storyboardIdentifier="State3_PreparingViewController" id="PyS-nO-BjJ" customClass="State3_PreparingViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Xhw-zn-iWg"/>
-                        <viewControllerLayoutGuide type="bottom" id="7WB-ij-cv2"/>
+                        <viewControllerLayoutGuide type="top" id="30R-kz-IE8"/>
+                        <viewControllerLayoutGuide type="bottom" id="1GX-Xh-u7G"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EJI-f6-5WF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -82,8 +82,8 @@
             <objects>
                 <viewController id="vNY-2E-6km" customClass="State4_YoutubeViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6G1-Pg-5B1"/>
-                        <viewControllerLayoutGuide type="bottom" id="H3p-KS-IgL"/>
+                        <viewControllerLayoutGuide type="top" id="tyy-an-zhI"/>
+                        <viewControllerLayoutGuide type="bottom" id="lKF-AY-Ild"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6Gn-ce-UGG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -100,8 +100,8 @@
             <objects>
                 <viewController id="So9-Jc-vNb" customClass="State5_ImageViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Hjx-jI-He0"/>
-                        <viewControllerLayoutGuide type="bottom" id="hbY-u2-0Kx"/>
+                        <viewControllerLayoutGuide type="top" id="D5A-rK-kMF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qg6-SB-l8B"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DKB-LM-eZO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -118,8 +118,8 @@
             <objects>
                 <viewController id="i2u-TR-Rbe" customClass="State7_RightViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="odB-bS-XaN"/>
-                        <viewControllerLayoutGuide type="bottom" id="ppe-TU-gJ5"/>
+                        <viewControllerLayoutGuide type="top" id="ypI-Jj-YpA"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Hf-BK-cGk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6Ad-Xr-WJi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -136,8 +136,8 @@
             <objects>
                 <viewController storyboardIdentifier="State1_SplashViewController" id="BYZ-38-t0r" customClass="State1_SplashViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="qTy-7X-EIE"/>
+                        <viewControllerLayoutGuide type="bottom" id="OPM-c5-qY2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -147,15 +147,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117" y="362"/>
+            <point key="canvasLocation" x="117" y="361.99999999999989"/>
         </scene>
         <!--State5 Image View Controller-->
         <scene sceneID="hWO-pD-1on">
             <objects>
                 <viewController id="T5m-uo-GRQ" customClass="State5_ImageViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="QVx-mR-aE8"/>
-                        <viewControllerLayoutGuide type="bottom" id="0eF-p5-h18"/>
+                        <viewControllerLayoutGuide type="top" id="F0Q-QW-xaI"/>
+                        <viewControllerLayoutGuide type="bottom" id="juT-tg-Tvc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="psR-aI-KCs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -172,8 +172,8 @@
             <objects>
                 <viewController storyboardIdentifier="Top_barViewController" id="nNo-A0-fwC" customClass="Top_barViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FZ5-QY-sx7"/>
-                        <viewControllerLayoutGuide type="bottom" id="XWX-cR-Xs4"/>
+                        <viewControllerLayoutGuide type="top" id="eYf-u6-Ofd"/>
+                        <viewControllerLayoutGuide type="bottom" id="8UW-bY-eso"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iKx-AW-zgv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -183,15 +183,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UTz-lI-Um6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="879" y="-370"/>
+            <point key="canvasLocation" x="879" y="-369.99999999999989"/>
         </scene>
         <!--State6 Quiz View Controller-->
         <scene sceneID="Qj7-tv-7DP">
             <objects>
                 <viewController storyboardIdentifier="State6_QuizViewController" id="ZhT-8y-VZU" customClass="State6_QuizViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="so3-5M-5DG"/>
-                        <viewControllerLayoutGuide type="bottom" id="YdX-od-SbZ"/>
+                        <viewControllerLayoutGuide type="top" id="171-MA-9dU"/>
+                        <viewControllerLayoutGuide type="bottom" id="M8a-Hh-N8d"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AHg-Bm-oYI">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -201,7 +201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-a0-hru" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="849" y="371"/>
+            <point key="canvasLocation" x="849" y="370.99999999999989"/>
         </scene>
     </scenes>
 </document>
