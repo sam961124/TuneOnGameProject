@@ -45,6 +45,7 @@ class State8_WrongViewController: ViewController {
         
         btn_home = UIImageView(image: UIImage(named: "home.png"))
         btn_home.frame.size.width = 0.8*level_bar.frame.minX
+        btn_home.frame.size.height = 0.8*level_bar.frame.minX*(btn_home.image?.size.height)!/(btn_home.image?.size.width)!
         btn_home.center = CGPointMake(level_bar.frame.minX/2, top_bar.frame.height/2)
         btn_home.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_home)
@@ -56,11 +57,9 @@ class State8_WrongViewController: ViewController {
         level_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/4, height:0.8*level_bar.frame.height))
         level_label.center = CGPointMake((level_bar.frame.minX+level_bar.frame.maxX)/2, (level_bar.frame.minY+level_bar.frame.maxY)/2)
         level_label.text = level_string
-        level_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
-        level_label.adjustsFontSizeToFitWidth = true
-        level_label.numberOfLines = 0
+        level_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
+        level_label.numberOfLines = 1
         level_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        level_label.minimumScaleFactor = 8/level_label.font.pointSize
         level_label.textAlignment = NSTextAlignment.Center
         level_label.textColor = UIColorFromRGB(0x812b2b)
         self.view.addSubview(level_label)
@@ -73,11 +72,9 @@ class State8_WrongViewController: ViewController {
         money_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/2, height:0.8*money_bar.frame.height))
         money_label.center = CGPointMake((money_bar.frame.minX+money_bar.frame.maxX)/2, (money_bar.frame.minY+money_bar.frame.maxY)/2)
         money_label.text = money_string
-        money_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
-        money_label.adjustsFontSizeToFitWidth = true
-        money_label.numberOfLines = 0
+        money_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
+        money_label.numberOfLines = 1
         money_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        money_label.minimumScaleFactor = 8/money_label.font.pointSize
         money_label.textAlignment = NSTextAlignment.Center
         money_label.textColor = UIColorFromRGB(0x812b2b)
         self.view.addSubview(money_label)
@@ -89,15 +86,12 @@ class State8_WrongViewController: ViewController {
         exp_label = UILabel(frame: CGRect(x:0, y:0, width:screen_width, height:top_bar.frame.height/4))
         exp_label.center = CGPointMake(screen_width/2, (exp_bar.frame.minY+exp_bar.frame.maxY)/2)
         exp_label.text = exp_string
-        exp_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
-        exp_label.adjustsFontSizeToFitWidth = true
-        exp_label.numberOfLines = 0
+        exp_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.025*screen_width)
+        exp_label.numberOfLines = 1
         exp_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        exp_label.minimumScaleFactor = 8/money_label.font.pointSize
         exp_label.textAlignment = NSTextAlignment.Center
         exp_label.textColor = UIColorFromRGB(0x812b2b)
         self.view.addSubview(exp_label)
-        
         //end here
 
         
@@ -115,7 +109,7 @@ class State8_WrongViewController: ViewController {
         txt_fail = UIImageView(image: UIImage(named: "txt_fail.png"))
         txt_fail.frame.size.height = screen_height
         txt_fail.frame.size.width = screen_width/3
-        txt_fail.center = CGPointMake(screen_width/2, screen_height*1/5)
+        txt_fail.center = CGPointMake(screen_width/2, 0.22*screen_height)
         txt_fail.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(txt_fail)
         //end here
@@ -142,7 +136,7 @@ class State8_WrongViewController: ViewController {
         btn_fail_next.setImage(UIImage(named: "btn_fail_next_pressed.png"), forState: UIControlState.Highlighted)
         btn_fail_next.frame.size.width = screen_width/2
         btn_fail_next.frame.size.height = (screen_width/2)*(fail_next.size.height)/(fail_next.size.width)
-        btn_fail_next.center = CGPointMake(screen_width/2, screen_height*2/5)
+        btn_fail_next.center = CGPointMake(screen_width/2, 0.42*screen_height)
         self.view.addSubview(btn_fail_next)
         btn_fail_next.addTarget(self, action: "btn_fail_next_click:", forControlEvents: UIControlEvents.TouchUpInside)
         //end here
@@ -161,9 +155,9 @@ class State8_WrongViewController: ViewController {
         //doll_shock code from here
         var doll_shock: UIImageView
         doll_shock = UIImageView(image: UIImage(named: "doll_shock.png"))
-        doll_shock.frame.size.width = screen_width*3/8
-        doll_shock.frame.size.height = (screen_width*3/8)*(doll_shock.image?.size.height)!/(doll_shock.image?.size.width)!
-        doll_shock.center = CGPointMake(screen_width/4, (screen_height*37/40)-(doll_shock.frame.size.height/2)+(star_blue.frame.size.height/2))
+        doll_shock.frame.size.width = 0.35*screen_width
+        doll_shock.frame.size.height = (0.35*screen_width)*(doll_shock.image?.size.height)!/(doll_shock.image?.size.width)!
+        doll_shock.center = CGPointMake(0.28*screen_width, (screen_height*37/40)-(doll_shock.frame.size.height/2)+(star_blue.frame.size.height/2))
         doll_shock.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(doll_shock)
         //end here
@@ -171,23 +165,21 @@ class State8_WrongViewController: ViewController {
         //dialog code from here
         var dialog: UIImageView
         dialog = UIImageView(image: UIImage(named: "dialog.png"))
-        dialog.frame.size.width = screen_width/2
-        dialog.frame.size.height = 0.75*dialog.frame.size.width
-        dialog.center = CGPointMake(screen_width*11/16, screen_height*29/40)
+        dialog.frame.size.width = 1.2*doll_shock.frame.width
+        dialog.frame.size.height = screen_width/2*(dialog.image?.size.height)!/(dialog.image?.size.width)!
+        dialog.center = CGPointMake(doll_shock.frame.maxX+dialog.frame.width/2,doll_shock.frame.minY+0.3*doll_shock.frame.height)
         dialog.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(dialog)
         
         //dialog label
         var dialog_label: UILabel
         let dialog_string = "錯了啦..."
-        dialog_label = UILabel(frame: CGRect(x:0, y:0, width:0.6*dialog.frame.width, height:0.9*dialog.frame.height))
-        dialog_label.center = CGPoint(x: (dialog.frame.minX + dialog.frame.maxX)/2, y: (dialog.frame.minY + dialog.frame.maxY)/2)
+        dialog_label = UILabel(frame: CGRect(x:0, y:0, width:0.7*dialog.frame.width, height:0.9*dialog.frame.height))
+        dialog_label.center = CGPoint(x: (dialog.frame.minX + dialog.frame.maxX)/2, y: 0.495*(dialog.frame.minY + dialog.frame.maxY))
         dialog_label.text = dialog_string
-        dialog_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
-        dialog_label.adjustsFontSizeToFitWidth = true
+        dialog_label.font = UIFont(name:"HelveticaNeue-Bold", size: screen_width*0.05)
         dialog_label.numberOfLines = 1
         dialog_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        dialog_label.minimumScaleFactor = 16/dialog_label.font.pointSize
         dialog_label.textAlignment = NSTextAlignment.Center
         dialog_label.textColor = UIColorFromRGB(0x820c0c)
         self.view.addSubview(dialog_label)

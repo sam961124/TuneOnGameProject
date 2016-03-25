@@ -55,11 +55,9 @@ class State5_ImageViewController: ViewController {
         level_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/4, height:0.8*level_bar.frame.height))
         level_label.center = CGPointMake((level_bar.frame.minX+level_bar.frame.maxX)/2, (level_bar.frame.minY+level_bar.frame.maxY)/2)
         level_label.text = level_string
-        level_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
-        level_label.adjustsFontSizeToFitWidth = true
-        level_label.numberOfLines = 0
+        level_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
+        level_label.numberOfLines = 1
         level_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        level_label.minimumScaleFactor = 8/level_label.font.pointSize
         level_label.textAlignment = NSTextAlignment.Center
         level_label.textColor = UIColorFromRGB(0x812b2b)
         self.view.addSubview(level_label)
@@ -71,11 +69,9 @@ class State5_ImageViewController: ViewController {
         money_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/2, height:0.8*money_bar.frame.height))
         money_label.center = CGPointMake((money_bar.frame.minX+money_bar.frame.maxX)/2, (money_bar.frame.minY+money_bar.frame.maxY)/2)
         money_label.text = money_string
-        money_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
-        money_label.adjustsFontSizeToFitWidth = true
-        money_label.numberOfLines = 0
+        money_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
+        money_label.numberOfLines = 1
         money_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        money_label.minimumScaleFactor = 8/money_label.font.pointSize
         money_label.textAlignment = NSTextAlignment.Center
         money_label.textColor = UIColorFromRGB(0x812b2b)
         self.view.addSubview(money_label)
@@ -87,21 +83,18 @@ class State5_ImageViewController: ViewController {
         exp_label = UILabel(frame: CGRect(x:0, y:0, width:screen_width, height:top_bar.frame.height/4))
         exp_label.center = CGPointMake(screen_width/2, (exp_bar.frame.minY+exp_bar.frame.maxY)/2)
         exp_label.text = exp_string
-        exp_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
-        exp_label.adjustsFontSizeToFitWidth = true
-        exp_label.numberOfLines = 0
+        exp_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.025*screen_width)
+        exp_label.numberOfLines = 1
         exp_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        exp_label.minimumScaleFactor = 8/money_label.font.pointSize
         exp_label.textAlignment = NSTextAlignment.Center
         exp_label.textColor = UIColorFromRGB(0x812b2b)
         self.view.addSubview(exp_label)
-        
         //end here
 
         
         //background_youtube code from here
         var background_youtube: UIImageView
-        background_youtube = UIImageView(frame: CGRect(x:0, y:2*top_bar.frame.height, width:screen_width, height:(screen_height*8)/20))
+        background_youtube = UIImageView(frame: CGRect(x:0, y:top_bar.frame.maxY+0.05*screen_height, width:screen_width, height:0.4*screen_height))
         background_youtube.backgroundColor = UIColor(patternImage: UIImage(named: "background_youtube_small.png")!)
         self.view.addSubview(background_youtube)
         //end here
@@ -109,6 +102,7 @@ class State5_ImageViewController: ViewController {
         //star_orange code from here
         var star_orange: UIImageView
         star_orange = UIImageView(image: UIImage(named: "star_orange.png"))
+        star_orange.frame.size.height = screen_height
         star_orange.frame.size.width = screen_width*9/10
         star_orange.frame.size.height = (screen_width*9/10)*(star_orange.image?.size.height)!/(star_orange.image?.size.width)!
         star_orange.center = CGPointMake(screen_width/2, screen_height*37/40)
@@ -119,24 +113,21 @@ class State5_ImageViewController: ViewController {
         //doll_normal code from here
         var doll_normal:UIImageView
         doll_normal = UIImageView(image: UIImage(named: "doll_normal.png"))
-        doll_normal.frame.size.width = screen_width*3/8
-        doll_normal.frame.size.height = (screen_width*3/8)*(doll_normal.image?.size.height)!/(doll_normal.image?.size.width)!
-        doll_normal.center = CGPointMake(screen_width/4, (screen_height*37/40)-(doll_normal.frame.size.height/2)+(star_orange.frame.size.height/2))
+        doll_normal.frame.size.width = 0.35*screen_width
+        doll_normal.frame.size.height = (0.35*screen_width)*(doll_normal.image?.size.height)!/(doll_normal.image?.size.width)!
+        doll_normal.center = CGPointMake(0.28*screen_width, (screen_height*37/40)-(doll_normal.frame.size.height/2)+(star_orange.frame.size.height/2))
         doll_normal.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(doll_normal)
         //end here
-
         
         //start_answer code from here
-        var start_answer: UIImageView
-        let btn_height = (12*screen_height)/100
-        let btn_width = (40*screen_width)/100
-        start_answer = UIImageView(image: UIImage(named: "btn_start_answer_normal.png"))
-        start_answer.frame.size.height = btn_height
-        start_answer.frame.size.width = btn_width
-        start_answer.center = CGPointMake(screen_width*69/100, screen_height*78/100)
-        start_answer.contentMode = UIViewContentMode.ScaleAspectFill
-        self.view.addSubview(start_answer)
+        var btn_start_answer: UIImageView
+        btn_start_answer = UIImageView(image: UIImage(named: "btn_start_answer_normal.png"))
+        btn_start_answer.frame.size.height = 0.3*doll_normal.frame.height
+        btn_start_answer.frame.size.width = (0.3*doll_normal.frame.height)*(btn_start_answer.image?.size.width)!/(btn_start_answer.image?.size.height)!
+        btn_start_answer.center = CGPointMake(doll_normal.frame.maxX+0.65*btn_start_answer.frame.width, doll_normal.frame.minY+0.45*doll_normal.frame.height)
+        btn_start_answer.contentMode = UIViewContentMode.ScaleAspectFit
+        self.view.addSubview(btn_start_answer)
         //end here
     }
     

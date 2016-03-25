@@ -56,11 +56,9 @@ class State2_MainViewController: ViewController {
         level_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/4, height:0.8*level_bar.frame.height))
         level_label.center = CGPointMake((level_bar.frame.minX+level_bar.frame.maxX)/2, (level_bar.frame.minY+level_bar.frame.maxY)/2)
         level_label.text = level_string
-        level_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
-        level_label.adjustsFontSizeToFitWidth = true
-        level_label.numberOfLines = 0
+        level_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
+        level_label.numberOfLines = 1
         level_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        level_label.minimumScaleFactor = 8/level_label.font.pointSize
         level_label.textAlignment = NSTextAlignment.Center
         level_label.textColor = UIColorFromRGB(0x812b2b)
         self.view.addSubview(level_label)
@@ -72,11 +70,9 @@ class State2_MainViewController: ViewController {
         money_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/2, height:0.8*money_bar.frame.height))
         money_label.center = CGPointMake((money_bar.frame.minX+money_bar.frame.maxX)/2, (money_bar.frame.minY+money_bar.frame.maxY)/2)
         money_label.text = money_string
-        money_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
-        money_label.adjustsFontSizeToFitWidth = true
-        money_label.numberOfLines = 0
+        money_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
+        money_label.numberOfLines = 1
         money_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        money_label.minimumScaleFactor = 8/money_label.font.pointSize
         money_label.textAlignment = NSTextAlignment.Center
         money_label.textColor = UIColorFromRGB(0x812b2b)
         self.view.addSubview(money_label)
@@ -88,15 +84,12 @@ class State2_MainViewController: ViewController {
         exp_label = UILabel(frame: CGRect(x:0, y:0, width:screen_width, height:top_bar.frame.height/4))
         exp_label.center = CGPointMake(screen_width/2, (exp_bar.frame.minY+exp_bar.frame.maxY)/2)
         exp_label.text = exp_string
-        exp_label.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
-        exp_label.adjustsFontSizeToFitWidth = true
-        exp_label.numberOfLines = 0
+        exp_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.025*screen_width)
+        exp_label.numberOfLines = 1
         exp_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        exp_label.minimumScaleFactor = 8/money_label.font.pointSize
         exp_label.textAlignment = NSTextAlignment.Center
         exp_label.textColor = UIColorFromRGB(0x812b2b)
         self.view.addSubview(exp_label)
-        
         //end here
         
         //main page scroll area code from here
