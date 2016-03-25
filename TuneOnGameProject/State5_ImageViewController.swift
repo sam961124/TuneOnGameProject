@@ -102,15 +102,15 @@ class State5_ImageViewController: ViewController {
         //background_youtube code from here
         var background_youtube: UIImageView
         background_youtube = UIImageView(frame: CGRect(x:0, y:2*top_bar.frame.height, width:screen_width, height:(screen_height*8)/20))
-        background_youtube.backgroundColor = UIColor(patternImage: UIImage(named: "background_youtube.png")!)
+        background_youtube.backgroundColor = UIColor(patternImage: UIImage(named: "background_youtube_small.png")!)
         self.view.addSubview(background_youtube)
         //end here
         
         //star_orange code from here
         var star_orange: UIImageView
         star_orange = UIImageView(image: UIImage(named: "star_orange.png"))
-        star_orange.frame.size.height = screen_height
         star_orange.frame.size.width = screen_width*9/10
+        star_orange.frame.size.height = (screen_width*9/10)*(star_orange.image?.size.height)!/(star_orange.image?.size.width)!
         star_orange.center = CGPointMake(screen_width/2, screen_height*37/40)
         star_orange.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(star_orange)
@@ -119,23 +119,23 @@ class State5_ImageViewController: ViewController {
         //doll_normal code from here
         var doll_normal:UIImageView
         doll_normal = UIImageView(image: UIImage(named: "doll_normal.png"))
-        doll_normal.frame.size.height = screen_height
         doll_normal.frame.size.width = screen_width*3/8
-        doll_normal.center = CGPointMake(screen_width/4, screen_height*4/5)
+        doll_normal.frame.size.height = (screen_width*3/8)*(doll_normal.image?.size.height)!/(doll_normal.image?.size.width)!
+        doll_normal.center = CGPointMake(screen_width/4, (screen_height*37/40)-(doll_normal.frame.size.height/2)+(star_orange.frame.size.height/2))
         doll_normal.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(doll_normal)
         //end here
+
         
         //start_answer code from here
         var start_answer: UIImageView
         let btn_height = (12*screen_height)/100
         let btn_width = (40*screen_width)/100
-        
-        
         start_answer = UIImageView(image: UIImage(named: "btn_start_answer_normal.png"))
         start_answer.frame.size.height = btn_height
         start_answer.frame.size.width = btn_width
-        start_answer.center = CGPointMake(screen_width*65/100, screen_height*81/100)
+        start_answer.center = CGPointMake(screen_width*69/100, screen_height*78/100)
+        start_answer.contentMode = UIViewContentMode.ScaleAspectFill
         self.view.addSubview(start_answer)
         //end here
     }
