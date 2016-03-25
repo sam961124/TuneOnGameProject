@@ -101,7 +101,7 @@ class State4_YoutubeViewController: ViewController {
         //background_youtube code from here
         var background_youtube: UIImageView
         background_youtube = UIImageView(frame: CGRect(x:0, y:2*top_bar.frame.height, width:screen_width, height:(screen_height*8)/20))
-        background_youtube.backgroundColor = UIColor(patternImage: UIImage(named: "background_youtube.png")!)
+        background_youtube.backgroundColor = UIColor(patternImage: UIImage(named: "background_youtube_small.png")!)
         self.view.addSubview(background_youtube)
         //end here
         
