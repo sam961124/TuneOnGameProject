@@ -159,7 +159,7 @@ class State3_PreparingViewController: ViewController {
     
         func btn_success_next_click(button: UIButton) {
             button.highlighted = true
-            let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State0_ErrorViewController")
+            let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State4_YoutubeViewController")
             self.presentViewController(nextviewController, animated: false, completion: nil)
         }
 

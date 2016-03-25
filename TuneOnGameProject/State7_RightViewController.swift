@@ -194,7 +194,7 @@ class State7_RightViewController: ViewController {
     
     func btn_fail_next_click(button: UIButton) {
         button.highlighted = true
-        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State1_SplashViewController")
+        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State3_PreparingViewController")
         self.presentViewController(nextviewController, animated: false, completion: nil)
     }
     
