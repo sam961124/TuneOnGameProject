@@ -11,9 +11,8 @@ import UIKit
 class State2_MainViewController: ViewController {
     
     var scrollView: UIScrollView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func viewDidAppear(animated: Bool) {
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -123,7 +122,7 @@ class State2_MainViewController: ViewController {
         btn_start_game.center = CGPointMake(first_box.frame.minX+first_box.frame.width/4, first_box.frame.minY+first_box.frame.height/2)
         scrollView.addSubview(btn_start_game)
         btn_start_game.addTarget(self, action: "btn_fail_next_click:", forControlEvents: UIControlEvents.TouchUpInside)
-
+        
         
         
         var second_box: UIImageView
@@ -244,13 +243,14 @@ class State2_MainViewController: ViewController {
         btn_purchase_6.center = CGPointMake(forth_box.frame.minX + 5*forth_box.frame.width/6,(forth_box.frame.maxY+forth_box.frame.minY)/2)
         btn_purchase_6.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(btn_purchase_6)
-        
-
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     func btn_fail_next_click(button: UIButton) {
         button.highlighted = true
-        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State3_PreparingViewController")
+        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State0_ErrorViewController")
         self.presentViewController(nextviewController, animated: false, completion: nil)
     }
     

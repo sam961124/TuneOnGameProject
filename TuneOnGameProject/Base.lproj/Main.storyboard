@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PyS-nO-BjJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="loB-YG-Tvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--State0 Error View Controller-->
@@ -44,7 +44,7 @@
         <!--State2 Main View Controller-->
         <scene sceneID="zAB-hv-WuI">
             <objects>
-                <viewController id="2e6-2u-8av" customClass="State2_MainViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="State2_MainViewController" id="2e6-2u-8av" customClass="State2_MainViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QQt-6F-aKo"/>
                         <viewControllerLayoutGuide type="bottom" id="PsC-lH-AIu"/>
