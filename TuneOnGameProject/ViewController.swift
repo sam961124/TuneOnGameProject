@@ -28,5 +28,32 @@ class ViewController: UIViewController {
             alpha: CGFloat(1.0)
         )
     }
+    
+    func HTTPPostJSON(data: NSData, callback: (String, String?)->Void){
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://dbms3.tuneon.com.tw/~ws20/ws/2.0/request_qz.php")!)
+        request.HTTPMethod = "POST"
+        request.addValue("application/json",forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json",forHTTPHeaderField: "Accept")
+        request.HTTPBody = data
+        HTTPsendRequest(request, callback: callback)
+    }
+    
+    func HTTPsendRequest(request: NSMutableURLRequest, callback: (String, String?) -> Void){
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            (data, response, error) -> Void in
+            if (error != nil) {
+                callback("", error?.localizedDescription)
+            } else {
+                callback(NSString(data: data!, encoding: NSUTF8StringEncoding)! as String, nil)
+            }
+        }
+        task.resume()
+    }
+    
+    func TurnPage(number: Int){
+        let pages: [String] = ["State0_ErrorViewController", "State1_SplashViewController", "State2_MainViewController", "State3_PreparingViewController", "State4_YoutubeViewController", "State5_ImageViewController", "State6_QuizViewController", "State7_RightViewController", "State8_WrongViewController"]
+        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier(pages[number])
+        self.presentViewController(nextviewController, animated: false, completion: nil)
+    }
 }
 
