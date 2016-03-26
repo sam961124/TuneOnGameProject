@@ -13,6 +13,7 @@ class State2_MainViewController: ViewController {
     var scrollView: UIScrollView!
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -141,6 +142,9 @@ class State2_MainViewController: ViewController {
         var iq_label2: UILabel
         var fb_login_label: UILabel
         let ranking_string1 = "你的線上排名"
+        var player_ranking = "20"
+        var player_amount = "600"
+        let ranking_string2 = player_ranking + " / " + player_amount
         let iq_string1 = "你的IQ"
         let fb_string = "缺金幣?想升級?看排行?登入臉書進入進階模式!"
         
@@ -150,6 +154,13 @@ class State2_MainViewController: ViewController {
         ranking_label1.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         ranking_label1.textColor = UIColorFromRGB(0x5c5c5c)
         scrollView.addSubview(ranking_label1)
+        
+        ranking_label2 = UILabel(frame: CGRect(x:second_box.frame.minX+0.05*second_box.frame.width, y:second_box.frame.height/12+second_box.frame.minY, width:0.4*second_box.frame.width, height:second_box.frame.height/12))
+        ranking_label2.text = ranking_string2
+        ranking_label2.font = UIFont(name:"HelveticaNeue-Bold", size: 0.055*screen_width)
+        ranking_label2.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        ranking_label2.textColor = UIColorFromRGB(0x5c5c5c)
+        scrollView.addSubview(ranking_label2)
         
         iq_label1 = UILabel(frame: CGRect(x:second_box.frame.minX+0.05*second_box.frame.width, y:4*second_box.frame.height/12+second_box.frame.minY, width:0.2*second_box.frame.width, height:second_box.frame.height/12))
         iq_label1.text = iq_string1

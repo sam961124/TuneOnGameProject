@@ -10,8 +10,8 @@ import UIKit
 
 class State1_SplashViewController: ViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -68,7 +68,10 @@ class State1_SplashViewController: ViewController {
         self.view.addSubview(welcome_label)
         
         //end here
-        
+
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 

@@ -10,8 +10,8 @@ import UIKit
 
 class State7_RightViewController: ViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -187,8 +187,9 @@ class State7_RightViewController: ViewController {
         self.view.addSubview(dialog_label)
         //end here
 
-
-        
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     

@@ -10,8 +10,8 @@ import UIKit
 
 class State6_QuizViewController: ViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -153,7 +153,7 @@ class State6_QuizViewController: ViewController {
         reward_label.textAlignment = NSTextAlignment.Center
         reward_label.textColor = UIColorFromRGB(0xffe155)
         self.view.addSubview(reward_label)
-
+        
         //end here
         
         //four item code from here
@@ -265,11 +265,9 @@ class State6_QuizViewController: ViewController {
         choice4_label.textColor = UIColorFromRGB(0x820c0c)
         self.view.addSubview(choice4_label)
 
-
-
-        
-        
-        
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
