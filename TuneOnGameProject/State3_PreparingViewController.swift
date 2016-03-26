@@ -9,6 +9,9 @@
 import UIKit
 
 class State3_PreparingViewController: ViewController {
+    
+    var dialog: UIImageView!
+    var dialog_label: UILabel!
 
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -132,7 +135,7 @@ class State3_PreparingViewController: ViewController {
             //end here
             
             //dialog code from here
-            var dialog: UIImageView
+            //var dialog: UIImageView
             dialog = UIImageView(image: UIImage(named: "dialog.png"))
             dialog.frame.size.width = 1.2*doll_smile.frame.width
             dialog.frame.size.height = screen_width/2*(dialog.image?.size.height)!/(dialog.image?.size.width)!
@@ -141,7 +144,7 @@ class State3_PreparingViewController: ViewController {
             self.view.addSubview(dialog)
       
             //dialog label
-            var dialog_label: UILabel
+            //var dialog_label: UILabel
             let dialog_string = "準備好答題了嗎?"
             dialog_label = UILabel(frame: CGRect(x:0, y:0, width:0.9*dialog.frame.width, height:0.9*dialog.frame.height))
             dialog_label.center = CGPoint(x: (dialog.frame.minX + dialog.frame.maxX)/2, y: 0.495*(dialog.frame.minY + dialog.frame.maxY))
@@ -161,6 +164,28 @@ class State3_PreparingViewController: ViewController {
             button.highlighted = true
             let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State4_YoutubeViewController")
             self.presentViewController(nextviewController, animated: false, completion: nil)
+        }
+    
+        override func viewWillAppear(animated: Bool) {
+            super.viewWillAppear(animated)
+            
+            dialog.frame.size.width = dialog.frame.size.width/2
+            dialog.frame.size.height = dialog.frame.size.height/2
+            dialog_label.frame.size.width = dialog_label.frame.size.width/2
+            dialog_label.frame.size.height = dialog_label.frame.size.height/2
+        }
+        
+        override func viewDidAppear(animated: Bool) {
+            super.viewDidAppear(animated)
+            
+            UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
+                
+                self.dialog.frame.size.width = self.dialog.frame.size.width*2
+                self.dialog.frame.size.height = self.dialog.frame.size.height*2
+                self.dialog_label.frame.size.width = self.dialog_label.frame.size.width*2
+                self.dialog_label.frame.size.height = self.dialog_label.frame.size.height*2
+                
+                }, completion: nil)
         }
 
         override func didReceiveMemoryWarning() {
