@@ -12,6 +12,11 @@ class State4_YoutubeViewController: ViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -134,10 +139,6 @@ class State4_YoutubeViewController: ViewController {
         self.view.addSubview(btn_play_again)
         self.view.addSubview(btn_start_answer)
         //end here
-
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 
     override func didReceiveMemoryWarning() {

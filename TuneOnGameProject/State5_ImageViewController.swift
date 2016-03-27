@@ -12,6 +12,11 @@ class State5_ImageViewController: ViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -128,10 +133,6 @@ class State5_ImageViewController: ViewController {
         btn_start_answer.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_start_answer)
         //end here
-
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     override func didReceiveMemoryWarning() {

@@ -12,11 +12,14 @@ class State7_RightViewController: ViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
-        
-        
         
         //gradient_color code from here
         let top_color = UIColorFromRGB(0xfdca41)
@@ -139,7 +142,7 @@ class State7_RightViewController: ViewController {
         btn_success_next.frame.size.height = (screen_width/2)*(fail_next.size.height)/(fail_next.size.width)
         btn_success_next.center = CGPointMake(screen_width/2, 0.42*screen_height)
         self.view.addSubview(btn_success_next)
-        btn_success_next.addTarget(self, action: "btn_fail_next_click:", forControlEvents: UIControlEvents.TouchUpInside)
+        btn_success_next.addTarget(self, action: #selector(State7_RightViewController.btn_success_next_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         //end here
         
         //star_orange code from here
@@ -186,17 +189,13 @@ class State7_RightViewController: ViewController {
         dialog_label.textColor = UIColorFromRGB(0x820c0c)
         self.view.addSubview(dialog_label)
         //end here
-
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
     }
     
-    func btn_fail_next_click(button: UIButton) {
+    func btn_success_next_click(button: UIButton) {
         button.highlighted = true
-        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State3_PreparingViewController")
-        self.presentViewController(nextviewController, animated: false, completion: nil)
+        TurnPage(4)
     }
     
     override func didReceiveMemoryWarning() {

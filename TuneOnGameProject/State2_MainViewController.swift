@@ -14,6 +14,10 @@ class State2_MainViewController: ViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -120,11 +124,10 @@ class State2_MainViewController: ViewController {
         btn_start_game.setImage(start_game, forState: UIControlState.Normal)
         btn_start_game.setImage(UIImage(named: "btn_start_answer_pressed.png"), forState: UIControlState.Highlighted)
         btn_start_game.frame.size.width = 2*first_box.frame.width/5
-        btn_start_game.frame.size.height = 3*first_box.frame.height/7
+        btn_start_game.frame.size.height = (btn_start_game.frame.size.width)*(start_game.size.height)/(start_game.size.width)
         btn_start_game.center = CGPointMake(first_box.frame.minX+first_box.frame.width/4, first_box.frame.minY+first_box.frame.height/2)
         scrollView.addSubview(btn_start_game)
-        btn_start_game.addTarget(self, action: "btn_fail_next_click:", forControlEvents: UIControlEvents.TouchUpInside)
-        
+        btn_start_game.addTarget(self, action: #selector(State2_MainViewController.btn_start_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         
         var second_box: UIImageView
@@ -200,8 +203,6 @@ class State2_MainViewController: ViewController {
         btn_fb_login.center = CGPointMake(screen_width/2, 10*second_box.frame.height/12+second_box.frame.minY)
         scrollView.addSubview(btn_fb_login)
         
-        
-        
         var third_box: UIImageView
         third_box = UIImageView(frame: CGRect(x:0.05*screen_width, y:0.05*screen_width + second_box.frame.maxY, width:0.9*scrollView.frame.width, height:0.9*scrollView.frame.width/2))
         third_box.backgroundColor = UIColorFromRGB(0xfffb96)
@@ -259,14 +260,10 @@ class State2_MainViewController: ViewController {
         btn_purchase_6.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(btn_purchase_6)
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
-    func btn_fail_next_click(button: UIButton) {
+    func btn_start_answer_click(button: UIButton) {
         button.highlighted = true
-        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State0_ErrorViewController")
-        self.presentViewController(nextviewController, animated: false, completion: nil)
+        TurnPage(3)
     }
     
     override func didReceiveMemoryWarning() {

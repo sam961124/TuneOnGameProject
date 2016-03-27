@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2e6-2u-8av">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="loB-YG-Tvc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -98,7 +98,7 @@
         <!--State5 Image View Controller-->
         <scene sceneID="MgA-14-Too">
             <objects>
-                <viewController id="So9-Jc-vNb" customClass="State5_ImageViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="State5_ImageViewController" id="So9-Jc-vNb" customClass="State5_ImageViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D5A-rK-kMF"/>
                         <viewControllerLayoutGuide type="bottom" id="Qg6-SB-l8B"/>
@@ -116,7 +116,7 @@
         <!--State7 Right View Controller-->
         <scene sceneID="U0O-9t-Wt7">
             <objects>
-                <viewController id="i2u-TR-Rbe" customClass="State7_RightViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="State7_RightViewController" id="i2u-TR-Rbe" customClass="State7_RightViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ypI-Jj-YpA"/>
                         <viewControllerLayoutGuide type="bottom" id="0Hf-BK-cGk"/>

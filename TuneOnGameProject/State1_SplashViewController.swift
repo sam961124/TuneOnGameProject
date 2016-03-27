@@ -90,8 +90,7 @@ class State1_SplashViewController: ViewController {
 
     func Tap(image: UIImageView){
         let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State2_MainViewController")
-        self.presentViewController(nextviewController, animated: false, completion: nil)
-        //self.presentViewController(nextviewController, animated: true, completion: )
+        self.presentViewController(nextviewController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

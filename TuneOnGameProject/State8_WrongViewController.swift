@@ -12,6 +12,11 @@ class State8_WrongViewController: ViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -138,7 +143,7 @@ class State8_WrongViewController: ViewController {
         btn_fail_next.frame.size.height = (screen_width/2)*(fail_next.size.height)/(fail_next.size.width)
         btn_fail_next.center = CGPointMake(screen_width/2, 0.42*screen_height)
         self.view.addSubview(btn_fail_next)
-        btn_fail_next.addTarget(self, action: "btn_fail_next_click:", forControlEvents: UIControlEvents.TouchUpInside)
+        btn_fail_next.addTarget(self, action: #selector(State8_WrongViewController.btn_fail_next_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         //end here
         
         //star_blue code from here
@@ -184,17 +189,13 @@ class State8_WrongViewController: ViewController {
         dialog_label.textColor = UIColorFromRGB(0x820c0c)
         self.view.addSubview(dialog_label)
         //end here
-
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
     }
     
     func btn_fail_next_click(button: UIButton) {
         button.highlighted = true
-        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State3_PreparingViewController")
-        self.presentViewController(nextviewController, animated: false, completion: nil)
+        TurnPage(5)
     }
 
     override func didReceiveMemoryWarning() {
