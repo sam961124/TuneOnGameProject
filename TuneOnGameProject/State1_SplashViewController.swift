@@ -10,12 +10,14 @@ import UIKit
 
 class State1_SplashViewController: ViewController {
     
+    var number = 0
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        //constant
-        let screen_width = view.frame.width
-        let screen_height = view.frame.height
-        
+        var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "update", userInfo: nil, repeats: false)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         //server communicate code from here
         var requestNSData: NSData = NSData()
         if (false){
@@ -34,9 +36,16 @@ class State1_SplashViewController: ViewController {
                     print(error)
                 }
                 print(response)
-                super.TurnPage(0)
+                self.number=2
             }
         }
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //constant
+        let screen_width = view.frame.width
+        let screen_height = view.frame.height
         
         //tune_on_title code from here
         var tune_on_title: UIImageView
@@ -51,6 +60,7 @@ class State1_SplashViewController: ViewController {
         tune_on_title.userInteractionEnabled = true
         tune_on_title.addGestureRecognizer(Tap)
         self.view.addSubview(tune_on_title)
+        //end here
         
         //welcome_back code from here
         var welcome_label: UILabel
@@ -66,13 +76,16 @@ class State1_SplashViewController: ViewController {
         welcome_label.textAlignment = NSTextAlignment.Center
         welcome_label.textColor = UIColorFromRGB(0x820c0c)
         self.view.addSubview(welcome_label)
-        
         //end here
-
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func update() {
+        TurnPage(number)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
     }
 
     func Tap(image: UIImageView){
