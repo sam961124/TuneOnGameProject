@@ -98,15 +98,19 @@ class State4_YoutubeViewController: ViewController {
         //end here
         
         //youtube_player code from here
-        var youtube_url = "https://www.youtube.com/embed/Rg6GLVUnnpM"
-        var youtube_player: UIWebView!
+        var youtube_id = "j4sEvo4ojq8"
+        var youtube_player: YTPlayerView!
         
-        let youtube_player_height = 0.38*screen_height
-        youtube_player = UIWebView(frame: CGRect(x:0, y:top_bar.frame.maxY+0.06*screen_height, width:screen_width, height:youtube_player_height))
-        youtube_player.allowsInlineMediaPlayback = true
-        youtube_player.loadHTMLString("<iframe width=\"\(screen_width)\" height=\"\(youtube_player_height)\" src=\"\(youtube_url)?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1;&playsinline=1\" frameborder=\"0\"></iframe>", baseURL: nil)
+        youtube_player = YTPlayerView(frame: CGRect(x:0, y:top_bar.frame.maxY+0.06*screen_height, width:screen_width, height:0.38*screen_height))
+        let player_vars: NSDictionary = [
+            "playsinline": 1,
+            "autoplay": 1,
+            "controls": 0,
+            "showinfo": 0,
+            "rel": 0
+        ]
+        youtube_player.loadWithVideoId(youtube_id, playerVars: player_vars as [NSObject: AnyObject])
         self.view.addSubview(youtube_player)
-        
         //end here
         
         //star_orange code from here
