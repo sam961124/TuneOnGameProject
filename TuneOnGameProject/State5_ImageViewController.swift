@@ -9,10 +9,9 @@
 import UIKit
 
 class State5_ImageViewController: ViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -90,7 +89,7 @@ class State5_ImageViewController: ViewController {
         exp_label.textColor = UIColorFromRGB(0x812b2b)
         self.view.addSubview(exp_label)
         //end here
-
+        
         
         //background_youtube code from here
         var background_youtube: UIImageView
@@ -129,6 +128,10 @@ class State5_ImageViewController: ViewController {
         btn_start_answer.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_start_answer)
         //end here
+
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     override func didReceiveMemoryWarning() {

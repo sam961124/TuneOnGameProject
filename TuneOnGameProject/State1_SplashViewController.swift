@@ -10,11 +10,33 @@ import UIKit
 
 class State1_SplashViewController: ViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
+        
+        //server communicate code from here
+        var requestNSData: NSData = NSData()
+        if (false){
+            let ori_data: Dictionary<String, AnyObject> = ["cmd": "getid"]
+        }
+        else{
+            let ori_data: Dictionary<String, AnyObject> = ["cmd": "getid", "id": "632"]
+            do{
+                requestNSData = try NSJSONSerialization.dataWithJSONObject(ori_data, options: NSJSONWritingOptions.PrettyPrinted)
+            } catch let error as NSError {
+                print(error)
+            }
+            HTTPPostJSON(requestNSData){
+                (response, error) -> Void in
+                if (error != nil){
+                    print(error)
+                }
+                print(response)
+                super.TurnPage(0)
+            }
+        }
         
         //tune_on_title code from here
         var tune_on_title: UIImageView
@@ -30,7 +52,7 @@ class State1_SplashViewController: ViewController {
         tune_on_title.addGestureRecognizer(Tap)
         self.view.addSubview(tune_on_title)
         
-        //welcome_back
+        //welcome_back code from here
         var welcome_label: UILabel
         let welcome_string = "歡迎回來！"
         welcome_label = UILabel(frame: CGRect(x:0, y:0, width:0.6*tune_on_title.frame.width, height:tune_on_title.frame.height/5))
@@ -46,13 +68,17 @@ class State1_SplashViewController: ViewController {
         self.view.addSubview(welcome_label)
         
         //end here
-        
+
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
     func Tap(image: UIImageView){
-        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State3_PreparingViewController")
+        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State2_MainViewController")
         self.presentViewController(nextviewController, animated: false, completion: nil)
+        //self.presentViewController(nextviewController, animated: true, completion: )
     }
     
     override func didReceiveMemoryWarning() {

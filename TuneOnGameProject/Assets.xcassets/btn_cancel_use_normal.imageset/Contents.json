@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "background_youtube.png",
+      "filename" : "btn_cancel_use_normal-1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "background_youtube-1.png",
+      "filename" : "btn_cancel_use_normal.png",
       "scale" : "2x"
     },
     {

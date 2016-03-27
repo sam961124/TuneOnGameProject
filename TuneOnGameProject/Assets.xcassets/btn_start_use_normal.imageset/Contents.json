@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "doll_upper_425_425-1.png",
+      "filename" : "btn_start_use_normal.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "doll_upper_425_425.png",
+      "filename" : "btn_start_use_normal-1.png",
       "scale" : "2x"
     },
     {

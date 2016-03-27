@@ -10,8 +10,8 @@ import UIKit
 
 class State8_WrongViewController: ViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -93,7 +93,7 @@ class State8_WrongViewController: ViewController {
         exp_label.textColor = UIColorFromRGB(0x812b2b)
         self.view.addSubview(exp_label)
         //end here
-
+        
         
         //gradient_color code from here
         let top_color = UIColorFromRGB(0x4a7fa8)
@@ -184,7 +184,10 @@ class State8_WrongViewController: ViewController {
         dialog_label.textColor = UIColorFromRGB(0x820c0c)
         self.view.addSubview(dialog_label)
         //end here
-        
+
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     

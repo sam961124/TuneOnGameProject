@@ -11,9 +11,9 @@ import UIKit
 class State2_MainViewController: ViewController {
     
     var scrollView: UIScrollView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -52,7 +52,7 @@ class State2_MainViewController: ViewController {
         //level label
         var level_label: UILabel
         var level = "15"
-        var level_string = "Lv " + level
+        let level_string = "Lv " + level
         level_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/4, height:0.8*level_bar.frame.height))
         level_label.center = CGPointMake((level_bar.frame.minX+level_bar.frame.maxX)/2, (level_bar.frame.minY+level_bar.frame.maxY)/2)
         level_label.text = level_string
@@ -109,7 +109,8 @@ class State2_MainViewController: ViewController {
         var start_doll: UIImageView
         start_doll = UIImageView(image: UIImage(named: "doll_upper.png"))
         start_doll.frame.size.height = 0.95*first_box.frame.height
-        start_doll.center = CGPointMake(first_box.frame.minX+3*first_box.frame.width/4, first_box.frame.minY+first_box.frame.height-(start_doll.frame.height/2))
+        start_doll.frame.size.width = (0.95*first_box.frame.height)*(start_doll.image?.size.width)!/(start_doll.image?.size.height)!
+        start_doll.center = CGPointMake(first_box.frame.minX+3*first_box.frame.width/4, first_box.frame.maxY-start_doll.frame.height/2)
         start_doll.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(start_doll)
         let btn_start_game: UIButton = UIButton()
@@ -123,7 +124,7 @@ class State2_MainViewController: ViewController {
         btn_start_game.center = CGPointMake(first_box.frame.minX+first_box.frame.width/4, first_box.frame.minY+first_box.frame.height/2)
         scrollView.addSubview(btn_start_game)
         btn_start_game.addTarget(self, action: "btn_fail_next_click:", forControlEvents: UIControlEvents.TouchUpInside)
-
+        
         
         
         var second_box: UIImageView
@@ -141,37 +142,50 @@ class State2_MainViewController: ViewController {
         var iq_label2: UILabel
         var fb_login_label: UILabel
         let ranking_string1 = "你的線上排名"
+        let player_ranking = "20"
+        let player_amount = "600"
+        let correct_rate = 50.0
+        let iq = Int(sqrt(correct_rate)*20)
+        let ranking_string2 = player_ranking + " / " + player_amount
         let iq_string1 = "你的IQ"
+        let iq_string2 = String(iq)
         let fb_string = "缺金幣?想升級?看排行?登入臉書進入進階模式!"
         
         ranking_label1 = UILabel(frame: CGRect(x:second_box.frame.minX+0.05*second_box.frame.width, y:second_box.frame.height/12+second_box.frame.minY, width:0.4*second_box.frame.width, height:second_box.frame.height/12))
         ranking_label1.text = ranking_string1
-        ranking_label1.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
-        ranking_label1.adjustsFontSizeToFitWidth = true
-        ranking_label1.numberOfLines = 1
+        ranking_label1.font = UIFont(name:"HelveticaNeue-Bold", size: 0.055*screen_width)
         ranking_label1.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        ranking_label1.minimumScaleFactor = 16/ranking_label1.font.pointSize
         ranking_label1.textColor = UIColorFromRGB(0x5c5c5c)
         scrollView.addSubview(ranking_label1)
         
+        ranking_label2 = UILabel(frame: CGRect(x:second_box.frame.minX+0.7*second_box.frame.width, y:second_box.frame.height/12+second_box.frame.minY, width:0.25*second_box.frame.width, height:second_box.frame.height/10))
+        ranking_label2.text = ranking_string2
+        ranking_label2.font = UIFont(name:"HelveticaNeue-Bold", size: 0.055*screen_width)
+        ranking_label2.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        ranking_label2.textAlignment = NSTextAlignment.Right
+        ranking_label2.textColor = UIColorFromRGB(0x5c5c5c)
+        scrollView.addSubview(ranking_label2)
+        
         iq_label1 = UILabel(frame: CGRect(x:second_box.frame.minX+0.05*second_box.frame.width, y:4*second_box.frame.height/12+second_box.frame.minY, width:0.2*second_box.frame.width, height:second_box.frame.height/12))
         iq_label1.text = iq_string1
-        iq_label1.font = UIFont(name:"HelveticaNeue-Bold", size: 200.0)
-        iq_label1.adjustsFontSizeToFitWidth = true
-        iq_label1.numberOfLines = 1
+        iq_label1.font = UIFont(name:"HelveticaNeue-Bold", size: 0.055*screen_width)
         iq_label1.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        iq_label1.minimumScaleFactor = 16/ranking_label1.font.pointSize
         iq_label1.textColor = UIColorFromRGB(0x5c5c5c)
         scrollView.addSubview(iq_label1)
+        
+        iq_label2 = UILabel(frame: CGRect(x:second_box.frame.minX+0.7*second_box.frame.width, y:4*second_box.frame.height/12+second_box.frame.minY, width:0.25*second_box.frame.width, height:second_box.frame.height/10))
+        iq_label2.text = iq_string2
+        iq_label2.font = UIFont(name:"HelveticaNeue-Bold", size: 0.055*screen_width)
+        iq_label2.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        iq_label2.textAlignment = NSTextAlignment.Right
+        iq_label2.textColor = UIColorFromRGB(0x5c5c5c)
+        scrollView.addSubview(iq_label2)
         
         fb_login_label = UILabel(frame: CGRect(x:0, y:0, width:0.9*second_box.frame.width, height:second_box.frame.height/6))
         fb_login_label.center = CGPoint(x: screen_width/2, y: second_box.frame.minY+0.6*second_box.frame.height)
         fb_login_label.text = fb_string
-        fb_login_label.font = UIFont(name:"HelveticaNeue-Bold", size: 50.0)
-        fb_login_label.adjustsFontSizeToFitWidth = true
-        fb_login_label.numberOfLines = 1
+        fb_login_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.038*screen_width)
         fb_login_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        fb_login_label.minimumScaleFactor = 19/ranking_label1.font.pointSize
         fb_login_label.textAlignment = NSTextAlignment.Center
         fb_login_label.textColor = UIColorFromRGB(0x5c5c5c)
         scrollView.addSubview(fb_login_label)
@@ -244,13 +258,14 @@ class State2_MainViewController: ViewController {
         btn_purchase_6.center = CGPointMake(forth_box.frame.minX + 5*forth_box.frame.width/6,(forth_box.frame.maxY+forth_box.frame.minY)/2)
         btn_purchase_6.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(btn_purchase_6)
-        
-
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     func btn_fail_next_click(button: UIButton) {
         button.highlighted = true
-        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State3_PreparingViewController")
+        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State0_ErrorViewController")
         self.presentViewController(nextviewController, animated: false, completion: nil)
     }
     
