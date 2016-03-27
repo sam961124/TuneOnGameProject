@@ -14,6 +14,19 @@ class State0_ErrorViewController: ViewController {
     var dialog_label: UILabel!
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
+            
+            self.dialog.frame.size.width = self.dialog.frame.size.width*2
+            self.dialog.frame.size.height = self.dialog.frame.size.height*2
+            self.dialog_label.frame.size.width = self.dialog_label.frame.size.width*2
+            self.dialog_label.frame.size.height = self.dialog_label.frame.size.height*2
+            
+            }, completion: nil)
+        // Do any additional setup after loading the view.
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -184,20 +197,6 @@ class State0_ErrorViewController: ViewController {
         dialog_label.textColor = UIColorFromRGB(0x820c0c)
         self.view.addSubview(dialog_label)
         //end here
-        
-        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
-            
-            self.dialog.frame.size.width = self.dialog.frame.size.width*2
-            self.dialog.frame.size.height = self.dialog.frame.size.height*2
-            self.dialog_label.frame.size.width = self.dialog_label.frame.size.width*2
-            self.dialog_label.frame.size.height = self.dialog_label.frame.size.height*2
-            
-            }, completion: nil)
-        // Do any additional setup after loading the view.
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     func btn_fail_next_click(button: UIButton) {
