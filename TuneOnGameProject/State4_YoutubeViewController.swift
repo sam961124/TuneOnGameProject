@@ -102,6 +102,22 @@ class State4_YoutubeViewController: ViewController {
         self.view.addSubview(background_youtube)
         //end here
         
+        //youtube_player code from here
+        var youtube_id = "j4sEvo4ojq8"
+        var youtube_player: YTPlayerView!
+        
+        youtube_player = YTPlayerView(frame: CGRect(x:0, y:top_bar.frame.maxY+0.06*screen_height, width:screen_width, height:0.38*screen_height))
+        let player_vars: NSDictionary = [
+            "playsinline": 1,
+            "autoplay": 1,
+            "controls": 0,
+            "showinfo": 0,
+            "rel": 0
+        ]
+        youtube_player.loadWithVideoId(youtube_id, playerVars: player_vars as [NSObject: AnyObject])
+        self.view.addSubview(youtube_player)
+        //end here
+        
         //star_orange code from here
         var star_orange: UIImageView
         star_orange = UIImageView(image: UIImage(named: "star_orange.png"))

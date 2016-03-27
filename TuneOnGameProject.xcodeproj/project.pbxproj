@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9B0800001C9EFEA6007942C1 /* State4_YoutubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08FFFF1C9EFEA6007942C1 /* State4_YoutubeViewController.swift */; };
 		9B75E47B1C9FD942004A8B56 /* State5_ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B75E47A1C9FD942004A8B56 /* State5_ImageViewController.swift */; };
+		9BD4D1061CA85E7400E55512 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD4D1051CA85E7400E55512 /* YTPlayerView.m */; };
+		9BD4D1091CA85E8900E55512 /* YTPlayerView-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = 9BD4D1081CA85E8900E55512 /* YTPlayerView-iframe-player.html */; };
 		D0893DD61C97FCE500617CAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0893DD51C97FCE500617CAB /* AppDelegate.swift */; };
 		D0893DD81C97FCE500617CAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0893DD71C97FCE500617CAB /* ViewController.swift */; };
 		D0893DDB1C97FCE500617CAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0893DD91C97FCE500617CAB /* Main.storyboard */; };
@@ -47,6 +49,10 @@
 /* Begin PBXFileReference section */
 		9B08FFFF1C9EFEA6007942C1 /* State4_YoutubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State4_YoutubeViewController.swift; sourceTree = "<group>"; };
 		9B75E47A1C9FD942004A8B56 /* State5_ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State5_ImageViewController.swift; sourceTree = "<group>"; };
+		9BD4D1031CA85E7300E55512 /* TuneOnGameProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuneOnGameProject-Bridging-Header.h"; sourceTree = "<group>"; };
+		9BD4D1041CA85E7400E55512 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
+		9BD4D1051CA85E7400E55512 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
+		9BD4D1081CA85E8900E55512 /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "YTPlayerView-iframe-player.html"; sourceTree = "<group>"; };
 		D0893DD21C97FCE500617CAB /* TuneOnGameProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuneOnGameProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0893DD51C97FCE500617CAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0893DD71C97FCE500617CAB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +102,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9BD4D1071CA85E8900E55512 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				9BD4D1081CA85E8900E55512 /* YTPlayerView-iframe-player.html */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		9BD4D10A1CA85E9A00E55512 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9BD4D10B1CA85EB000E55512 /* Development Pods */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9BD4D10B1CA85EB000E55512 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9BD4D10C1CA85EC200E55512 /* YouTube-Player-iOS-Helper */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		9BD4D10C1CA85EC200E55512 /* YouTube-Player-iOS-Helper */ = {
+			isa = PBXGroup;
+			children = (
+				9BD4D10D1CA85EC800E55512 /* Resources */,
+				9BD4D1041CA85E7400E55512 /* YTPlayerView.h */,
+				9BD4D1051CA85E7400E55512 /* YTPlayerView.m */,
+				9BD4D1031CA85E7300E55512 /* TuneOnGameProject-Bridging-Header.h */,
+			);
+			name = "YouTube-Player-iOS-Helper";
+			sourceTree = "<group>";
+		};
+		9BD4D10D1CA85EC800E55512 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9BD4D1071CA85E8900E55512 /* Assets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		D0893DC91C97FCE500617CAB = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +152,7 @@
 				D0893DEC1C97FCE600617CAB /* TuneOnGameProjectTests */,
 				D0893DF71C97FCE600617CAB /* TuneOnGameProjectUITests */,
 				D0893DD31C97FCE500617CAB /* Products */,
+				9BD4D10A1CA85E9A00E55512 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -220,7 +270,7 @@
 		D0893DCA1C97FCE500617CAB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = IM_IOS_CodingGroup;
 				TargetAttributes = {
@@ -265,6 +315,7 @@
 			files = (
 				D0893DE31C97FCE500617CAB /* LaunchScreen.storyboard in Resources */,
 				D0893DE01C97FCE500617CAB /* Assets.xcassets in Resources */,
+				9BD4D1091CA85E8900E55512 /* YTPlayerView-iframe-player.html in Resources */,
 				D0893DDB1C97FCE500617CAB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +347,7 @@
 				D76307091C9EB190009B15A0 /* State7_RightViewController.swift in Sources */,
 				D0C8672B1C9984C5007A7AA6 /* State1_SplashViewController.swift in Sources */,
 				E91EC1FB1C999B9800124C4C /* State6_QuizViewController.swift in Sources */,
+				9BD4D1061CA85E7400E55512 /* YTPlayerView.m in Sources */,
 				D0893DD61C97FCE500617CAB /* AppDelegate.swift in Sources */,
 				9B75E47B1C9FD942004A8B56 /* State5_ImageViewController.swift in Sources */,
 				D76307071C9E6F55009B15A0 /* State2_MainViewController.swift in Sources */,
@@ -453,6 +505,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = im.IOScodeGroup.TuneOnGameProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$PROJECT_DIR/TuneOnGameProject-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -470,6 +523,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = im.IOScodeGroup.TuneOnGameProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$PROJECT_DIR/TuneOnGameProject-Bridging-Header.h";
 			};
 			name = Release;
 		};
