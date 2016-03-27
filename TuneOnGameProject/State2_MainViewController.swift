@@ -52,7 +52,7 @@ class State2_MainViewController: ViewController {
         //level label
         var level_label: UILabel
         var level = "15"
-        var level_string = "Lv " + level
+        let level_string = "Lv " + level
         level_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/4, height:0.8*level_bar.frame.height))
         level_label.center = CGPointMake((level_bar.frame.minX+level_bar.frame.maxX)/2, (level_bar.frame.minY+level_bar.frame.maxY)/2)
         level_label.text = level_string
@@ -142,10 +142,13 @@ class State2_MainViewController: ViewController {
         var iq_label2: UILabel
         var fb_login_label: UILabel
         let ranking_string1 = "你的線上排名"
-        var player_ranking = "20"
-        var player_amount = "600"
+        let player_ranking = "20"
+        let player_amount = "600"
+        let correct_rate = 50.0
+        let iq = Int(sqrt(correct_rate)*20)
         let ranking_string2 = player_ranking + " / " + player_amount
         let iq_string1 = "你的IQ"
+        let iq_string2 = String(iq)
         let fb_string = "缺金幣?想升級?看排行?登入臉書進入進階模式!"
         
         ranking_label1 = UILabel(frame: CGRect(x:second_box.frame.minX+0.05*second_box.frame.width, y:second_box.frame.height/12+second_box.frame.minY, width:0.4*second_box.frame.width, height:second_box.frame.height/12))
@@ -155,10 +158,11 @@ class State2_MainViewController: ViewController {
         ranking_label1.textColor = UIColorFromRGB(0x5c5c5c)
         scrollView.addSubview(ranking_label1)
         
-        ranking_label2 = UILabel(frame: CGRect(x:second_box.frame.minX+0.05*second_box.frame.width, y:second_box.frame.height/12+second_box.frame.minY, width:0.4*second_box.frame.width, height:second_box.frame.height/12))
+        ranking_label2 = UILabel(frame: CGRect(x:second_box.frame.minX+0.7*second_box.frame.width, y:second_box.frame.height/12+second_box.frame.minY, width:0.25*second_box.frame.width, height:second_box.frame.height/10))
         ranking_label2.text = ranking_string2
         ranking_label2.font = UIFont(name:"HelveticaNeue-Bold", size: 0.055*screen_width)
         ranking_label2.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        ranking_label2.textAlignment = NSTextAlignment.Right
         ranking_label2.textColor = UIColorFromRGB(0x5c5c5c)
         scrollView.addSubview(ranking_label2)
         
@@ -168,6 +172,14 @@ class State2_MainViewController: ViewController {
         iq_label1.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         iq_label1.textColor = UIColorFromRGB(0x5c5c5c)
         scrollView.addSubview(iq_label1)
+        
+        iq_label2 = UILabel(frame: CGRect(x:second_box.frame.minX+0.7*second_box.frame.width, y:4*second_box.frame.height/12+second_box.frame.minY, width:0.25*second_box.frame.width, height:second_box.frame.height/10))
+        iq_label2.text = iq_string2
+        iq_label2.font = UIFont(name:"HelveticaNeue-Bold", size: 0.055*screen_width)
+        iq_label2.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        iq_label2.textAlignment = NSTextAlignment.Right
+        iq_label2.textColor = UIColorFromRGB(0x5c5c5c)
+        scrollView.addSubview(iq_label2)
         
         fb_login_label = UILabel(frame: CGRect(x:0, y:0, width:0.9*second_box.frame.width, height:second_box.frame.height/6))
         fb_login_label.center = CGPoint(x: screen_width/2, y: second_box.frame.minY+0.6*second_box.frame.height)
