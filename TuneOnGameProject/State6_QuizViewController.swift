@@ -9,7 +9,30 @@
 import UIKit
 
 class State6_QuizViewController: ViewController {
-
+    
+    //item count
+    let freeitem_amount = 2
+    let user_level = 10
+    
+    //item button
+    let btn_playback: UIButton = UIButton()
+    let btn_friend: UIButton = UIButton()
+    let btn_remove: UIButton = UIButton()
+    let btn_submit: UIButton = UIButton()
+    let btn_start_use: UIButton = UIButton()
+    
+    
+    //pop_up window element
+    var pop_up_background: UIView!
+    var pop_up_view: UIView!
+    
+    var item_image: UIImageView = UIImageView(image: UIImage(named: "home.png"))
+    var current_item: UIImage = UIImage()
+    
+    var item_name_label: UILabel!
+    var item_intro_label: UILabel!
+    
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         //constant
@@ -157,41 +180,93 @@ class State6_QuizViewController: ViewController {
         //end here
         
         //four item code from here
-        var btn_playback: UIImageView
-        var btn_friend: UIImageView
-        var btn_remove: UIImageView
-        var btn_submit: UIImageView
+        let lock1: UIImageView = UIImageView(image: UIImage(named: "lock.png"))
+        let lock2: UIImageView = UIImageView(image: UIImage(named: "lock.png"))
+        let lock3: UIImageView = UIImageView(image: UIImage(named: "lock.png"))
+        let lock4: UIImageView = UIImageView(image: UIImage(named: "lock.png"))
         let item_width = screen_width/6
-        let item_height = red_bar.frame.height
         let item_y = 11*screen_height/12
+        let playback_image: UIImage = UIImage(named: "btn_item_playback_normal.png")!
+        let item_height = (screen_width/6)*playback_image.size.height/playback_image.size.width
+        //lock
+        lock1.frame.size.width = 0.1*screen_width
+        lock1.contentMode = UIViewContentMode.ScaleAspectFit
+        lock2.frame.size.width = 0.1*screen_width
+        lock2.contentMode = UIViewContentMode.ScaleAspectFit
+        lock3.frame.size.width = 0.1*screen_width
+        lock3.contentMode = UIViewContentMode.ScaleAspectFit
+        lock4.frame.size.width = 0.1*screen_width
+        lock4.contentMode = UIViewContentMode.ScaleAspectFit
         
-        btn_playback = UIImageView(image: UIImage(named: "btn_item_playback_normal.png"))
+        //item playback
+        if freeitem_amount > 0 && user_level >= 10 {
+            btn_playback.setBackgroundImage(playback_image, forState: UIControlState.Normal)
+            btn_playback.setBackgroundImage(UIImage(named: "btn_item_playback_pressed.png"), forState: UIControlState.Highlighted)
+        }
+        else{
+            btn_playback.setBackgroundImage(UIImage(named: "btn_item_playback_disable.png"), forState: UIControlState.Normal)
+        }
+        btn_playback.contentMode = UIViewContentMode.ScaleAspectFit
         btn_playback.frame.size.height = item_height
         btn_playback.frame.size.width = item_width
         btn_playback.center = CGPointMake(screen_width/8, item_y)
-        btn_playback.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_playback)
+        btn_playback.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        if user_level < 10{
+            lock1.center = CGPointMake(btn_playback.frame.width/2, btn_playback.frame.height/2)
+            self.btn_playback.addSubview(lock1)
+        }
         
-        btn_friend = UIImageView(image: UIImage(named: "btn_item_friend_normal.png"))
+        //item friend
+        if freeitem_amount > 0 && user_level >= 6{
+            btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_normal.png"), forState: UIControlState.Normal)
+            btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_pressed.png"), forState: UIControlState.Highlighted)
+        }
+        else{
+            btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_disable.png"), forState: UIControlState.Normal)
+        }
         btn_friend.frame.size.height = item_height
         btn_friend.frame.size.width = item_width
         btn_friend.center = CGPointMake(3*screen_width/8, item_y)
         btn_friend.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_friend)
+        btn_friend.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        if user_level < 6{
+            lock2.center = CGPointMake(btn_friend.frame.width/2, btn_friend.frame.height/2)
+            self.btn_friend.addSubview(lock2)
+        }
         
-        btn_remove = UIImageView(image: UIImage(named: "btn_item_remove_normal.png"))
+        //item remove
+        if freeitem_amount > 0 && user_level >= 15{
+            btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_normal.png"), forState: UIControlState.Normal)
+            btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_pressed.png"), forState: UIControlState.Highlighted)
+        }
+        else{
+            btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_disable.png"), forState: UIControlState.Normal)
+        }
         btn_remove.frame.size.height = item_height
         btn_remove.frame.size.width = item_width
         btn_remove.center = CGPointMake(5*screen_width/8, item_y)
         btn_remove.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_remove)
+        btn_remove.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        if user_level < 15{
+            lock3.center = CGPointMake(btn_remove.frame.width/2, btn_remove.frame.height/2)
+            self.btn_remove.addSubview(lock3)
+        }
         
-        btn_submit = UIImageView(image: UIImage(named: "btn_item_submit_normal.png"))
+        //item submit
+        btn_submit.setBackgroundImage(UIImage(named: "btn_item_submit_disable.png"), forState: UIControlState.Normal)
+        //btn_submit.setImage(UIImage(named: "btn_item_submit_pressed.png"), forState: UIControlState.Highlighted)
         btn_submit.frame.size.height = item_height
         btn_submit.frame.size.width = item_width
         btn_submit.center = CGPointMake(7*screen_width/8, item_y)
         btn_submit.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_submit)
+        btn_submit.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        lock4.center = CGPointMake(btn_submit.frame.width/2, btn_submit.frame.height/2)
+        self.btn_submit.addSubview(lock4)
         //end here
         
         //choice code from here
@@ -264,7 +339,158 @@ class State6_QuizViewController: ViewController {
         choice4_label.textAlignment = NSTextAlignment.Center
         choice4_label.textColor = UIColorFromRGB(0x820c0c)
         self.view.addSubview(choice4_label)
-
+        
+        //pop up view code
+        pop_up_background = UIView(frame: CGRect(x: 0, y: 0, width: screen_width, height: screen_height))
+        pop_up_background.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        pop_up_background.hidden = true
+        self.view.addSubview(pop_up_background)
+        
+        pop_up_view = UIView(frame: CGRect(x: 0, y: 0, width: 0.8*screen_width, height: 1.2*screen_width))
+        pop_up_view.center = CGPointMake(screen_width/2, screen_height/2)
+        pop_up_view.backgroundColor = UIColor(patternImage: UIImage(named: "background_youtube_small.png")!)
+        pop_up_view.hidden = true
+        self.view.addSubview(pop_up_view)
+        
+        //doll
+        var doll_smile: UIImageView
+        doll_smile = UIImageView(image: UIImage(named: "doll_smile.png"))
+        doll_smile.frame.size.width = 0.35*screen_width
+        doll_smile.frame.size.height = (0.35*screen_width)*(doll_smile.image?.size.height)!/(doll_smile.image?.size.width)!
+        doll_smile.center = CGPointMake(0.26*pop_up_view.frame.width, 0.75*pop_up_view.frame.height)
+        doll_smile.contentMode = UIViewContentMode.ScaleAspectFit
+        self.pop_up_view.addSubview(doll_smile)
+        
+        //button
+        let btn_cancel_use: UIButton = UIButton()
+        let cancel_use: UIImage = UIImage(named: "btn_cancel_use_normal.png")!
+        
+        btn_cancel_use.setBackgroundImage(cancel_use, forState: UIControlState.Normal)
+        btn_cancel_use.setBackgroundImage(UIImage(named: "btn_cancel_use_pressed.png"), forState: UIControlState.Highlighted)
+        btn_cancel_use.frame.size.height = 0.3*doll_smile.frame.height
+        btn_cancel_use.frame.size.width = (0.3*doll_smile.frame.height)*(cancel_use.size.width)/(cancel_use.size.height)
+        btn_cancel_use.center = CGPointMake(0.7*pop_up_view.frame.width, 0.75*pop_up_view.frame.height)
+        btn_cancel_use.contentMode = UIViewContentMode.ScaleAspectFit
+        
+        btn_start_use.setBackgroundImage(UIImage(named: "btn_start_use_normal.png"), forState: UIControlState.Normal)
+        btn_start_use.setBackgroundImage(UIImage(named: "btn_start_use_pressed.png"), forState: UIControlState.Highlighted)
+        btn_start_use.frame.size.height = 0.3*doll_smile.frame.height
+        btn_start_use.frame.size.width = (0.3*doll_smile.frame.height)*(cancel_use.size.width)/(cancel_use.size.height)
+        btn_start_use.center = CGPointMake(0.7*pop_up_view.frame.width, doll_smile.frame.minY + 0.15*doll_smile.frame.height)
+        btn_start_use.contentMode = UIViewContentMode.ScaleAspectFit
+        
+        self.pop_up_view.addSubview(btn_cancel_use)
+        self.pop_up_view.addSubview(btn_start_use)
+        btn_cancel_use.addTarget(self, action: #selector(State6_QuizViewController.btn_cancel_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        //label
+        item_name_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*pop_up_view.frame.width, height:0.12*pop_up_view.frame.height))
+        item_name_label.font = UIFont(name:"Helvetica", size: 0.06*screen_width)
+        item_name_label.numberOfLines = 1
+        item_name_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        item_name_label.textAlignment = NSTextAlignment.Center
+        item_name_label.textColor = UIColorFromRGB(0xfba928)
+        
+        item_intro_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*pop_up_view.frame.width, height:0.12*pop_up_view.frame.height))
+        item_intro_label.font = UIFont(name:"Helvetica", size: 0.04*screen_width)
+        item_intro_label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        item_intro_label.numberOfLines = 0
+        item_intro_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        item_intro_label.textColor = UIColorFromRGB(0xfba928)
+        
+        
+    }
+    
+    func btn_item_click(button: UIButton) {
+        let freeitem_amount_string = String(freeitem_amount)
+        //item_image
+        btn_start_use.hidden = false
+        if button == btn_playback{
+            item_image = UIImageView(image: UIImage(named: "btn_item_playback_normal.png"))
+            item_image.frame.size.width = pop_up_view.frame.width/4
+            item_image.frame.size.height = pop_up_view.frame.width/4
+            item_image.contentMode = UIViewContentMode.ScaleAspectFit
+            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
+            self.pop_up_view.addSubview(item_image)
+            
+            if freeitem_amount > 0 && user_level >= 10{
+                item_name_label.text = "重看一次(免費道具)"
+                item_intro_label.text = "無限次重看影片或圖片，使用一個免費道具，還有" + freeitem_amount_string + "個"
+                
+            }
+            else if freeitem_amount == 0 && user_level >= 10{
+                item_name_label.text = "重看一次(購買道具)"
+                item_intro_label.text = "無限次重看影片或圖片，購買此道具，請支付200G"
+            }
+            else{
+                item_name_label.text = "重看一次(無法使用)"
+                item_intro_label.text = "無限次重看影片或圖片，需要Lv10以上"
+                btn_start_use.hidden = true
+            }
+        }
+        else if button == btn_remove{
+            item_image = UIImageView(image: UIImage(named: "btn_item_remove_normal.png"))
+            item_image.frame.size.width = pop_up_view.frame.width/4
+            item_image.frame.size.height = pop_up_view.frame.width/4
+            item_image.contentMode = UIViewContentMode.ScaleAspectFit
+            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
+            self.pop_up_view.addSubview(item_image)
+            
+            if freeitem_amount > 0 && user_level >= 15{
+                item_name_label.text = "減少選項(免費道具)"
+                item_intro_label.text = "從四選一變成二選一，使用一個免費道具，還有" + freeitem_amount_string + "個"
+                
+            }
+            else if freeitem_amount == 0 && user_level >= 15{
+                item_name_label.text = "減少選項(購買道具)"
+                item_intro_label.text = "從四選一變成二選一，購買此道具，請支付200G"
+            }
+            else{
+                item_name_label.text = "減少選項(無法使用)"
+                item_intro_label.text = "從四選一變成二選一，需要Lv15以上"
+                btn_start_use.hidden = true
+            }
+        }
+        else if button == btn_friend{
+            item_image = UIImageView(image: UIImage(named: "btn_item_friend_normal.png"))
+            item_image.frame.size.width = pop_up_view.frame.width/4
+            item_image.frame.size.height = pop_up_view.frame.width/4
+            item_image.contentMode = UIViewContentMode.ScaleAspectFit
+            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
+            self.pop_up_view.addSubview(item_image)
+            
+            if freeitem_amount > 0 && user_level >= 6{
+                item_name_label.text = "玩家記錄(免費道具)"
+                item_intro_label.text = "看其他玩家曾經選過的答案與次數，使用一個免費道具，還有" + freeitem_amount_string + "個"
+                
+            }
+            else if freeitem_amount == 0 && user_level >= 6{
+                item_name_label.text = "玩家記錄(購買道具)"
+                item_intro_label.text = "看其他玩家曾經選過的答案與次數，購買此道具，請支付100G"
+            }
+            else{
+                item_name_label.text = "玩家記錄(無法使用)"
+                item_intro_label.text = "看其他玩家曾經選過的答案與次數，需要Lv6以上"
+                btn_start_use.hidden = true
+            }
+        }
+        else{
+            item_name_label.text = "幫忙出題(無法使用)"
+            item_intro_label.text = "上傳題目給其他玩家玩，不用花G還能賺G，需要Lv101以上。將在v2.0版開放。"
+            btn_start_use.hidden = true
+        }
+        self.pop_up_view.addSubview(item_name_label)
+        self.pop_up_view.addSubview(item_intro_label)
+        item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+        item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.05*pop_up_view.frame.height)
+        button.highlighted = true
+        pop_up_background.hidden = false
+        pop_up_view.hidden = false
+    }
+    func btn_cancel_click(button: UIButton) {
+        button.highlighted = true
+        pop_up_background.hidden = true
+        pop_up_view.hidden = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
