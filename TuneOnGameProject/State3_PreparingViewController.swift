@@ -172,7 +172,10 @@ class State3_PreparingViewController: ViewController {
     
         func btn_success_next_click(button: UIButton) {
             button.highlighted = true
-            TurnPage(0)
+            if(true){
+                TurnPage(4)}
+            else{
+                TurnPage(5)}
         }
     
         override func viewWillAppear(animated: Bool) {

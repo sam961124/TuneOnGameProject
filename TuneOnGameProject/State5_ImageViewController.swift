@@ -125,16 +125,24 @@ class State5_ImageViewController: ViewController {
         //end here
         
         //start_answer code from here
-        var btn_start_answer: UIImageView
-        btn_start_answer = UIImageView(image: UIImage(named: "btn_start_answer_normal.png"))
-        btn_start_answer.frame.size.height = 0.3*doll_normal.frame.height
-        btn_start_answer.frame.size.width = (0.3*doll_normal.frame.height)*(btn_start_answer.image?.size.width)!/(btn_start_answer.image?.size.height)!
-        btn_start_answer.center = CGPointMake(doll_normal.frame.maxX+0.65*btn_start_answer.frame.width, doll_normal.frame.minY+0.45*doll_normal.frame.height)
+        let btn_start_answer: UIButton = UIButton()
+        let start_answer: UIImage = UIImage(named: "btn_start_answer_normal.png")!
+        btn_start_answer.highlighted = false
         btn_start_answer.contentMode = UIViewContentMode.ScaleAspectFit
+        btn_start_answer.setImage(start_answer, forState: UIControlState.Normal)
+        btn_start_answer.setImage(UIImage(named: "btn_start_answer_pressed.png"), forState: UIControlState.Highlighted)
+        btn_start_answer.frame.size.height = 0.3*doll_normal.frame.height
+        btn_start_answer.frame.size.width = (0.3*doll_normal.frame.height)*(start_answer.size.width)/(start_answer.size.height)
+        btn_start_answer.center = CGPointMake(doll_normal.frame.maxX+0.65*btn_start_answer.frame.width, doll_normal.frame.minY+0.45*doll_normal.frame.height)
         self.view.addSubview(btn_start_answer)
+        btn_start_answer.addTarget(self, action: #selector(State5_ImageViewController.btn_start_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         //end here
     }
     
+    func btn_start_answer_click(button: UIButton) {
+        button.highlighted = true
+        TurnPage(6)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

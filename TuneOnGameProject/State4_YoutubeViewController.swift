@@ -140,21 +140,38 @@ class State4_YoutubeViewController: ViewController {
         //end here
         
         //play_again and start_answer code from here
-        var btn_play_again: UIImageView
-        var btn_start_answer: UIImageView
-        
-        btn_play_again = UIImageView(image: UIImage(named: "btn_play_again_normal.png"))
-        btn_start_answer = UIImageView(image: UIImage(named: "btn_start_answer_normal.png"))
+        let btn_play_again: UIButton = UIButton()
+        let play_again: UIImage = UIImage(named: "btn_play_again_normal.png")!
+        let btn_start_answer: UIButton = UIButton()
+        let start_answer: UIImage = UIImage(named: "btn_start_answer_normal.png")!
+        btn_play_again.highlighted = false
+        btn_start_answer.highlighted = false
+        btn_play_again.contentMode = UIViewContentMode.ScaleAspectFit
+        btn_start_answer.contentMode = UIViewContentMode.ScaleAspectFit
+        btn_play_again.setImage(play_again, forState: UIControlState.Normal)
+        btn_start_answer.setImage(start_answer, forState: UIControlState.Normal)
+        btn_play_again.setImage(UIImage(named: "btn_play_again_pressed.png"), forState: UIControlState.Highlighted)
+        btn_start_answer.setImage(UIImage(named: "btn_start_answer_pressed.png"), forState: UIControlState.Highlighted)
         btn_play_again.frame.size.height = 0.3*doll_normal.frame.height
-        btn_play_again.frame.size.width = (0.3*doll_normal.frame.height)*(btn_play_again.image?.size.width)!/(btn_play_again.image?.size.height)!
+        btn_play_again.frame.size.width = (0.3*doll_normal.frame.height)*(play_again.size.width)/(play_again.size.height)
         btn_start_answer.frame.size = btn_play_again.frame.size
         btn_play_again.center = CGPointMake(doll_normal.frame.maxX+0.65*btn_play_again.frame.width, doll_normal.frame.minY+0.5*btn_play_again.frame.height)
         btn_start_answer.center = CGPointMake(doll_normal.frame.maxX+0.65*btn_play_again.frame.width, doll_normal.frame.minY+0.5*doll_normal.frame.height)
-        btn_play_again.contentMode = UIViewContentMode.ScaleAspectFit
-        btn_start_answer.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_play_again)
         self.view.addSubview(btn_start_answer)
+        btn_start_answer.addTarget(self, action: #selector(State4_YoutubeViewController.btn_start_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        btn_play_again.addTarget(self, action: #selector(State4_YoutubeViewController.btn_play_again_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         //end here
+        
+    }
+
+    func btn_play_again_click(button: UIButton) {
+        button.highlighted = true
+        
+    }
+    func btn_start_answer_click(button: UIButton) {
+        button.highlighted = true
+         TurnPage(6)
     }
 
     override func didReceiveMemoryWarning() {
