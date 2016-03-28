@@ -9,7 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    let level = 0;
+    let money = 0;
+    let experience = 0.0;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -29,7 +32,7 @@ class ViewController: UIViewController {
         )
     }
     
-    func HTTPPostJSON(data: NSData, callback: (String, String?)->Void){
+    func HTTPPostJSON(data: NSData, callback: (NSData, String?)->Void){
         let request = NSMutableURLRequest(URL: NSURL(string: "http://dbms3.tuneon.com.tw/~ws20/ws/2.0/request_qz.php")!)
         request.HTTPMethod = "POST"
         request.addValue("application/json",forHTTPHeaderField: "Content-Type")
@@ -38,13 +41,13 @@ class ViewController: UIViewController {
         HTTPsendRequest(request, callback: callback)
     }
     
-    func HTTPsendRequest(request: NSMutableURLRequest, callback: (String, String?) -> Void){
+    func HTTPsendRequest(request: NSMutableURLRequest, callback: (NSData, String?) -> Void){
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
             (data, response, error) -> Void in
             if (error != nil) {
-                callback("", error?.localizedDescription)
+                callback(data!, error?.localizedDescription)
             } else {
-                callback(NSString(data: data!, encoding: NSUTF8StringEncoding)! as String, nil)
+                callback(data!, nil)
             }
         }
         task.resume()

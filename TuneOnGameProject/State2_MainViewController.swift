@@ -55,8 +55,8 @@ class State2_MainViewController: ViewController {
         
         //level label
         var level_label: UILabel
-        var level = "15"
-        let level_string = "Lv " + level
+        let level = super.level
+        let level_string = "Lv \(level)"
         level_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/4, height:0.8*level_bar.frame.height))
         level_label.center = CGPointMake((level_bar.frame.minX+level_bar.frame.maxX)/2, (level_bar.frame.minY+level_bar.frame.maxY)/2)
         level_label.text = level_string

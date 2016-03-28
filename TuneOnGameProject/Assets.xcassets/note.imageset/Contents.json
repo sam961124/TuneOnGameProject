@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "lock-1.png",
+      "filename" : "note.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "lock.png",
+      "filename" : "note-1.png",
       "scale" : "2x"
     },
     {
