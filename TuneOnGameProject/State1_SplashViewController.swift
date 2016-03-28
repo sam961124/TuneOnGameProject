@@ -34,9 +34,17 @@ class State1_SplashViewController: ViewController {
                 (response, error) -> Void in
                 if (error != nil){
                     print(error)
+                    self.number = 0
                 }
-                print(response)
-                self.number=2
+                var id: String = String()
+                do{
+                    let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
+                    id = (json["appUser"]!!["id"] as! String?)!
+                } catch{
+                    print("error serializaing JSON: \(error)")
+                }
+                print (id)
+                self.number = 2
             }
         }
     }
