@@ -15,14 +15,7 @@ class State1_SplashViewController: ViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "update", userInfo: nil, repeats: false)
-        
-        //tune_on_title animation code from here
-        UIView.animateWithDuration(0.5, delay: 0.1, usingSpringWithDamping: 0.2, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
-            self.tune_on_title.frame.size.width = self.tune_on_title.frame.size.width*2
-            self.tune_on_title.frame.size.height = self.tune_on_title.frame.size.height*2
-            }, completion: nil)
-        //end here
+        _ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(State1_SplashViewController.update), userInfo: nil, repeats: false)
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -9,11 +9,6 @@
 import UIKit
 
 class State6_QuizViewController: ViewController {
-    
-    //item count
-    let freeitem_amount = 2
-    let user_level = 10
-    
     //item button
     let btn_playback: UIButton = UIButton()
     let btn_friend: UIButton = UIButton()
@@ -53,12 +48,12 @@ class State6_QuizViewController: ViewController {
             item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
             self.pop_up_view.addSubview(item_image)
             
-            if freeitem_amount > 0 && user_level >= 10{
+            if freeitem_amount > 0 && level >= 10{
                 item_name_label.text = "重看一次(免費道具)"
                 item_intro_label.text = "無限次重看影片或圖片，使用一個免費道具，還有" + freeitem_amount_string + "個"
                 
             }
-            else if freeitem_amount == 0 && user_level >= 10{
+            else if freeitem_amount == 0 && level >= 10{
                 item_name_label.text = "重看一次(購買道具)"
                 item_intro_label.text = "無限次重看影片或圖片，購買此道具，請支付200G"
             }
@@ -78,12 +73,12 @@ class State6_QuizViewController: ViewController {
             item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
             self.pop_up_view.addSubview(item_image)
             
-            if freeitem_amount > 0 && user_level >= 15{
+            if freeitem_amount > 0 && level >= 15{
                 item_name_label.text = "減少選項(免費道具)"
                 item_intro_label.text = "從四選一變成二選一，使用一個免費道具，還有" + freeitem_amount_string + "個"
                 
             }
-            else if freeitem_amount == 0 && user_level >= 15{
+            else if freeitem_amount == 0 && level >= 15{
                 item_name_label.text = "減少選項(購買道具)"
                 item_intro_label.text = "從四選一變成二選一，購買此道具，請支付200G"
             }
@@ -103,12 +98,12 @@ class State6_QuizViewController: ViewController {
             item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
             self.pop_up_view.addSubview(item_image)
             
-            if freeitem_amount > 0 && user_level >= 6{
+            if freeitem_amount > 0 && level >= 6{
                 item_name_label.text = "玩家記錄(免費道具)"
                 item_intro_label.text = "看其他玩家曾經選過的答案與次數，使用一個免費道具，還有" + freeitem_amount_string + "個"
                 
             }
-            else if freeitem_amount == 0 && user_level >= 6{
+            else if freeitem_amount == 0 && level >= 6{
                 item_name_label.text = "玩家記錄(購買道具)"
                 item_intro_label.text = "看其他玩家曾經選過的答案與次數，購買此道具，請支付100G"
             }
@@ -164,8 +159,10 @@ class State6_QuizViewController: ViewController {
         var top_bar: UIImageView
         var exp_bar: UIImageView
         var level_bar: UIImageView
+        var real_exp_bar: UIImageView
         var money_bar: UIImageView
         var btn_home: UIImageView
+        let exp_rate:CGFloat = (CGFloat(right_count) - pow(CGFloat(level-1),2))/(pow(CGFloat(level),2) - pow(CGFloat(level-1),2))
         
         top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
         top_bar.backgroundColor = UIColorFromRGB(0xfba928)
@@ -174,6 +171,10 @@ class State6_QuizViewController: ViewController {
         exp_bar = UIImageView(frame: CGRect(x:0, y:top_bar.frame.height, width:screen_width, height:top_bar.frame.height/4))
         exp_bar.backgroundColor = UIColorFromRGB(0xffe155)
         self.view.addSubview(exp_bar)
+        
+        real_exp_bar = UIImageView(frame: CGRect(x:0, y:top_bar.frame.height, width:exp_rate*screen_width, height:top_bar.frame.height/4))
+        real_exp_bar.backgroundColor = UIColorFromRGB(0x74f2e8)
+        self.view.addSubview(real_exp_bar)
         
         level_bar = UIImageView(frame: CGRect(x:top_bar.frame.height, y:top_bar.frame.height/5, width:top_bar.frame.width/4, height:top_bar.frame.height-(2*top_bar.frame.height/5)))
         level_bar.layer.cornerRadius = level_bar.frame.height/2
@@ -222,7 +223,7 @@ class State6_QuizViewController: ViewController {
         
         //exp label
         var exp_label: UILabel
-        var exp_percent = "0"
+        let exp_percent = String(Int(exp_rate*100))
         let exp_string = "EXP (" + exp_percent + "/100)"
         exp_label = UILabel(frame: CGRect(x:0, y:0, width:screen_width, height:top_bar.frame.height/4))
         exp_label.center = CGPointMake(screen_width/2, (exp_bar.frame.minY+exp_bar.frame.maxY)/2)
@@ -250,7 +251,6 @@ class State6_QuizViewController: ViewController {
         //question code from here
         var question_box: UIImageView
         var pink_round: UIImageView
-        var star: UIImageView
         question_box = UIImageView(image: UIImage(named: "q-frame.png"))
         question_box.frame.size.width = 0.8*screen_width
         question_box.frame.size.height = (0.8*screen_width)*(question_box.image?.size.height)!/(question_box.image?.size.width)!
@@ -275,7 +275,7 @@ class State6_QuizViewController: ViewController {
         }
         
         var question_label: UILabel
-        var question = "請問我們這一家主題曲第一句歌詞是什麼？"
+        let question = "請問我們這一家主題曲第一句歌詞是什麼？"
         question_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*question_box.frame.width, height:0.8*question_box.frame.height))
         question_label.center = CGPointMake((question_box.frame.minX+question_box.frame.maxX)/2, (question_box.frame.minY+question_box.frame.maxY)/2)
         question_label.text = question
@@ -288,8 +288,8 @@ class State6_QuizViewController: ViewController {
         self.view.addSubview(question_label)
         
         var reward_label: UILabel
-        var reward = "200"
-        var reward_string = reward + " G"
+        let reward = "200"
+        let reward_string = reward + " G"
         reward_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*pink_round.frame.width, height:0.7*pink_round.frame.height))
         reward_label.center = CGPointMake((pink_round.frame.minX+pink_round.frame.maxX)/2, (pink_round.frame.minY+pink_round.frame.maxY)/2)
         reward_label.text = reward_string
@@ -321,7 +321,7 @@ class State6_QuizViewController: ViewController {
         lock4.contentMode = UIViewContentMode.ScaleAspectFit
         
         //item playback
-        if freeitem_amount > 0 && user_level >= 10 {
+        if freeitem_amount > 0 && level >= 10 {
             btn_playback.setBackgroundImage(playback_image, forState: UIControlState.Normal)
             btn_playback.setBackgroundImage(UIImage(named: "btn_item_playback_pressed.png"), forState: UIControlState.Highlighted)
         }
@@ -334,13 +334,13 @@ class State6_QuizViewController: ViewController {
         btn_playback.center = CGPointMake(screen_width/8, item_y)
         self.view.addSubview(btn_playback)
         btn_playback.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        if user_level < 10{
+        if level < 10{
             lock1.center = CGPointMake(btn_playback.frame.width/2, btn_playback.frame.height/2)
             self.btn_playback.addSubview(lock1)
         }
         
         //item friend
-        if freeitem_amount > 0 && user_level >= 6{
+        if freeitem_amount > 0 && level >= 6{
             btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_normal.png"), forState: UIControlState.Normal)
             btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_pressed.png"), forState: UIControlState.Highlighted)
         }
@@ -353,13 +353,13 @@ class State6_QuizViewController: ViewController {
         btn_friend.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_friend)
         btn_friend.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        if user_level < 6{
+        if level < 6{
             lock2.center = CGPointMake(btn_friend.frame.width/2, btn_friend.frame.height/2)
             self.btn_friend.addSubview(lock2)
         }
         
         //item remove
-        if freeitem_amount > 0 && user_level >= 15{
+        if freeitem_amount > 0 && level >= 15{
             btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_normal.png"), forState: UIControlState.Normal)
             btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_pressed.png"), forState: UIControlState.Highlighted)
         }
@@ -372,7 +372,7 @@ class State6_QuizViewController: ViewController {
         btn_remove.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_remove)
         btn_remove.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        if user_level < 15{
+        if level < 15{
             lock3.center = CGPointMake(btn_remove.frame.width/2, btn_remove.frame.height/2)
             self.btn_remove.addSubview(lock3)
         }
@@ -434,11 +434,10 @@ class State6_QuizViewController: ViewController {
         var choice2_label: UILabel
         var choice3_label: UILabel
         var choice4_label: UILabel
-        let scale: CGFloat = 0.6
-        var choice1_string = "哈囉你好嗎"
-        var choice2_string = "衷心感謝"
-        var choice3_string = "珍重再見"
-        var choice4_string = "期待再相逢"
+        let choice1_string = "哈囉你好嗎"
+        let choice2_string = "衷心感謝"
+        let choice3_string = "珍重再見"
+        let choice4_string = "期待再相逢"
         choice1_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice_1.frame.width, height:0.5*btn_choice_1.frame.height))
         choice1_label.center = CGPointMake(screen_width/2, (btn_choice_1.frame.minY+btn_choice_1.frame.maxY)/2)
         choice1_label.text = choice1_string

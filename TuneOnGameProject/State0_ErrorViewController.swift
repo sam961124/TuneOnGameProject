@@ -33,9 +33,11 @@ class State0_ErrorViewController: ViewController {
         //top_bar code from here
         var top_bar: UIImageView
         var exp_bar: UIImageView
+        var real_exp_bar: UIImageView
         var level_bar: UIImageView
         var money_bar: UIImageView
         var btn_home: UIImageView
+        let exp_rate:CGFloat = (CGFloat(right_count) - pow(CGFloat(level-1),2))/(pow(CGFloat(level),2) - pow(CGFloat(level-1),2))
         
         top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
         top_bar.backgroundColor = UIColorFromRGB(0xfba928)
@@ -44,6 +46,10 @@ class State0_ErrorViewController: ViewController {
         exp_bar = UIImageView(frame: CGRect(x:0, y:top_bar.frame.height, width:screen_width, height:top_bar.frame.height/4))
         exp_bar.backgroundColor = UIColorFromRGB(0xffe155)
         self.view.addSubview(exp_bar)
+        
+        real_exp_bar = UIImageView(frame: CGRect(x:0, y:top_bar.frame.height, width:exp_rate*screen_width, height:top_bar.frame.height/4))
+        real_exp_bar.backgroundColor = UIColorFromRGB(0x74f2e8)
+        self.view.addSubview(real_exp_bar)
         
         level_bar = UIImageView(frame: CGRect(x:top_bar.frame.height, y:top_bar.frame.height/5, width:top_bar.frame.width/4, height:top_bar.frame.height-(2*top_bar.frame.height/5)))
         level_bar.layer.cornerRadius = level_bar.frame.height/2
@@ -92,8 +98,8 @@ class State0_ErrorViewController: ViewController {
         
         //exp label
         var exp_label: UILabel
-        var exp_percent = "0"
-        var exp_string = "EXP (" + exp_percent + "/100)"
+        let exp_percent = String(Int(exp_rate*100))
+        let exp_string = "EXP (" + exp_percent + "/100)"
         exp_label = UILabel(frame: CGRect(x:0, y:0, width:screen_width, height:top_bar.frame.height/4))
         exp_label.center = CGPointMake(screen_width/2, (exp_bar.frame.minY+exp_bar.frame.maxY)/2)
         exp_label.text = exp_string
@@ -148,7 +154,7 @@ class State0_ErrorViewController: ViewController {
         btn_fail_next.frame.size.height = (screen_width/2)*(fail_next.size.height)/(fail_next.size.width)
         btn_fail_next.center = CGPointMake(screen_width/2, 0.42*screen_height)
         self.view.addSubview(btn_fail_next)
-        btn_fail_next.addTarget(self, action: "btn_fail_next_click:", forControlEvents: UIControlEvents.TouchUpInside)
+        btn_fail_next.addTarget(self, action: #selector(State0_ErrorViewController.btn_fail_next_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         //end here
         
         //star_blue code from here
