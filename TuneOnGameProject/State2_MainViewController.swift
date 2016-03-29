@@ -16,6 +16,16 @@ class State2_MainViewController: ViewController {
         super.viewDidAppear(animated)
         
     }
+    //pop_up window element
+    var pop_up_background: UIView!
+    var pop_up_view: UIView!
+    var item_image: UIImageView = UIImageView(image: UIImage(named: "home.png"))
+    var current_item: UIImage = UIImage()
+    let btn_start_use: UIButton = UIButton()
+    var item_name_label: UILabel!
+    var item_intro_label: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //constant
@@ -95,6 +105,18 @@ class State2_MainViewController: ViewController {
         exp_label.textColor = UIColorFromRGB(0x812b2b)
         self.view.addSubview(exp_label)
         //end here
+        
+        //fb button
+        let btn_fb: UIButton = UIButton()
+        let fb_logo: UIImage = UIImage(named: "fb_logo.png")!
+        btn_fb.setImage(fb_logo, forState: UIControlState.Normal)
+        btn_fb.frame.size.width = 0.7*level_bar.frame.minX
+        btn_fb.frame.size.height = 0.7*level_bar.frame.minX*(fb_logo.size.height)/(fb_logo.size.width)
+        btn_fb.center = CGPointMake(level_bar.frame.minX/2, top_bar.frame.height/2)
+        btn_fb.contentMode = UIViewContentMode.ScaleAspectFit
+        self.view.addSubview(btn_fb)
+        btn_fb.addTarget(self, action: #selector(State2_MainViewController.btn_fb_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
         
         //main page scroll area code from here
         scrollView = UIScrollView(frame: CGRect( x:0, y:5*top_bar.frame.height/4, width: screen_width, height: screen_height-5*top_bar.frame.height/4))
@@ -259,7 +281,94 @@ class State2_MainViewController: ViewController {
         btn_purchase_6.center = CGPointMake(forth_box.frame.minX + 5*forth_box.frame.width/6,(forth_box.frame.maxY+forth_box.frame.minY)/2)
         btn_purchase_6.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(btn_purchase_6)
+        
+        //pop up view code
+        pop_up_background = UIView(frame: CGRect(x: 0, y: 0, width: screen_width, height: screen_height))
+        pop_up_background.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        pop_up_background.hidden = true
+        self.view.addSubview(pop_up_background)
+        
+        pop_up_view = UIView(frame: CGRect(x: 0, y: 0, width: 0.8*screen_width, height: 1.2*screen_width))
+        pop_up_view.center = CGPointMake(screen_width/2, screen_height/2)
+        pop_up_view.backgroundColor = UIColor(patternImage: UIImage(named: "background_youtube_small.png")!)
+        pop_up_view.hidden = true
+        self.view.addSubview(pop_up_view)
+        
+        
+        //doll
+        var doll_smile: UIImageView
+        doll_smile = UIImageView(image: UIImage(named: "doll_smile.png"))
+        doll_smile.frame.size.width = 0.35*screen_width
+        doll_smile.frame.size.height = (0.35*screen_width)*(doll_smile.image?.size.height)!/(doll_smile.image?.size.width)!
+        doll_smile.center = CGPointMake(0.26*pop_up_view.frame.width, 0.75*pop_up_view.frame.height)
+        doll_smile.contentMode = UIViewContentMode.ScaleAspectFit
+        self.pop_up_view.addSubview(doll_smile)
+        
+        //button
+        let btn_cancel_use: UIButton = UIButton()
+        let cancel_use: UIImage = UIImage(named: "btn_cancel_use_normal.png")!
+        
+        btn_cancel_use.setBackgroundImage(cancel_use, forState: UIControlState.Normal)
+        btn_cancel_use.setBackgroundImage(UIImage(named: "btn_cancel_use_pressed.png"), forState: UIControlState.Highlighted)
+        btn_cancel_use.frame.size.height = 0.3*doll_smile.frame.height
+        btn_cancel_use.frame.size.width = (0.3*doll_smile.frame.height)*(cancel_use.size.width)/(cancel_use.size.height)
+        btn_cancel_use.center = CGPointMake(0.7*pop_up_view.frame.width, 0.75*pop_up_view.frame.height)
+        btn_cancel_use.contentMode = UIViewContentMode.ScaleAspectFit
+        
+        btn_start_use.setBackgroundImage(UIImage(named: "btn_start_use_normal.png"), forState: UIControlState.Normal)
+        btn_start_use.setBackgroundImage(UIImage(named: "btn_start_use_pressed.png"), forState: UIControlState.Highlighted)
+        btn_start_use.frame.size.height = 0.3*doll_smile.frame.height
+        btn_start_use.frame.size.width = (0.3*doll_smile.frame.height)*(cancel_use.size.width)/(cancel_use.size.height)
+        btn_start_use.center = CGPointMake(0.7*pop_up_view.frame.width, doll_smile.frame.minY + 0.15*doll_smile.frame.height)
+        btn_start_use.contentMode = UIViewContentMode.ScaleAspectFit
+        
+        self.pop_up_view.addSubview(btn_cancel_use)
+        self.pop_up_view.addSubview(btn_start_use)
+        btn_cancel_use.addTarget(self, action: #selector(State6_QuizViewController.btn_cancel_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        //label
+        item_name_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*pop_up_view.frame.width, height:0.12*pop_up_view.frame.height))
+        item_name_label.font = UIFont(name:"Helvetica", size: 0.06*screen_width)
+        item_name_label.numberOfLines = 1
+        item_name_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        item_name_label.textAlignment = NSTextAlignment.Center
+        item_name_label.textColor = UIColorFromRGB(0xfba928)
+        
+        item_intro_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*pop_up_view.frame.width, height:0.12*pop_up_view.frame.height))
+        item_intro_label.font = UIFont(name:"Helvetica", size: 0.04*screen_width)
+        item_intro_label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        item_intro_label.numberOfLines = 0
+        item_intro_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        item_intro_label.textColor = UIColorFromRGB(0xfba928)
+
     }
+    
+    func btn_fb_click(button: UIButton) {
+        item_image = UIImageView(image: UIImage(named: "fb_logo.png"))
+        item_image.frame.size.width = pop_up_view.frame.width/4
+        item_image.frame.size.height = pop_up_view.frame.width/4
+        item_image.contentMode = UIViewContentMode.ScaleAspectFit
+        item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
+        self.pop_up_view.addSubview(item_image)
+        
+        item_name_label.text = "推薦"
+        item_intro_label.text = "肯在臉書上幫我推薦一下嗎?我會送你兩個免費道具當謝禮唷!"
+        item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+        item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
+        self.pop_up_view.addSubview(item_name_label)
+        self.pop_up_view.addSubview(item_intro_label)
+        
+        button.highlighted = true
+        pop_up_background.hidden = false
+        pop_up_view.hidden = false
+    }
+    
+    func btn_cancel_click(button: UIButton) {
+        button.highlighted = true
+        pop_up_background.hidden = true
+        pop_up_view.hidden = true
+    }
+
     
     func btn_start_answer_click(button: UIButton) {
         button.highlighted = true
