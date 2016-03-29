@@ -12,10 +12,6 @@ class State2_MainViewController: ViewController {
     
     var scrollView: UIScrollView!
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
     //pop_up window element
     var pop_up_background: UIView!
     var pop_up_view: UIView!
@@ -26,6 +22,12 @@ class State2_MainViewController: ViewController {
     var item_intro_label: UILabel!
     
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        //end here
+    }
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //constant
@@ -289,7 +291,7 @@ class State2_MainViewController: ViewController {
         pop_up_view = UIView(frame: CGRect(x: 0, y: 0, width: 0.8*screen_width, height: 1.2*screen_width))
         pop_up_view.center = CGPointMake(screen_width/2, screen_height/2)
         pop_up_view.backgroundColor = UIColor(patternImage: UIImage(named: "background_youtube_small.png")!)
-        pop_up_view.hidden = true
+        pop_up_view.alpha = 0
         self.view.addSubview(pop_up_view)
         
         
@@ -304,10 +306,9 @@ class State2_MainViewController: ViewController {
         
         //button
         let btn_cancel_use: UIButton = UIButton()
-        let cancel_use: UIImage = UIImage(named: "btn_cancel_use_normal.png")!
+        let cancel_use: UIImage = UIImage(named: "btn_fragment_back.png")!
         
         btn_cancel_use.setBackgroundImage(cancel_use, forState: UIControlState.Normal)
-        btn_cancel_use.setBackgroundImage(UIImage(named: "btn_cancel_use_pressed.png"), forState: UIControlState.Highlighted)
         btn_cancel_use.frame.size.height = 0.3*doll_smile.frame.height
         btn_cancel_use.frame.size.width = (0.3*doll_smile.frame.height)*(cancel_use.size.width)/(cancel_use.size.height)
         btn_cancel_use.center = CGPointMake(0.7*pop_up_view.frame.width, 0.75*pop_up_view.frame.height)
@@ -356,21 +357,30 @@ class State2_MainViewController: ViewController {
         self.pop_up_view.addSubview(item_name_label)
         self.pop_up_view.addSubview(item_intro_label)
         
+        UIView.animateWithDuration(0.2, animations: {
+            self.pop_up_view.alpha = 1.0
+        })
         button.highlighted = true
         pop_up_background.hidden = false
-        pop_up_view.hidden = false
     }
     
     func btn_cancel_click(button: UIButton) {
+        UIView.animateWithDuration(0.2, animations: {
+            self.pop_up_view.alpha = 0
+        })
         button.highlighted = true
         pop_up_background.hidden = true
-        pop_up_view.hidden = true
     }
 
     
     func btn_start_answer_click(button: UIButton) {
         button.highlighted = true
         TurnPage(3)
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {
