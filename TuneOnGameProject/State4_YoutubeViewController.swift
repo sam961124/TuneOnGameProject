@@ -101,7 +101,6 @@ class State4_YoutubeViewController: ViewController {
         //end here
         
         //youtube_player code from here
-        var youtube_id = "j4sEvo4ojq8"
         var youtube_player: YTPlayerView!
         
         youtube_player = YTPlayerView(frame: CGRect(x:0, y:top_bar.frame.maxY+0.06*screen_height, width:screen_width, height:0.38*screen_height))
@@ -112,7 +111,7 @@ class State4_YoutubeViewController: ViewController {
             "showinfo": 0,
             "rel": 0
         ]
-        youtube_player.loadWithVideoId(youtube_id, playerVars: player_vars as [NSObject: AnyObject])
+        youtube_player.loadWithVideoId(String(youtube_id), playerVars: player_vars as [NSObject: AnyObject])
         self.view.addSubview(youtube_player)
         //end here
         
