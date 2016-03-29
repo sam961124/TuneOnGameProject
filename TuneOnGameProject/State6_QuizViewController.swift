@@ -67,6 +67,8 @@ class State6_QuizViewController: ViewController {
                 item_intro_label.text = "無限次重看影片或圖片，需要Lv10以上"
                 btn_start_use.hidden = true
             }
+            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
         }
         else if button == btn_remove{
             item_image = UIImageView(image: UIImage(named: "btn_item_remove_normal.png"))
@@ -90,6 +92,8 @@ class State6_QuizViewController: ViewController {
                 item_intro_label.text = "從四選一變成二選一，需要Lv15以上"
                 btn_start_use.hidden = true
             }
+            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
         }
         else if button == btn_friend{
             item_image = UIImageView(image: UIImage(named: "btn_item_friend_normal.png"))
@@ -113,25 +117,38 @@ class State6_QuizViewController: ViewController {
                 item_intro_label.text = "看其他玩家曾經選過的答案與次數，需要Lv6以上"
                 btn_start_use.hidden = true
             }
+            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
         }
         else if button == btn_submit{
+            item_image = UIImageView(image: UIImage(named: "btn_item_submit_normal.png"))
+            item_image.frame.size.width = pop_up_view.frame.width/4
+            item_image.frame.size.height = pop_up_view.frame.width/4
+            item_image.contentMode = UIViewContentMode.ScaleAspectFit
+            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
+            self.pop_up_view.addSubview(item_image)
+            
             item_name_label.text = "幫忙出題(無法使用)"
             item_intro_label.text = "上傳題目給其他玩家玩，不用花G還能賺G，需要Lv101以上。將在v2.0版開放。"
+            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
             btn_start_use.hidden = true
         }
         self.pop_up_view.addSubview(item_name_label)
         self.pop_up_view.addSubview(item_intro_label)
-        item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
-        item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
         button.highlighted = true
+        UIView.animateWithDuration(0.2, animations: {
+            self.pop_up_view.alpha = 1
+        })
         pop_up_background.hidden = false
-        pop_up_view.hidden = false
     }
     
     func btn_cancel_click(button: UIButton) {
         button.highlighted = true
         pop_up_background.hidden = true
-        pop_up_view.hidden = true
+        UIView.animateWithDuration(0.2, animations: {
+            self.pop_up_view.alpha = 0
+        })
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -468,7 +485,7 @@ class State6_QuizViewController: ViewController {
         pop_up_view = UIView(frame: CGRect(x: 0, y: 0, width: 0.8*screen_width, height: 1.2*screen_width))
         pop_up_view.center = CGPointMake(screen_width/2, screen_height/2)
         pop_up_view.backgroundColor = UIColor(patternImage: UIImage(named: "background_youtube_small.png")!)
-        pop_up_view.hidden = true
+        pop_up_view.alpha = 0
         self.view.addSubview(pop_up_view)
         
         //doll
