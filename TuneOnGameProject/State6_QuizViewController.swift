@@ -179,8 +179,7 @@ class State6_QuizViewController: ViewController {
         
         //level label
         var level_label: UILabel
-        var level = "15"
-        let level_string = "Lv " + level
+        let level_string = "Lv \(level)"
         level_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/4, height:0.8*level_bar.frame.height))
         level_label.center = CGPointMake((level_bar.frame.minX+level_bar.frame.maxX)/2, (level_bar.frame.minY+level_bar.frame.maxY)/2)
         level_label.text = level_string
@@ -193,8 +192,7 @@ class State6_QuizViewController: ViewController {
         
         //money label
         var money_label: UILabel
-        var money = "9,750"
-        let money_string = money + " G"
+        let money_string = "\(money) G"
         money_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/2, height:0.8*money_bar.frame.height))
         money_label.center = CGPointMake((money_bar.frame.minX+money_bar.frame.maxX)/2, (money_bar.frame.minY+money_bar.frame.maxY)/2)
         money_label.text = money_string

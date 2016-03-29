@@ -12,10 +12,10 @@ class State3_PreparingViewController: ViewController {
     
     var dialog: UIImageView!
     var dialog_label: UILabel!
+    var number = 4
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
             self.dialog.frame.size.width = self.dialog.frame.size.width*2
             self.dialog.frame.size.height = self.dialog.frame.size.height*2
@@ -72,8 +72,7 @@ class State3_PreparingViewController: ViewController {
             
             //level label
             var level_label: UILabel
-            var level = "15"
-            var level_string = "Lv " + level
+            var level_string = "Lv \(level)"
             level_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/4, height:0.8*level_bar.frame.height))
             level_label.center = CGPointMake((level_bar.frame.minX+level_bar.frame.maxX)/2, (level_bar.frame.minY+level_bar.frame.maxY)/2)
             level_label.text = level_string
@@ -86,8 +85,7 @@ class State3_PreparingViewController: ViewController {
             
             //money label
             var money_label: UILabel
-            var money = "9,750"
-            var money_string = money + " G"
+            var money_string = "\(money) G"
             money_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/2, height:0.8*money_bar.frame.height))
             money_label.center = CGPointMake((money_bar.frame.minX+money_bar.frame.maxX)/2, (money_bar.frame.minY+money_bar.frame.maxY)/2)
             money_label.text = money_string
@@ -172,15 +170,11 @@ class State3_PreparingViewController: ViewController {
     
         func btn_success_next_click(button: UIButton) {
             button.highlighted = true
-            if(true){
-                TurnPage(4)}
-            else{
-                TurnPage(5)}
+            TurnPage(number)
         }
     
         override func viewWillAppear(animated: Bool) {
             super.viewWillAppear(animated)
-            
             dialog.frame.size.width = dialog.frame.size.width/2
             dialog.frame.size.height = dialog.frame.size.height/2
             dialog_label.frame.size.width = dialog_label.frame.size.width/2
