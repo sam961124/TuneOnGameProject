@@ -8,10 +8,13 @@
 
 import UIKit
 
+var id: String = String()
+var level: Int = Int()
+var money: Int = Int()
+var right_count: Int = Int()
+var wrong_count: Int = Int()
+
 class ViewController: UIViewController {
-    let level = 0;
-    let money = 0;
-    let experience = 0.0;
     
     override func viewDidLoad() {
         super.viewDidLoad()
