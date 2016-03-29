@@ -30,121 +30,11 @@ class State6_QuizViewController: ViewController {
     var item_name_label: UILabel!
     var item_intro_label: UILabel!
     
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
     }
     
-    func btn_item_click(button: UIButton) {
-        let freeitem_amount_string = String(freeitem_amount)
-        //item_image
-        btn_start_use.hidden = false
-        if button == btn_playback{
-            item_image = UIImageView(image: UIImage(named: "btn_item_playback_normal.png"))
-            item_image.frame.size.width = pop_up_view.frame.width/4
-            item_image.frame.size.height = pop_up_view.frame.width/4
-            item_image.contentMode = UIViewContentMode.ScaleAspectFit
-            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
-            self.pop_up_view.addSubview(item_image)
-            
-            if freeitem_amount > 0 && level >= 10{
-                item_name_label.text = "重看一次(免費道具)"
-                item_intro_label.text = "無限次重看影片或圖片，使用一個免費道具，還有" + freeitem_amount_string + "個"
-                
-            }
-            else if freeitem_amount == 0 && level >= 10{
-                item_name_label.text = "重看一次(購買道具)"
-                item_intro_label.text = "無限次重看影片或圖片，購買此道具，請支付200G"
-            }
-            else{
-                item_name_label.text = "重看一次(無法使用)"
-                item_intro_label.text = "無限次重看影片或圖片，需要Lv10以上"
-                btn_start_use.hidden = true
-            }
-            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
-            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
-        }
-        else if button == btn_remove{
-            item_image = UIImageView(image: UIImage(named: "btn_item_remove_normal.png"))
-            item_image.frame.size.width = pop_up_view.frame.width/4
-            item_image.frame.size.height = pop_up_view.frame.width/4
-            item_image.contentMode = UIViewContentMode.ScaleAspectFit
-            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
-            self.pop_up_view.addSubview(item_image)
-            
-            if freeitem_amount > 0 && level >= 15{
-                item_name_label.text = "減少選項(免費道具)"
-                item_intro_label.text = "從四選一變成二選一，使用一個免費道具，還有" + freeitem_amount_string + "個"
-                
-            }
-            else if freeitem_amount == 0 && level >= 15{
-                item_name_label.text = "減少選項(購買道具)"
-                item_intro_label.text = "從四選一變成二選一，購買此道具，請支付200G"
-            }
-            else{
-                item_name_label.text = "減少選項(無法使用)"
-                item_intro_label.text = "從四選一變成二選一，需要Lv15以上"
-                btn_start_use.hidden = true
-            }
-            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
-            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
-        }
-        else if button == btn_friend{
-            item_image = UIImageView(image: UIImage(named: "btn_item_friend_normal.png"))
-            item_image.frame.size.width = pop_up_view.frame.width/4
-            item_image.frame.size.height = pop_up_view.frame.width/4
-            item_image.contentMode = UIViewContentMode.ScaleAspectFit
-            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
-            self.pop_up_view.addSubview(item_image)
-            
-            if freeitem_amount > 0 && level >= 6{
-                item_name_label.text = "玩家記錄(免費道具)"
-                item_intro_label.text = "看其他玩家曾經選過的答案與次數，使用一個免費道具，還有" + freeitem_amount_string + "個"
-                
-            }
-            else if freeitem_amount == 0 && level >= 6{
-                item_name_label.text = "玩家記錄(購買道具)"
-                item_intro_label.text = "看其他玩家曾經選過的答案與次數，購買此道具，請支付100G"
-            }
-            else{
-                item_name_label.text = "玩家記錄(無法使用)"
-                item_intro_label.text = "看其他玩家曾經選過的答案與次數，需要Lv6以上"
-                btn_start_use.hidden = true
-            }
-            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
-            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
-        }
-        else if button == btn_submit{
-            item_image = UIImageView(image: UIImage(named: "btn_item_submit_normal.png"))
-            item_image.frame.size.width = pop_up_view.frame.width/4
-            item_image.frame.size.height = pop_up_view.frame.width/4
-            item_image.contentMode = UIViewContentMode.ScaleAspectFit
-            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
-            self.pop_up_view.addSubview(item_image)
-            
-            item_name_label.text = "幫忙出題(無法使用)"
-            item_intro_label.text = "上傳題目給其他玩家玩，不用花G還能賺G，需要Lv101以上。將在v2.0版開放。"
-            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
-            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
-            btn_start_use.hidden = true
-        }
-        self.pop_up_view.addSubview(item_name_label)
-        self.pop_up_view.addSubview(item_intro_label)
-        button.highlighted = true
-        UIView.animateWithDuration(0.2, animations: {
-            self.pop_up_view.alpha = 1
-        })
-        pop_up_background.hidden = false
-    }
-    
-    func btn_cancel_click(button: UIButton) {
-        button.highlighted = true
-        pop_up_background.hidden = true
-        UIView.animateWithDuration(0.2, animations: {
-            self.pop_up_view.alpha = 0
-        })
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -162,7 +52,7 @@ class State6_QuizViewController: ViewController {
         var real_exp_bar: UIImageView
         var money_bar: UIImageView
         var btn_home: UIImageView
-        let exp_rate:CGFloat = (CGFloat(right_count) - pow(CGFloat(level-1),2))/(pow(CGFloat(level),2) - pow(CGFloat(level-1),2))
+        let exp_rate:CGFloat = (CGFloat(right_count) - pow(CGFloat(level),2))/(pow(CGFloat(level+1),2) - pow(CGFloat(level),2))
         
         top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
         top_bar.backgroundColor = UIColorFromRGB(0xfba928)
@@ -535,6 +425,108 @@ class State6_QuizViewController: ViewController {
         // Do any additional setup after loading the view.
     }
     
+    func btn_item_click(button: UIButton) {
+        let freeitem_amount_string = String(freeitem_amount)
+        //item_image
+        btn_start_use.hidden = false
+        if button == btn_playback{
+            item_image = UIImageView(image: UIImage(named: "btn_item_playback_normal.png"))
+            item_image.frame.size.width = pop_up_view.frame.width/4
+            item_image.frame.size.height = pop_up_view.frame.width/4
+            item_image.contentMode = UIViewContentMode.ScaleAspectFit
+            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
+            self.pop_up_view.addSubview(item_image)
+            
+            if freeitem_amount > 0 && level >= 10{
+                item_name_label.text = "重看一次(免費道具)"
+                item_intro_label.text = "無限次重看影片或圖片，使用一個免費道具，還有" + freeitem_amount_string + "個"
+                
+            }
+            else if freeitem_amount == 0 && level >= 10{
+                item_name_label.text = "重看一次(購買道具)"
+                item_intro_label.text = "無限次重看影片或圖片，購買此道具，請支付200G"
+            }
+            else{
+                item_name_label.text = "重看一次(無法使用)"
+                item_intro_label.text = "無限次重看影片或圖片，需要Lv10以上"
+                btn_start_use.hidden = true
+            }
+            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
+        }
+        else if button == btn_remove{
+            item_image = UIImageView(image: UIImage(named: "btn_item_remove_normal.png"))
+            item_image.frame.size.width = pop_up_view.frame.width/4
+            item_image.frame.size.height = pop_up_view.frame.width/4
+            item_image.contentMode = UIViewContentMode.ScaleAspectFit
+            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
+            self.pop_up_view.addSubview(item_image)
+            
+            if freeitem_amount > 0 && level >= 15{
+                item_name_label.text = "減少選項(免費道具)"
+                item_intro_label.text = "從四選一變成二選一，使用一個免費道具，還有" + freeitem_amount_string + "個"
+                
+            }
+            else if freeitem_amount == 0 && level >= 15{
+                item_name_label.text = "減少選項(購買道具)"
+                item_intro_label.text = "從四選一變成二選一，購買此道具，請支付200G"
+            }
+            else{
+                item_name_label.text = "減少選項(無法使用)"
+                item_intro_label.text = "從四選一變成二選一，需要Lv15以上"
+                btn_start_use.hidden = true
+            }
+            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
+        }
+        else if button == btn_friend{
+            item_image = UIImageView(image: UIImage(named: "btn_item_friend_normal.png"))
+            item_image.frame.size.width = pop_up_view.frame.width/4
+            item_image.frame.size.height = pop_up_view.frame.width/4
+            item_image.contentMode = UIViewContentMode.ScaleAspectFit
+            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
+            self.pop_up_view.addSubview(item_image)
+            
+            if freeitem_amount > 0 && level >= 6{
+                item_name_label.text = "玩家記錄(免費道具)"
+                item_intro_label.text = "看其他玩家曾經選過的答案與次數，使用一個免費道具，還有" + freeitem_amount_string + "個"
+                
+            }
+            else if freeitem_amount == 0 && level >= 6{
+                item_name_label.text = "玩家記錄(購買道具)"
+                item_intro_label.text = "看其他玩家曾經選過的答案與次數，購買此道具，請支付100G"
+            }
+            else{
+                item_name_label.text = "玩家記錄(無法使用)"
+                item_intro_label.text = "看其他玩家曾經選過的答案與次數，需要Lv6以上"
+                btn_start_use.hidden = true
+            }
+            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
+        }
+        else if button == btn_submit{
+            item_image = UIImageView(image: UIImage(named: "btn_item_submit_normal.png"))
+            item_image.frame.size.width = pop_up_view.frame.width/4
+            item_image.frame.size.height = pop_up_view.frame.width/4
+            item_image.contentMode = UIViewContentMode.ScaleAspectFit
+            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
+            self.pop_up_view.addSubview(item_image)
+            
+            item_name_label.text = "幫忙出題(無法使用)"
+            item_intro_label.text = "上傳題目給其他玩家玩，不用花G還能賺G，需要Lv101以上。將在v2.0版開放。"
+            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
+            btn_start_use.hidden = true
+        }
+        self.pop_up_view.addSubview(item_name_label)
+        self.pop_up_view.addSubview(item_intro_label)
+        button.highlighted = true
+        UIView.animateWithDuration(0.2, animations: {
+            self.pop_up_view.alpha = 1
+        })
+        pop_up_background.hidden = false
+    }
+    
     func btn_answer_click(button: UIButton){
         let correct = 1
         button.highlighted = true
@@ -544,6 +536,14 @@ class State6_QuizViewController: ViewController {
         else{
             TurnPage(8)
         }
+    }
+    
+    func btn_cancel_click(button: UIButton) {
+        button.highlighted = true
+        pop_up_background.hidden = true
+        UIView.animateWithDuration(0.2, animations: {
+            self.pop_up_view.alpha = 0
+        })
     }
 
     override func didReceiveMemoryWarning() {

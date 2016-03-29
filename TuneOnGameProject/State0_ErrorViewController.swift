@@ -37,7 +37,7 @@ class State0_ErrorViewController: ViewController {
         var level_bar: UIImageView
         var money_bar: UIImageView
         var btn_home: UIImageView
-        let exp_rate:CGFloat = (CGFloat(right_count) - pow(CGFloat(level-1),2))/(pow(CGFloat(level),2) - pow(CGFloat(level-1),2))
+        let exp_rate:CGFloat = (CGFloat(right_count) - pow(CGFloat(level),2))/(pow(CGFloat(level+1),2) - pow(CGFloat(level),2))
         
         top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
         top_bar.backgroundColor = UIColorFromRGB(0xfba928)
