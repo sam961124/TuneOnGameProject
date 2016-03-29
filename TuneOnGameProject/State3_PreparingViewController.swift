@@ -225,6 +225,9 @@ class State3_PreparingViewController: ViewController {
                         print(youtube_id)
                         print(eid)
                     }
+                    else{
+                        self.number = 0
+                    }
                     print(category)
                     print("----------------------------")
                     print(self.number)
@@ -233,7 +236,6 @@ class State3_PreparingViewController: ViewController {
                     print("error serializaing JSON: \(error)")
                 }
             }
-
         }
     
         override func didReceiveMemoryWarning() {

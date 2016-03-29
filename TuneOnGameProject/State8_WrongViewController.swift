@@ -12,7 +12,7 @@ class State8_WrongViewController: ViewController {
 
     var dialog: UIImageView!
     var dialog_label: UILabel!
-    
+    var number = 0
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -29,6 +29,56 @@ class State8_WrongViewController: ViewController {
         dialog.center.y -= dialog.frame.size.height/2
         dialog_label.center.y -= dialog.frame.size.height/2
         
+        //server communicate code from here
+        var requestNSData: NSData = NSData()
+        let data = ["cmd": "getquiz", "id": id]
+        do{
+            requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
+        } catch let error as NSError {
+            print(error)
+        }
+        HTTPPostJSON(requestNSData){
+            (response, error) -> Void in
+            if (error != nil){
+                print(error)
+                self.number = 0
+            }
+            do{
+                let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
+                level = (json["appUser"]!!["level"] as! Int)
+                money = (json["appUser"]!!["money"] as! Int)
+                qid = (json["quiz"]!!["qid"] as! String)
+                eid = (json["quiz"]!!["eid"] as! String)
+                category = (json["quiz"]!!["category"] as! String)
+                youtube_id = (json["quiz"]!!["youtube"] as! String)
+                let imageurl = (json["quiz"]!!["imageurl"])
+                print(1)
+                print(youtube_id)
+                print(2)
+                print(imageurl)
+                print(3)
+                if youtube_id == ""{
+                    self.number = 5
+                    image_url = imageurl as! String
+                    print(image_url)
+                    print(qid)
+                }
+                else if imageurl is NSNull{
+                    self.number = 4
+                    print(youtube_id)
+                    print(eid)
+                }
+                else{
+                    self.number = 0
+                }
+                print(category)
+                print("----------------------------")
+                print(self.number)
+                print("----------------------------")
+            } catch{
+                print("error serializaing JSON: \(error)")
+            }
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -219,9 +269,7 @@ class State8_WrongViewController: ViewController {
         UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {
             button.center.x = self.view.frame.width
             }, completion: nil)
-        TurnPage(5)
-
-        
+        TurnPage(number)
     }
 
     override func didReceiveMemoryWarning() {
