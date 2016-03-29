@@ -12,7 +12,7 @@ class State3_PreparingViewController: ViewController {
     
     var dialog: UIImageView!
     var dialog_label: UILabel!
-    var number = 4
+    var number = 0
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -179,6 +179,56 @@ class State3_PreparingViewController: ViewController {
             dialog.frame.size.height = dialog.frame.size.height/2
             dialog_label.frame.size.width = dialog_label.frame.size.width/2
             dialog_label.frame.size.height = dialog_label.frame.size.height/2
+            
+            //server communicate code from here
+            var requestNSData: NSData = NSData()
+            let data = ["cmd": "getquiz", "id": id]
+            do{
+                requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
+            } catch let error as NSError {
+                print(error)
+            }
+            HTTPPostJSON(requestNSData){
+                (response, error) -> Void in
+                if (error != nil){
+                    print(error)
+                    self.number = 0
+                }
+                do{
+                    let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
+                    level = (json["appUser"]!!["level"] as! Int)
+                    money = (json["appUser"]!!["money"] as! Int)
+                    qid = (json["quiz"]!!["qid"] as! String)
+                    eid = (json["quiz"]!!["eid"] as! String)
+                    category = (json["quiz"]!!["category"] as! String)
+                    let youtube = (json["quiz"]!!["youtube"])
+                    let imageurl = (json["quiz"]!!["iamgeurl"])
+                    print(1)
+                    print(youtube)
+                    print(2)
+                    print(imageurl)
+                    print(3)
+                    if youtube === nil{
+                        self.number = 5
+                        image_url = String(imageurl)
+                        print(image_url)
+                        print(qid)
+                    }
+                    else if imageurl === nil{
+                        self.number = 4
+                        youtube_id = String(youtube)
+                        print(youtube_id)
+                        print(eid)
+                    }
+                    print(category)
+                    print("----------------------------")
+                    print(self.number)
+                    print("----------------------------")
+                } catch{
+                    print("error serializaing JSON: \(error)")
+                }
+            }
+
         }
     
         override func didReceiveMemoryWarning() {

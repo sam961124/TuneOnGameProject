@@ -51,7 +51,6 @@ class State1_SplashViewController: ViewController {
             print (id)
             self.number = 2
         }
-
     }
     override func viewDidLoad() {
         super.viewDidLoad()
