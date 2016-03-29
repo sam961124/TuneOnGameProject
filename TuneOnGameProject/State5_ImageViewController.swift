@@ -106,6 +106,20 @@ class State5_ImageViewController: ViewController {
         self.view.addSubview(background_youtube)
         //end here
         
+        //imageURL code from here
+        var imageURL: UIImageView!
+        let url = NSURL(string: "http://cdn.businessoffashion.com/site/uploads/2014/09/Karl-Lagerfeld-Self-Portrait-Courtesy.jpg")
+        let data = NSData(contentsOfURL:url!)
+        if data != nil {
+            imageURL = UIImageView(image: UIImage(data: data!))
+        }
+        imageURL.frame.size.width = screen_width*9/10
+        imageURL.frame.size.height = background_youtube.frame.size.height*9/10
+        imageURL.center = CGPointMake(screen_width/2, background_youtube.frame.minY+(background_youtube.frame.size.height/2))
+        imageURL.contentMode = UIViewContentMode.ScaleAspectFit
+        self.view.addSubview(imageURL)
+        //end here
+        
         //star_orange code from here
         var star_orange: UIImageView
         star_orange = UIImageView(image: UIImage(named: "star_orange.png"))
