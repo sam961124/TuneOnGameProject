@@ -11,10 +11,18 @@ import UIKit
 class State1_SplashViewController: ViewController {
     
     var number = 0
+    var tune_on_title: UIImageView!
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "update", userInfo: nil, repeats: false)
+        
+        //tune_on_title animation code from here
+        UIView.animateWithDuration(0.5, delay: 0.1, usingSpringWithDamping: 0.2, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
+            self.tune_on_title.frame.size.width = self.tune_on_title.frame.size.width*2
+            self.tune_on_title.frame.size.height = self.tune_on_title.frame.size.height*2
+            }, completion: nil)
+        //end here
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,7 +59,12 @@ class State1_SplashViewController: ViewController {
             print (id)
             self.number = 2
         }
-
+        
+        
+        //tune_on_title animation code from here
+        tune_on_title.frame.size.width = tune_on_title.frame.size.width/2
+        tune_on_title.frame.size.height = tune_on_title.frame.size.height/2
+        //end here
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +74,7 @@ class State1_SplashViewController: ViewController {
         let screen_height = view.frame.height
         
         //tune_on_title code from here
-        var tune_on_title: UIImageView
+        //var tune_on_title: UIImageView
         let title_image: UIImage = UIImage(named: "title.png")!
 //        let Tap = UITapGestureRecognizer(target: self, action: Selector("Tap:"))
 //        Tap.numberOfTapsRequired = 1

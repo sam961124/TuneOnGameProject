@@ -10,9 +10,25 @@ import UIKit
 
 class State8_WrongViewController: ViewController {
 
+    var dialog: UIImageView!
+    var dialog_label: UILabel!
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
+        
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
+            self.dialog.center.y += self.dialog.frame.size.height/2
+            self.dialog_label.center.y += self.dialog.frame.size.height/2
+            }, completion: nil)
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        dialog.center.y -= dialog.frame.size.height/2
+        dialog_label.center.y -= dialog.frame.size.height/2
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,7 +183,7 @@ class State8_WrongViewController: ViewController {
         //end here
         
         //dialog code from here
-        var dialog: UIImageView
+        //var dialog: UIImageView
         dialog = UIImageView(image: UIImage(named: "dialog.png"))
         dialog.frame.size.width = 1.2*doll_shock.frame.width
         dialog.frame.size.height = screen_width/2*(dialog.image?.size.height)!/(dialog.image?.size.width)!
@@ -176,7 +192,7 @@ class State8_WrongViewController: ViewController {
         self.view.addSubview(dialog)
         
         //dialog label
-        var dialog_label: UILabel
+        //var dialog_label: UILabel
         let dialog_string = "錯了啦..."
         dialog_label = UILabel(frame: CGRect(x:0, y:0, width:0.7*dialog.frame.width, height:0.9*dialog.frame.height))
         dialog_label.center = CGPoint(x: (dialog.frame.minX + dialog.frame.maxX)/2, y: 0.495*(dialog.frame.minY + dialog.frame.maxY))
@@ -194,7 +210,13 @@ class State8_WrongViewController: ViewController {
     
     func btn_fail_next_click(button: UIButton) {
         button.highlighted = true
+        
+        UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {
+            button.center.x = self.view.frame.width
+            }, completion: nil)
         TurnPage(5)
+
+        
     }
 
     override func didReceiveMemoryWarning() {
