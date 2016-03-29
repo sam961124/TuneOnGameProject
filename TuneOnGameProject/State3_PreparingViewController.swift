@@ -207,22 +207,21 @@ class State3_PreparingViewController: ViewController {
                     qid = (json["quiz"]!!["qid"] as! String)
                     eid = (json["quiz"]!!["eid"] as! String)
                     category = (json["quiz"]!!["category"] as! String)
-                    let youtube = (json["quiz"]!!["youtube"] as! String)
+                    youtube_id = (json["quiz"]!!["youtube"] as! String)
                     let imageurl = (json["quiz"]!!["imageurl"])
                     print(1)
-                    print(youtube)
+                    print(youtube_id)
                     print(2)
                     print(imageurl)
                     print(3)
-                    if youtube == ""{
+                    if youtube_id == ""{
                         self.number = 5
-                        image_url = String(imageurl)
+                        image_url = imageurl as! String
                         print(image_url)
                         print(qid)
                     }
                     else if imageurl is NSNull{
                         self.number = 4
-                        youtube_id = String(youtube)
                         print(youtube_id)
                         print(eid)
                     }

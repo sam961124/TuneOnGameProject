@@ -108,7 +108,7 @@ class State5_ImageViewController: ViewController {
         
         //imageURL code from here
         var imageURL: UIImageView!
-        let url = NSURL(string: "http://cdn.businessoffashion.com/site/uploads/2014/09/Karl-Lagerfeld-Self-Portrait-Courtesy.jpg")
+        let url = NSURL(string: String(image_url))
         let data = NSData(contentsOfURL:url!)
         if data != nil {
             imageURL = UIImageView(image: UIImage(data: data!))
