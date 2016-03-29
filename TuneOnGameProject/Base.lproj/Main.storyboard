@@ -149,24 +149,6 @@
             </objects>
             <point key="canvasLocation" x="117" y="361.99999999999989"/>
         </scene>
-        <!--Top bar View Controller-->
-        <scene sceneID="I9R-PO-mOW">
-            <objects>
-                <viewController storyboardIdentifier="Top_barViewController" id="nNo-A0-fwC" customClass="Top_barViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="eYf-u6-Ofd"/>
-                        <viewControllerLayoutGuide type="bottom" id="8UW-bY-eso"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iKx-AW-zgv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UTz-lI-Um6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="891" y="-386"/>
-        </scene>
         <!--State6 Quiz View Controller-->
         <scene sceneID="Qj7-tv-7DP">
             <objects>

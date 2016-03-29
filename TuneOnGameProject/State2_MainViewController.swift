@@ -65,7 +65,6 @@ class State2_MainViewController: ViewController {
         
         //level label
         var level_label: UILabel
-        let level = super.level
         let level_string = "Lv \(level)"
         level_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/4, height:0.8*level_bar.frame.height))
         level_label.center = CGPointMake((level_bar.frame.minX+level_bar.frame.maxX)/2, (level_bar.frame.minY+level_bar.frame.maxY)/2)
@@ -79,8 +78,7 @@ class State2_MainViewController: ViewController {
         
         //money label
         var money_label: UILabel
-        var money = "9,750"
-        var money_string = money + " G"
+        var money_string = "\(money) G"
         money_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/2, height:0.8*money_bar.frame.height))
         money_label.center = CGPointMake((money_bar.frame.minX+money_bar.frame.maxX)/2, (money_bar.frame.minY+money_bar.frame.maxY)/2)
         money_label.text = money_string
@@ -169,7 +167,7 @@ class State2_MainViewController: ViewController {
         let ranking_string1 = "你的線上排名"
         let player_ranking = "20"
         let player_amount = "600"
-        let correct_rate = 50.0
+        let correct_rate = Float(right_count/(right_count + wrong_count))
         let iq = Int(sqrt(correct_rate)*20)
         let ranking_string2 = player_ranking + " / " + player_amount
         let iq_string1 = "你的IQ"

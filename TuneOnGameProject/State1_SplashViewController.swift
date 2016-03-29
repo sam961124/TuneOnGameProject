@@ -20,33 +20,38 @@ class State1_SplashViewController: ViewController {
     override func viewWillAppear(animated: Bool) {
         //server communicate code from here
         var requestNSData: NSData = NSData()
+        var data: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
         if (false){
-            let ori_data: Dictionary<String, AnyObject> = ["cmd": "getid"]
+            data = ["cmd": "getid"]
         }
         else{
-            let ori_data: Dictionary<String, AnyObject> = ["cmd": "getid", "id": "632"]
-            do{
-                requestNSData = try NSJSONSerialization.dataWithJSONObject(ori_data, options: NSJSONWritingOptions.PrettyPrinted)
-            } catch let error as NSError {
-                print(error)
-            }
-            HTTPPostJSON(requestNSData){
-                (response, error) -> Void in
-                if (error != nil){
-                    print(error)
-                    self.number = 0
-                }
-                var id: String = String()
-                do{
-                    let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
-                    id = (json["appUser"]!!["id"] as! String?)!
-                } catch{
-                    print("error serializaing JSON: \(error)")
-                }
-                print (id)
-                self.number = 2
-            }
+            data = ["cmd": "getid", "id": "632"]
         }
+        do{
+            requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
+        } catch let error as NSError {
+            print(error)
+        }
+        HTTPPostJSON(requestNSData){
+            (response, error) -> Void in
+            if (error != nil){
+                print(error)
+                self.number = 0
+            }
+            do{
+                let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
+                id = (json["appUser"]!!["id"] as! String?)!
+                level = (json["appUser"]!!["level"] as! Int)
+                money = (json["appUser"]!!["money"] as! Int)
+                right_count = (json["appUser"]!!["rightcount"] as! Int)
+                wrong_count = (json["appUser"]!!["wrongcount"] as! Int)
+            } catch{
+                print("error serializaing JSON: \(error)")
+            }
+            print (id)
+            self.number = 2
+        }
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
