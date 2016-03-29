@@ -162,7 +162,6 @@ class State6_QuizViewController: ViewController {
         }
         
         var question_label: UILabel
-        let question = "請問我們這一家主題曲第一句歌詞是什麼？"
         question_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*question_box.frame.width, height:0.8*question_box.frame.height))
         question_label.center = CGPointMake((question_box.frame.minX+question_box.frame.maxX)/2, (question_box.frame.minY+question_box.frame.maxY)/2)
         question_label.text = question
