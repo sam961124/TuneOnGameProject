@@ -13,6 +13,13 @@ var level: Int = Int()
 var money: Int = Int()
 var right_count: Int = Int()
 var wrong_count: Int = Int()
+var qid: String = String()
+var eid: String = String()
+var category: String = String()
+var quiz_level: String = String()
+var youtube_id: String = String()
+var image_url: String = String()
+
 
 class ViewController: UIViewController {
     
