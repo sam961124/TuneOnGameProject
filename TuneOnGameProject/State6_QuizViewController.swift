@@ -245,11 +245,17 @@ class State6_QuizViewController: ViewController {
         pink_round.frame.size.height = question_box.frame.height/5
         pink_round.center = CGPointMake(question_box.frame.maxX-0.35*pink_round.frame.size.width, question_box.frame.maxY)
         self.view.addSubview(pink_round)
-        star = UIImageView(image: UIImage(named: "star_200_200"))
-        star.frame.size.height = question_box.frame.height/4
-        star.center = CGPointMake(question_box.frame.minX, 0.99*question_box.frame.maxY)
-        star.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(star)
+        
+        let counting_star = 2
+        let star_image = UIImage(named: "star_200_200.png")
+        for i in 0...counting_star {
+            let star: UIImageView = UIImageView(image:star_image)
+            star.frame.size.height = question_box.frame.height/4
+            star.frame.size.width = (question_box.frame.height/4)*(star_image!.size.width/star_image!.size.height)
+            star.contentMode = UIViewContentMode.ScaleAspectFit
+            star.center = CGPointMake(question_box.frame.minX+star.frame.width*CGFloat(i)*1.05, 0.99*question_box.frame.maxY)
+            self.view.addSubview(star)
+        }
         
         var question_label: UILabel
         var question = "請問我們這一家主題曲第一句歌詞是什麼？"
