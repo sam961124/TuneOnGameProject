@@ -122,7 +122,7 @@ class State6_QuizViewController: ViewController {
         self.pop_up_view.addSubview(item_name_label)
         self.pop_up_view.addSubview(item_intro_label)
         item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
-        item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.05*pop_up_view.frame.height)
+        item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
         button.highlighted = true
         pop_up_background.hidden = false
         pop_up_view.hidden = false
