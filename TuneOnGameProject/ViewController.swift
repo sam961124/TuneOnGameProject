@@ -19,7 +19,7 @@ var category: String = String()
 var quiz_level: String = String()
 var youtube_id: String = String()
 var image_url: String = String()
-
+var freeitem_amount = 0
 
 class ViewController: UIViewController {
     

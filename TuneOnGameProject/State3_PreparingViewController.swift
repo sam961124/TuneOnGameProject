@@ -40,8 +40,10 @@ class State3_PreparingViewController: ViewController {
             var top_bar: UIImageView
             var exp_bar: UIImageView
             var level_bar: UIImageView
+            var real_exp_bar: UIImageView
             var money_bar: UIImageView
             var btn_home: UIImageView
+            let exp_rate:CGFloat = (CGFloat(right_count) - pow(CGFloat(level-1),2))/(pow(CGFloat(level),2) - pow(CGFloat(level-1),2))
             
             top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
             top_bar.backgroundColor = UIColorFromRGB(0xfba928)
@@ -50,6 +52,10 @@ class State3_PreparingViewController: ViewController {
             exp_bar = UIImageView(frame: CGRect(x:0, y:top_bar.frame.height, width:screen_width, height:top_bar.frame.height/4))
             exp_bar.backgroundColor = UIColorFromRGB(0xffe155)
             self.view.addSubview(exp_bar)
+            
+            real_exp_bar = UIImageView(frame: CGRect(x:0, y:top_bar.frame.height, width:exp_rate*screen_width, height:top_bar.frame.height/4))
+            real_exp_bar.backgroundColor = UIColorFromRGB(0x74f2e8)
+            self.view.addSubview(real_exp_bar)
             
             level_bar = UIImageView(frame: CGRect(x:top_bar.frame.height, y:top_bar.frame.height/5, width:top_bar.frame.width/4, height:top_bar.frame.height-(2*top_bar.frame.height/5)))
             level_bar.layer.cornerRadius = level_bar.frame.height/2
@@ -72,7 +78,7 @@ class State3_PreparingViewController: ViewController {
             
             //level label
             var level_label: UILabel
-            var level_string = "Lv \(level)"
+            let level_string = "Lv \(level)"
             level_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/4, height:0.8*level_bar.frame.height))
             level_label.center = CGPointMake((level_bar.frame.minX+level_bar.frame.maxX)/2, (level_bar.frame.minY+level_bar.frame.maxY)/2)
             level_label.text = level_string
@@ -85,7 +91,7 @@ class State3_PreparingViewController: ViewController {
             
             //money label
             var money_label: UILabel
-            var money_string = "\(money) G"
+            let money_string = "\(money) G"
             money_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/2, height:0.8*money_bar.frame.height))
             money_label.center = CGPointMake((money_bar.frame.minX+money_bar.frame.maxX)/2, (money_bar.frame.minY+money_bar.frame.maxY)/2)
             money_label.text = money_string
@@ -98,8 +104,8 @@ class State3_PreparingViewController: ViewController {
             
             //exp label
             var exp_label: UILabel
-            var exp_percent = "0"
-            var exp_string = "EXP (" + exp_percent + "/100)"
+            let exp_percent = String(Int(exp_rate*100))
+            let exp_string = "EXP (" + exp_percent + "/100)"
             exp_label = UILabel(frame: CGRect(x:0, y:0, width:screen_width, height:top_bar.frame.height/4))
             exp_label.center = CGPointMake(screen_width/2, (exp_bar.frame.minY+exp_bar.frame.maxY)/2)
             exp_label.text = exp_string
@@ -122,7 +128,7 @@ class State3_PreparingViewController: ViewController {
             btn_success_next.frame.size.height = (screen_width/2)*(success_next.size.height)/(success_next.size.width)
             btn_success_next.center = CGPointMake(screen_width/2, 0.42*screen_height)
             self.view.addSubview(btn_success_next)
-            btn_success_next.addTarget(self, action: "btn_success_next_click:", forControlEvents: UIControlEvents.TouchUpInside)
+            btn_success_next.addTarget(self, action: #selector(State3_PreparingViewController.btn_success_next_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             //end here
             
             //star_orange code from here

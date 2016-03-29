@@ -41,9 +41,10 @@ class State2_MainViewController: ViewController {
         //top_bar code from here
         var top_bar: UIImageView
         var exp_bar: UIImageView
+        var real_exp_bar: UIImageView
         var level_bar: UIImageView
         var money_bar: UIImageView
-        var btn_home: UIImageView
+        let exp_rate:CGFloat = (CGFloat(right_count) - pow(CGFloat(level-1),2))/(pow(CGFloat(level),2) - pow(CGFloat(level-1),2))
         
         top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
         top_bar.backgroundColor = UIColorFromRGB(0xfba928)
@@ -52,6 +53,10 @@ class State2_MainViewController: ViewController {
         exp_bar = UIImageView(frame: CGRect(x:0, y:top_bar.frame.height, width:screen_width, height:top_bar.frame.height/4))
         exp_bar.backgroundColor = UIColorFromRGB(0xffe155)
         self.view.addSubview(exp_bar)
+        
+        real_exp_bar = UIImageView(frame: CGRect(x:0, y:top_bar.frame.height, width:exp_rate*screen_width, height:top_bar.frame.height/4))
+        real_exp_bar.backgroundColor = UIColorFromRGB(0x74f2e8)
+        self.view.addSubview(real_exp_bar)
         
         level_bar = UIImageView(frame: CGRect(x:top_bar.frame.height, y:top_bar.frame.height/5, width:top_bar.frame.width/4, height:top_bar.frame.height-(2*top_bar.frame.height/5)))
         level_bar.layer.cornerRadius = level_bar.frame.height/2
@@ -80,7 +85,7 @@ class State2_MainViewController: ViewController {
         
         //money label
         var money_label: UILabel
-        var money_string = "\(money) G"
+        let money_string = "\(money) G"
         money_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/2, height:0.8*money_bar.frame.height))
         money_label.center = CGPointMake((money_bar.frame.minX+money_bar.frame.maxX)/2, (money_bar.frame.minY+money_bar.frame.maxY)/2)
         money_label.text = money_string
@@ -93,8 +98,8 @@ class State2_MainViewController: ViewController {
         
         //exp label
         var exp_label: UILabel
-        var exp_percent = "0"
-        var exp_string = "EXP (" + exp_percent + "/100)"
+        let exp_percent = String(Int(exp_rate*100))
+        let exp_string = "EXP (" + exp_percent + "/100)"
         exp_label = UILabel(frame: CGRect(x:0, y:0, width:screen_width, height:top_bar.frame.height/4))
         exp_label.center = CGPointMake(screen_width/2, (exp_bar.frame.minY+exp_bar.frame.maxY)/2)
         exp_label.text = exp_string
@@ -110,8 +115,8 @@ class State2_MainViewController: ViewController {
         let btn_fb: UIButton = UIButton()
         let fb_logo: UIImage = UIImage(named: "fb_logo.png")!
         btn_fb.setImage(fb_logo, forState: UIControlState.Normal)
-        btn_fb.frame.size.width = 0.7*level_bar.frame.minX
-        btn_fb.frame.size.height = 0.7*level_bar.frame.minX*(fb_logo.size.height)/(fb_logo.size.width)
+        btn_fb.frame.size.width = 0.6*level_bar.frame.minX
+        btn_fb.frame.size.height = 0.6*level_bar.frame.minX*(fb_logo.size.height)/(fb_logo.size.width)
         btn_fb.center = CGPointMake(level_bar.frame.minX/2, top_bar.frame.height/2)
         btn_fb.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_fb)
@@ -160,7 +165,7 @@ class State2_MainViewController: ViewController {
         scrollView.addSubview(second_box)
         
         //ranking & IQ & FB_login
-        var btn_fb_login: UIButton = UIButton()
+        let btn_fb_login: UIButton = UIButton()
         var ranking_label1: UILabel
         var ranking_label2: UILabel
         var iq_label1: UILabel

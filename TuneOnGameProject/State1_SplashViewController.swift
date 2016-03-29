@@ -14,7 +14,7 @@ class State1_SplashViewController: ViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "update", userInfo: nil, repeats: false)
+        _ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(State1_SplashViewController.update), userInfo: nil, repeats: false)
     }
     
     override func viewWillAppear(animated: Bool) {
