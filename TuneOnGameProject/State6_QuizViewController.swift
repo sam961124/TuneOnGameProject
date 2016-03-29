@@ -15,10 +15,7 @@ class State6_QuizViewController: ViewController {
     let btn_remove: UIButton = UIButton()
     let btn_submit: UIButton = UIButton()
     let btn_start_use: UIButton = UIButton()
-    var btn_choice_1: UIButton = UIButton()
-    var btn_choice_2: UIButton = UIButton()
-    var btn_choice_3: UIButton = UIButton()
-    var btn_choice_4: UIButton = UIButton()
+    var btn_choice: Array<UIButton> = []
     
     //pop_up window element
     var pop_up_background: UIView!
@@ -283,41 +280,18 @@ class State6_QuizViewController: ViewController {
         
         //choice code from here
         let choice_area = red_bar.frame.minY - question_box.frame.maxY
-        
-        
-        btn_choice_1.setImage(UIImage(named: "btn_choice_normal.png"), forState: UIControlState.Normal)
-        btn_choice_2.setImage(UIImage(named: "btn_choice_normal.png"), forState: UIControlState.Normal)
-        btn_choice_3.setImage(UIImage(named: "btn_choice_normal.png"), forState: UIControlState.Normal)
-        btn_choice_4.setImage(UIImage(named: "btn_choice_normal.png"), forState: UIControlState.Normal)
-        btn_choice_1.setImage(UIImage(named: "btn_choice_pressed.png"), forState: UIControlState.Highlighted)
-        btn_choice_2.setImage(UIImage(named: "btn_choice_pressed.png"), forState: UIControlState.Highlighted)
-        btn_choice_3.setImage(UIImage(named: "btn_choice_pressed.png"), forState: UIControlState.Highlighted)
-        btn_choice_4.setImage(UIImage(named: "btn_choice_pressed.png"), forState: UIControlState.Highlighted)
-        btn_choice_1.setImage(UIImage(named: "btn_choice_disable.png"), forState: UIControlState.Selected)
-        btn_choice_2.setImage(UIImage(named: "btn_choice_disable.png"), forState: UIControlState.Selected)
-        btn_choice_3.setImage(UIImage(named: "btn_choice_disable.png"), forState: UIControlState.Selected)
-        btn_choice_4.setImage(UIImage(named: "btn_choice_disable.png"), forState: UIControlState.Selected)
-        btn_choice_1.setTitle("btn_choice_1", forState: UIControlState.Highlighted)
-        btn_choice_2.setTitle("btn_choice_2", forState: UIControlState.Highlighted)
-        btn_choice_3.setTitle("btn_choice_3", forState: UIControlState.Highlighted)
-        btn_choice_4.setTitle("btn_choice_4", forState: UIControlState.Highlighted)
-        btn_choice_1.frame.size.height = choice_area/6
-        btn_choice_1.frame.size.width = btn_choice_1.frame.size.height*5
-        btn_choice_2.frame.size = btn_choice_1.frame.size
-        btn_choice_3.frame.size = btn_choice_1.frame.size
-        btn_choice_4.frame.size = btn_choice_1.frame.size
-        btn_choice_1.center = CGPointMake(screen_width/2, question_box.frame.maxY + 0.2*choice_area)
-        btn_choice_2.center = CGPointMake(screen_width/2, question_box.frame.maxY + 0.4*choice_area)
-        btn_choice_3.center = CGPointMake(screen_width/2, question_box.frame.maxY + 0.6*choice_area)
-        btn_choice_4.center = CGPointMake(screen_width/2, question_box.frame.maxY + 0.8*choice_area)
-        self.view.addSubview(btn_choice_1)
-        self.view.addSubview(btn_choice_2)
-        self.view.addSubview(btn_choice_3)
-        self.view.addSubview(btn_choice_4)
-        btn_choice_1.addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        btn_choice_2.addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        btn_choice_3.addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        btn_choice_4.addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        for i in 0...3{
+            let button: UIButton = UIButton()
+            button.setImage(UIImage(named: "btn_choice_normal.png"), forState: UIControlState.Normal)
+            button.setImage(UIImage(named: "btn_choice_pressed.png"), forState: UIControlState.Highlighted)
+            button.setImage(UIImage(named: "btn_choice_disable.png"), forState: UIControlState.Selected)
+            button.frame.size.height = choice_area/6
+            button.frame.size.width = button.frame.size.height*5
+            button.center = CGPointMake(screen_width/2, question_box.frame.maxY + CGFloat(i+1)*0.2*choice_area)
+            btn_choice.insert(button, atIndex: i)
+            self.view.addSubview(btn_choice[i])
+            btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        }
         
         //choice label
         var choice1_label: UILabel
@@ -328,8 +302,8 @@ class State6_QuizViewController: ViewController {
         let choice2_string = "衷心感謝"
         let choice3_string = "珍重再見"
         let choice4_string = "期待再相逢"
-        choice1_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice_1.frame.width, height:0.5*btn_choice_1.frame.height))
-        choice1_label.center = CGPointMake(screen_width/2, (btn_choice_1.frame.minY+btn_choice_1.frame.maxY)/2)
+        choice1_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice[0].frame.width, height:0.5*btn_choice[0].frame.height))
+        choice1_label.center = CGPointMake(screen_width/2, (btn_choice[0].frame.minY+btn_choice[0].frame.maxY)/2)
         choice1_label.text = choice1_string
         choice1_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
         choice1_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
@@ -337,8 +311,8 @@ class State6_QuizViewController: ViewController {
         choice1_label.textColor = UIColorFromRGB(0x820c0c)
         self.view.addSubview(choice1_label)
         
-        choice2_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice_1.frame.width, height:0.5*btn_choice_1.frame.height))
-        choice2_label.center = CGPointMake(screen_width/2, (btn_choice_2.frame.minY+btn_choice_2.frame.maxY)/2)
+        choice2_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice[0].frame.width, height:0.5*btn_choice[0].frame.height))
+        choice2_label.center = CGPointMake(screen_width/2, (btn_choice[1].frame.minY+btn_choice[1].frame.maxY)/2)
         choice2_label.text = choice2_string
         choice2_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
         choice2_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
@@ -346,8 +320,8 @@ class State6_QuizViewController: ViewController {
         choice2_label.textAlignment = NSTextAlignment.Center
         choice2_label.textColor = UIColorFromRGB(0x820c0c)
         self.view.addSubview(choice2_label)
-        choice3_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice_1.frame.width, height:0.5*btn_choice_1.frame.height))
-        choice3_label.center = CGPointMake(screen_width/2, (btn_choice_3.frame.minY+btn_choice_3.frame.maxY)/2)
+        choice3_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice[0].frame.width, height:0.5*btn_choice[0].frame.height))
+        choice3_label.center = CGPointMake(screen_width/2, (btn_choice[2].frame.minY+btn_choice[2].frame.maxY)/2)
         choice3_label.text = choice3_string
         choice3_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
         choice3_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
@@ -355,8 +329,8 @@ class State6_QuizViewController: ViewController {
         choice3_label.textAlignment = NSTextAlignment.Center
         choice3_label.textColor = UIColorFromRGB(0x820c0c)
         self.view.addSubview(choice3_label)
-        choice4_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice_1.frame.width, height:0.5*btn_choice_1.frame.height))
-        choice4_label.center = CGPointMake(screen_width/2, (btn_choice_4.frame.minY+btn_choice_4.frame.maxY)/2)
+        choice4_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice[0].frame.width, height:0.5*btn_choice[0].frame.height))
+        choice4_label.center = CGPointMake(screen_width/2, (btn_choice[3].frame.minY+btn_choice[3].frame.maxY)/2)
         choice4_label.text = choice4_string
         choice4_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
         choice4_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
@@ -530,7 +504,7 @@ class State6_QuizViewController: ViewController {
     func btn_answer_click(button: UIButton){
         let correct = 1
         button.highlighted = true
-        if button.currentTitle == "btn_choice_" + "\(correct)"{
+        if button == btn_choice[correct-1]{
             TurnPage(7)
         }
         else{
