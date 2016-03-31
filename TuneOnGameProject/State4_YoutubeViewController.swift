@@ -8,7 +8,9 @@
 
 import UIKit
 
-class State4_YoutubeViewController: ViewController {
+class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
+    
+    var youtube_player: YTPlayerView!
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -106,8 +108,7 @@ class State4_YoutubeViewController: ViewController {
         //end here
         
         //youtube_player code from here
-        var youtube_player: YTPlayerView!
-        
+        //var youtube_player: YTPlayerView!
         youtube_player = YTPlayerView(frame: CGRect(x:0, y:top_bar.frame.maxY+0.06*screen_height, width:screen_width, height:0.38*screen_height))
         let player_vars: NSDictionary = [
             "playsinline": 1,
@@ -117,7 +118,14 @@ class State4_YoutubeViewController: ViewController {
             "rel": 0
         ]
         youtube_player.loadWithVideoId(String(youtube_id), playerVars: player_vars as [NSObject: AnyObject])
+        self.youtube_player.delegate = self
         self.view.addSubview(youtube_player)
+        //end here
+        
+        //invisible view to block click on video code from here
+        var invisible_view: UIView
+        invisible_view = UIView(frame: CGRect(x:0, y:top_bar.frame.maxY+0.05*screen_height, width:screen_width, height:0.4*screen_height))
+        self.view.addSubview(invisible_view)
         //end here
         
         //star_orange code from here
@@ -166,10 +174,14 @@ class State4_YoutubeViewController: ViewController {
         //end here
         
     }
+    
+    func playerViewDidBecomeReady(youtube_player: YTPlayerView!) {
+        self.youtube_player.playVideo()
+    }
 
     func btn_play_again_click(button: UIButton) {
         button.highlighted = true
-        
+        self.youtube_player.seekToSeconds(0, allowSeekAhead: true)
     }
     func btn_start_answer_click(button: UIButton) {
         button.highlighted = true
