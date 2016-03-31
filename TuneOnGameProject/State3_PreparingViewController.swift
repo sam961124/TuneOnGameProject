@@ -210,6 +210,15 @@ class State3_PreparingViewController: ViewController {
                     youtube_id = (json["quiz"]!!["youtube"] as! String)
                     let imageurl = (json["quiz"]!!["imageurl"])
                     question = (json["quiz"]!!["summary"] as! String)
+                    let uries = (json["quiz"]!!["uries"])
+                    for i in 0...3{
+                        choice_string[i] = uries!![i]["hint"] as! String
+                        print(choice_string[i])
+                        print(uries!![i]["subtypeid"])
+                        if "501" == uries!![i]["subtypeid"] as! String{
+                            correct = i
+                        }
+                    }
                     print(0)
                     print(question)
                     print(1)
@@ -217,6 +226,9 @@ class State3_PreparingViewController: ViewController {
                     print(2)
                     print(imageurl)
                     print(3)
+                    print(4)
+                    print(correct)
+                    print(5)
                     if youtube_id == ""{
                         self.number = 5
                         image_url = imageurl as! String
@@ -235,6 +247,7 @@ class State3_PreparingViewController: ViewController {
                     print("----------------------------")
                     print(self.number)
                     print("----------------------------")
+                    //freeitem_amount = 0
                 } catch{
                     print("error serializaing JSON: \(error)")
                 }

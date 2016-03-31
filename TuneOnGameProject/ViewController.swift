@@ -13,6 +13,7 @@ var level: Int = Int()
 var money: Int = Int()
 var right_count: Int = Int()
 var wrong_count: Int = Int()
+var correct: Int = Int()
 var qid: String = String()
 var eid: String = String()
 var category: String = String()
@@ -20,8 +21,8 @@ var quiz_level: String = String()
 var youtube_id: String = String()
 var image_url: String = String()
 var question: String = String()
-var freeitem_amount = 0
-
+var freeitem_amount: Int = Int()
+var choice_string = ["", "", "", ""]
 class ViewController: UIViewController {
     
     override func viewDidLoad() {

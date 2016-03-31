@@ -16,6 +16,7 @@ class State6_QuizViewController: ViewController {
     let btn_submit: UIButton = UIButton()
     let btn_start_use: UIButton = UIButton()
     var btn_choice: Array<UIButton> = []
+    let freeitem_amount = 0
     
     //pop_up window element
     var pop_up_background: UIView!
@@ -34,7 +35,6 @@ class State6_QuizViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -297,13 +297,9 @@ class State6_QuizViewController: ViewController {
         var choice2_label: UILabel
         var choice3_label: UILabel
         var choice4_label: UILabel
-        let choice1_string = "哈囉你好嗎"
-        let choice2_string = "衷心感謝"
-        let choice3_string = "珍重再見"
-        let choice4_string = "期待再相逢"
         choice1_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice[0].frame.width, height:0.5*btn_choice[0].frame.height))
         choice1_label.center = CGPointMake(screen_width/2, (btn_choice[0].frame.minY+btn_choice[0].frame.maxY)/2)
-        choice1_label.text = choice1_string
+        choice1_label.text = choice_string[0]
         choice1_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
         choice1_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         choice1_label.textAlignment = NSTextAlignment.Center
@@ -312,7 +308,7 @@ class State6_QuizViewController: ViewController {
         
         choice2_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice[0].frame.width, height:0.5*btn_choice[0].frame.height))
         choice2_label.center = CGPointMake(screen_width/2, (btn_choice[1].frame.minY+btn_choice[1].frame.maxY)/2)
-        choice2_label.text = choice2_string
+        choice2_label.text = choice_string[1]
         choice2_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
         choice2_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         choice2_label.minimumScaleFactor = 8/choice1_label.font.pointSize
@@ -321,7 +317,7 @@ class State6_QuizViewController: ViewController {
         self.view.addSubview(choice2_label)
         choice3_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice[0].frame.width, height:0.5*btn_choice[0].frame.height))
         choice3_label.center = CGPointMake(screen_width/2, (btn_choice[2].frame.minY+btn_choice[2].frame.maxY)/2)
-        choice3_label.text = choice3_string
+        choice3_label.text = choice_string[2]
         choice3_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
         choice3_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         choice3_label.minimumScaleFactor = 8/choice1_label.font.pointSize
@@ -330,7 +326,7 @@ class State6_QuizViewController: ViewController {
         self.view.addSubview(choice3_label)
         choice4_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice[0].frame.width, height:0.5*btn_choice[0].frame.height))
         choice4_label.center = CGPointMake(screen_width/2, (btn_choice[3].frame.minY+btn_choice[3].frame.maxY)/2)
-        choice4_label.text = choice4_string
+        choice4_label.text = choice_string[3]
         choice4_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
         choice4_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         choice4_label.minimumScaleFactor = 8/choice1_label.font.pointSize
@@ -501,9 +497,8 @@ class State6_QuizViewController: ViewController {
     }
     
     func btn_answer_click(button: UIButton){
-        let correct = 1
         button.highlighted = true
-        if button == btn_choice[correct-1]{
+        if button == btn_choice[correct]{
             TurnPage(7)
         }
         else{
