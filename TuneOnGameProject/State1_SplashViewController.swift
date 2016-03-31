@@ -16,6 +16,14 @@ class State1_SplashViewController: ViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         _ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(State1_SplashViewController.update), userInfo: nil, repeats: false)
+        
+        //tune_on_title animation code from here
+        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
+            self.tune_on_title.frame.size.width *= 2
+            self.tune_on_title.frame.size.height *= 2
+            self.tune_on_title.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+            }, completion: nil)
+        //end here
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -55,8 +63,9 @@ class State1_SplashViewController: ViewController {
         
         
         //tune_on_title animation code from here
-        tune_on_title.frame.size.width = tune_on_title.frame.size.width/2
-        tune_on_title.frame.size.height = tune_on_title.frame.size.height/2
+        tune_on_title.frame.size.width /= 2
+        tune_on_title.frame.size.height /= 2
+        tune_on_title.center = CGPointMake(view.frame.width/2, view.frame.height/2)
         //end here
     }
     override func viewDidLoad() {

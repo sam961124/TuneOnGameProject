@@ -12,15 +12,23 @@ class State0_ErrorViewController: ViewController {
     
     var dialog: UIImageView!
     var dialog_label: UILabel!
+    var dialog_center_x: CGFloat!
+    var dialog_center_y: CGFloat!
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        //dialog animation code from here
         UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
-            self.dialog.frame.size.width = self.dialog.frame.size.width*2
-            self.dialog.frame.size.height = self.dialog.frame.size.height*2
-            self.dialog_label.frame.size.width = self.dialog_label.frame.size.width*2
-            self.dialog_label.frame.size.height = self.dialog_label.frame.size.height*2
+            self.dialog.frame.size.width *= 2
+            self.dialog.frame.size.height *= 2
+            self.dialog_label.frame.size.width *= 2
+            self.dialog_label.frame.size.height *= 2
+            self.dialog_label.font = UIFont(name:"HelveticaNeue-Bold", size: self.view.frame.width*0.05)
+            self.dialog.center = CGPoint(x: self.dialog_center_x, y: self.dialog_center_y)
+            self.dialog_label.center = CGPoint(x: self.dialog_center_x, y: self.dialog_center_y)
             }, completion: nil)
+        //end here
     }
 
     override func viewDidLoad() {
@@ -182,7 +190,9 @@ class State0_ErrorViewController: ViewController {
         dialog = UIImageView(image: UIImage(named: "dialog.png"))
         dialog.frame.size.width = 1.2*doll_shock.frame.width
         dialog.frame.size.height = screen_width/2*(dialog.image?.size.height)!/(dialog.image?.size.width)!
-        dialog.center = CGPointMake(doll_shock.frame.maxX+dialog.frame.width/2,doll_shock.frame.minY+0.3*doll_shock.frame.height)
+        dialog_center_x = doll_shock.frame.maxX+dialog.frame.width/2
+        dialog_center_y = doll_shock.frame.minY+0.3*doll_shock.frame.height
+        dialog.center = CGPointMake(dialog_center_x, dialog_center_y)
         dialog.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(dialog)
         
@@ -209,10 +219,16 @@ class State0_ErrorViewController: ViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        dialog.frame.size.width = dialog.frame.size.width/2
-        dialog.frame.size.height = dialog.frame.size.height/2
-        dialog_label.frame.size.width = dialog_label.frame.size.width/2
-        dialog_label.frame.size.height = dialog_label.frame.size.height/2
+        
+        //dialog animation code from here
+        dialog.frame.size.width /= 2
+        dialog.frame.size.height /= 2
+        dialog_label.frame.size.width /= 2
+        dialog_label.frame.size.height /= 2
+        dialog_label.font = UIFont(name:"HelveticaNeue-Bold", size: view.frame.width*0.025)
+        dialog.center = CGPoint(x: dialog_center_x, y: dialog_center_y)
+        dialog_label.center = CGPoint(x: dialog_center_x, y: dialog_center_y)
+        //end here
     }
     
     override func didReceiveMemoryWarning() {
