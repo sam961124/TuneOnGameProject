@@ -11,6 +11,11 @@ import UIKit
 class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
     
     var youtube_player: YTPlayerView!
+    let btn_play_again: UIButton = UIButton()
+    let play_again: UIImage = UIImage(named: "btn_play_again_normal.png")!
+    let btn_start_answer: UIButton = UIButton()
+    let start_answer: UIImage = UIImage(named: "btn_start_answer_normal.png")!
+    var timer = NSTimer()
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -18,6 +23,11 @@ class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //timer
+        timer = NSTimer.scheduledTimerWithTimeInterval(8, target: self, selector: "doll_talk", userInfo: nil, repeats: false)
+        
+        
         
         //constant
         let screen_width = view.frame.width
@@ -150,10 +160,9 @@ class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
         //end here
         
         //play_again and start_answer code from here
-        let btn_play_again: UIButton = UIButton()
-        let play_again: UIImage = UIImage(named: "btn_play_again_normal.png")!
-        let btn_start_answer: UIButton = UIButton()
-        let start_answer: UIImage = UIImage(named: "btn_start_answer_normal.png")!
+        
+        btn_play_again.hidden = true
+        btn_start_answer.hidden = true
         btn_play_again.highlighted = false
         btn_start_answer.highlighted = false
         btn_play_again.contentMode = UIViewContentMode.ScaleAspectFit
@@ -179,7 +188,15 @@ class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
         self.youtube_player.playVideo()
     }
 
+    func doll_talk(){
+        btn_start_answer.hidden = false
+        btn_play_again.hidden = false
+    }
     func btn_play_again_click(button: UIButton) {
+        timer.invalidate()
+        btn_play_again.hidden = true
+        btn_start_answer.hidden = true
+        timer = NSTimer.scheduledTimerWithTimeInterval(8, target: self, selector: "doll_talk", userInfo: nil, repeats: false)
         button.highlighted = true
         self.youtube_player.seekToSeconds(0, allowSeekAhead: true)
     }
