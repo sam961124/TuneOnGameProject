@@ -30,8 +30,11 @@ class State1_SplashViewController: ViewController {
         //server communicate code from here
         var requestNSData: NSData = NSData()
         var data: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+        print(UIDevice.currentDevice().identifierForVendor?.UUIDString as String!)
+        print(UIDevice.currentDevice().model)
+        print(UIDevice.currentDevice().systemVersion)
         if (false){
-            data = ["cmd": "getid"]
+            data = ["cmd": "getid", "deviceId": (UIDevice.currentDevice().identifierForVendor?.UUIDString)!, "deviceType": UIDevice.currentDevice().model, "os": UIDevice.currentDevice().systemVersion]
         }
         else{
             data = ["cmd": "getid", "id": "632"]
@@ -70,7 +73,6 @@ class State1_SplashViewController: ViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
@@ -78,15 +80,11 @@ class State1_SplashViewController: ViewController {
         //tune_on_title code from here
         //var tune_on_title: UIImageView
         let title_image: UIImage = UIImage(named: "title.png")!
-//        let Tap = UITapGestureRecognizer(target: self, action: Selector("Tap:"))
-//        Tap.numberOfTapsRequired = 1
         tune_on_title = UIImageView(image: title_image)
         tune_on_title.frame.size.width = screen_width/2
         tune_on_title.frame.size.height = (screen_width/2)*((title_image.size.height)/(title_image.size.width))
         tune_on_title.center = CGPointMake(screen_width/2, screen_height/2)
         tune_on_title.contentMode = UIViewContentMode.ScaleAspectFit
-//        tune_on_title.userInteractionEnabled = true
-//        tune_on_title.addGestureRecognizer(Tap)
         self.view.addSubview(tune_on_title)
         //end here
         
@@ -115,11 +113,6 @@ class State1_SplashViewController: ViewController {
     
     override func viewWillDisappear(animated: Bool) {
     }
-
-//    func Tap(image: UIImageView){
-//        let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("State2_MainViewController")
-//        self.presentViewController(nextviewController, animated: true, completion: nil)
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

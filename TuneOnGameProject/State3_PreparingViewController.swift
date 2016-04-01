@@ -221,6 +221,7 @@ class State3_PreparingViewController: ViewController {
                     qid = (json["quiz"]!!["qid"] as! String)
                     eid = (json["quiz"]!!["eid"] as! String)
                     category = (json["quiz"]!!["category"] as! String)
+                    quiz_level = (json["quiz"]!!["level"] as! String)
                     youtube_id = (json["quiz"]!!["youtube"] as! String)
                     let imageurl = (json["quiz"]!!["imageurl"])
                     question = (json["quiz"]!!["summary"] as! String)
