@@ -150,7 +150,7 @@ class State6_QuizViewController: ViewController {
         pink_round.center = CGPointMake(question_box.frame.maxX-0.35*pink_round.frame.size.width, question_box.frame.maxY)
         self.view.addSubview(pink_round)
         
-        let counting_star = 2
+        let counting_star = Int(quiz_level)!/100 - 1
         let star_image = UIImage(named: "star_200_200.png")
         for i in 0...counting_star {
             let star: UIImageView = UIImageView(image:star_image)
@@ -174,8 +174,7 @@ class State6_QuizViewController: ViewController {
         self.view.addSubview(question_label)
         
         var reward_label: UILabel
-        let reward = "200"
-        let reward_string = reward + " G"
+        let reward_string = "\(quiz_level) G"
         reward_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*pink_round.frame.width, height:0.7*pink_round.frame.height))
         reward_label.center = CGPointMake((pink_round.frame.minX+pink_round.frame.maxX)/2, (pink_round.frame.minY+pink_round.frame.maxY)/2)
         reward_label.text = reward_string

@@ -23,10 +23,14 @@ var image_url: String = String()
 var question: String = String()
 var freeitem_amount: Int = Int()
 var choice_string = ["", "", "", ""]
+let category_name = ["100": "神秘題", "200": "演員題", "300": "產品題",
+                     "400": "場景題", "500": "聲音題", "600": "圖形題",
+                     "700": "數字題", "800": "臺詞題", "900": "趣味題"]
 class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().statusBarHidden = true
         // Do any additional setup after loading the view, typically from a nib.
     }
 

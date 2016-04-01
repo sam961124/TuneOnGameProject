@@ -66,6 +66,7 @@ class State7_RightViewController: ViewController {
                 qid = (json["quiz"]!!["qid"] as! String)
                 eid = (json["quiz"]!!["eid"] as! String)
                 category = (json["quiz"]!!["category"] as! String)
+                quiz_level = (json["quiz"]!!["level"] as! String)
                 youtube_id = (json["quiz"]!!["youtube"] as! String)
                 let imageurl = (json["quiz"]!!["imageurl"])
                 question = (json["quiz"]!!["summary"] as! String)
@@ -195,8 +196,7 @@ class State7_RightViewController: ViewController {
         
         //money label
         var money_label: UILabel
-        let bonus = "100"
-        let money_string = "\(money) G + " + bonus + " G"
+        let money_string = "\(money) G + \(quiz_level) G"
         money_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/2, height:0.8*money_bar.frame.height))
         money_label.center = CGPointMake((money_bar.frame.minX+money_bar.frame.maxX)/2, (money_bar.frame.minY+money_bar.frame.maxY)/2)
         money_label.text = money_string
