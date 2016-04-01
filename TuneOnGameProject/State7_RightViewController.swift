@@ -15,6 +15,7 @@ class State7_RightViewController: ViewController {
     var dialog_center_x: CGFloat!
     var dialog_center_y: CGFloat!
     var number = 0
+    var shin: UIImageView!
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -30,6 +31,17 @@ class State7_RightViewController: ViewController {
             self.dialog_label.center = CGPoint(x: self.dialog_center_x, y: self.dialog_center_y)
             }, completion: nil)
         //end here
+        
+        //shin animation
+        
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotationAnimation.fromValue = 0.0
+        rotationAnimation.toValue = M_PI
+        rotationAnimation.duration = 5.0
+        shin.layer.addAnimation(rotationAnimation, forKey: nil)
+        
+        //end
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -129,15 +141,10 @@ class State7_RightViewController: ViewController {
         //end here
         
         //shinning code from here
-        var shin:UIImageView
+        
         shin = UIImageView(image: UIImage(named: "light_success.png"))
         shin.frame.size.width = screen_width
         shin.center = CGPointMake(screen_width/2, 0.42*screen_height)
-        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
-        rotationAnimation.fromValue = 0.0
-        rotationAnimation.toValue = M_PI
-        rotationAnimation.duration = 5.0
-        shin.layer.addAnimation(rotationAnimation, forKey: nil)
         self.view.addSubview(shin)
         //end here
         
@@ -147,7 +154,8 @@ class State7_RightViewController: ViewController {
         var real_exp_bar: UIImageView
         var level_bar: UIImageView
         var money_bar: UIImageView
-        var btn_home: UIImageView
+        let btn_home: UIButton = UIButton()
+        let home: UIImage = UIImage(named: "home.png")!
         let exp_rate:CGFloat = (CGFloat(right_count) - pow(CGFloat(level),2))/(pow(CGFloat(level+1),2) - pow(CGFloat(level),2))
         
         top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
@@ -174,12 +182,13 @@ class State7_RightViewController: ViewController {
         money_bar.backgroundColor = UIColorFromRGB(0xffe155)
         self.view.addSubview(money_bar)
         
-        btn_home = UIImageView(image: UIImage(named: "home.png"))
+        btn_home.setImage(home, forState: UIControlState.Normal)
         btn_home.frame.size.width = 0.8*level_bar.frame.minX
-        btn_home.frame.size.height = 0.8*level_bar.frame.minX*(btn_home.image?.size.height)!/(btn_home.image?.size.width)!
+        btn_home.frame.size.height = 0.8*level_bar.frame.minX*(home.size.height)/(home.size.width)
         btn_home.center = CGPointMake(level_bar.frame.minX/2, top_bar.frame.height/2)
         btn_home.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_home)
+        btn_home.addTarget(self, action: #selector(State3_PreparingViewController.btn_home_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         //level label
         var level_label: UILabel
@@ -294,6 +303,10 @@ class State7_RightViewController: ViewController {
         //end here
         
         // Do any additional setup after loading the view.
+    }
+    
+    func btn_home_click(button: UIButton){
+        TurnPage(2)
     }
     
     func btn_success_next_click(button: UIButton) {
