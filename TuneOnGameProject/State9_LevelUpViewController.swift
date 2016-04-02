@@ -8,8 +8,8 @@
 
 import UIKit
 
-class State7_RightViewController: ViewController {
-
+class State9_LevelUpViewController: ViewController {
+    
     var dialog: UIImageView!
     var dialog_label: UILabel!
     var dialog_center_x: CGFloat!
@@ -19,7 +19,7 @@ class State7_RightViewController: ViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-       
+        
         //dialog animation code from here
         UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
             self.dialog.frame.size.width *= 2
@@ -41,7 +41,7 @@ class State7_RightViewController: ViewController {
         shin.layer.addAnimation(rotationAnimation, forKey: nil)
         
         //end
-
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -57,6 +57,7 @@ class State7_RightViewController: ViewController {
         dialog_label.center = CGPoint(x: dialog_center_x, y: dialog_center_y)
         //end here
         
+        /*
         //server communicate code from here
         var requestNSData: NSData = NSData()
         let data = ["cmd": "getquiz", "id": id]
@@ -115,6 +116,7 @@ class State7_RightViewController: ViewController {
                 print("error serializaing JSON: \(error)")
             }
         }
+ */
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -279,7 +281,7 @@ class State7_RightViewController: ViewController {
         
         //dialog label
         //var dialog_label: UILabel
-        let dialog_string = "答對啦!"
+        let dialog_string = "升級了!"
         dialog_label = UILabel(frame: CGRect(x:0, y:0, width:0.7*dialog.frame.width, height:0.9*dialog.frame.height))
         dialog_label.center = CGPoint(x: (dialog.frame.minX + dialog.frame.maxX)/2, y: 0.495*(dialog.frame.minY + dialog.frame.maxY))
         dialog_label.text = dialog_string
@@ -311,15 +313,15 @@ class State7_RightViewController: ViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
