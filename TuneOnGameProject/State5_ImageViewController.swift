@@ -122,7 +122,7 @@ class State5_ImageViewController: ViewController {
         if data != nil {
             imageURL = UIImageView(image: UIImage(data: data!))
         }
-        imageURL.frame.size.width = screen_width*9/10
+        imageURL.frame.size.width = screen_width * 9/10
         imageURL.frame.size.height = background_youtube.frame.size.height*9/10
         imageURL.center = CGPointMake(screen_width/2, background_youtube.frame.minY+(background_youtube.frame.size.height/2))
         imageURL.contentMode = UIViewContentMode.ScaleAspectFit

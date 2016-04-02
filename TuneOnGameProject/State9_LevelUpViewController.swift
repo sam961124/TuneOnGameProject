@@ -16,6 +16,7 @@ class State9_LevelUpViewController: ViewController {
     var dialog_center_y: CGFloat!
     var number = 0
     var shin: UIImageView!
+    var timer = NSTimer()
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -32,13 +33,9 @@ class State9_LevelUpViewController: ViewController {
             }, completion: nil)
         //end here
         
-        //shin animation
-        
-        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
-        rotationAnimation.fromValue = 0.0
-        rotationAnimation.toValue = M_PI * 200
-        rotationAnimation.duration = 5.0 * 200
-        shin.layer.addAnimation(rotationAnimation, forKey: nil)
+        //timer
+        timer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: #selector(State7_RightViewController.shin_rotate), userInfo: nil, repeats: false)
+        timer = NSTimer.scheduledTimerWithTimeInterval(8.0, target: self, selector: #selector(State7_RightViewController.shin_rotate), userInfo: nil, repeats: true)
         
         //end
         
@@ -294,6 +291,13 @@ class State9_LevelUpViewController: ViewController {
         //end here
         
         // Do any additional setup after loading the view.
+    }
+    
+    func shin_rotate(){
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotationAnimation.toValue = 2*M_PI
+        rotationAnimation.duration = 8.0
+        shin.layer.addAnimation(rotationAnimation, forKey: nil)
     }
     
     func btn_home_click(button: UIButton){
