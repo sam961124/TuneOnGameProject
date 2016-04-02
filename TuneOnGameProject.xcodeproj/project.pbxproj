@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9B0800001C9EFEA6007942C1 /* State4_YoutubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08FFFF1C9EFEA6007942C1 /* State4_YoutubeViewController.swift */; };
+		9B4DD1CE1CAF947400413D33 /* State9_LevelUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4DD1CD1CAF947400413D33 /* State9_LevelUpViewController.swift */; };
 		9B75E47B1C9FD942004A8B56 /* State5_ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B75E47A1C9FD942004A8B56 /* State5_ImageViewController.swift */; };
 		9BD4D1061CA85E7400E55512 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD4D1051CA85E7400E55512 /* YTPlayerView.m */; };
 		9BD4D1091CA85E8900E55512 /* YTPlayerView-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = 9BD4D1081CA85E8900E55512 /* YTPlayerView-iframe-player.html */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		9B08FFFF1C9EFEA6007942C1 /* State4_YoutubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State4_YoutubeViewController.swift; sourceTree = "<group>"; };
+		9B4DD1CD1CAF947400413D33 /* State9_LevelUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State9_LevelUpViewController.swift; sourceTree = "<group>"; };
 		9B75E47A1C9FD942004A8B56 /* State5_ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State5_ImageViewController.swift; sourceTree = "<group>"; };
 		9BD4D1031CA85E7300E55512 /* TuneOnGameProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuneOnGameProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BD4D1041CA85E7400E55512 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				E91EC1FA1C999B9800124C4C /* State6_QuizViewController.swift */,
 				D76307081C9EB190009B15A0 /* State7_RightViewController.swift */,
 				D0C8672E1C9985C9007A7AA6 /* State8_WrongViewController.swift */,
+				9B4DD1CD1CAF947400413D33 /* State9_LevelUpViewController.swift */,
 				D0893DDF1C97FCE500617CAB /* Assets.xcassets */,
 				D0893DE11C97FCE500617CAB /* LaunchScreen.storyboard */,
 				D0893DE41C97FCE500617CAB /* Info.plist */,
@@ -340,6 +343,7 @@
 			files = (
 				D0893DD81C97FCE500617CAB /* ViewController.swift in Sources */,
 				D0C8672D1C998592007A7AA6 /* State0_ErrorViewController.swift in Sources */,
+				9B4DD1CE1CAF947400413D33 /* State9_LevelUpViewController.swift in Sources */,
 				D0C8672F1C9985C9007A7AA6 /* State8_WrongViewController.swift in Sources */,
 				D76307091C9EB190009B15A0 /* State7_RightViewController.swift in Sources */,
 				D0C8672B1C9984C5007A7AA6 /* State1_SplashViewController.swift in Sources */,
