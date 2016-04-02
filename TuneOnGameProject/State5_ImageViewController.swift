@@ -13,6 +13,10 @@ class State5_ImageViewController: ViewController {
     let btn_start_answer: UIButton = UIButton()
     let start_answer: UIImage = UIImage(named: "btn_start_answer_normal.png")!
     var timer = NSTimer()
+    var dialog: UIImageView!
+    var dialog_label: UILabel!
+    var dialog_center_x: CGFloat!
+    var dialog_center_y: CGFloat!
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -22,7 +26,7 @@ class State5_ImageViewController: ViewController {
         super.viewDidLoad()
         
         //timer
-        timer = NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: #selector(State5_ImageViewController.doll_talk), userInfo: nil, repeats: false)
+        timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(State5_ImageViewController.doll_talk), userInfo: nil, repeats: false)
         
         //constant
         let screen_width = view.frame.width
@@ -158,9 +162,34 @@ class State5_ImageViewController: ViewController {
         self.view.addSubview(btn_start_answer)
         btn_start_answer.addTarget(self, action: #selector(State5_ImageViewController.btn_start_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         //end here
+        
+        //dialog code from here
+        dialog = UIImageView(image: UIImage(named: "dialog.png"))
+        dialog.frame.size.width = 1.2*doll_normal.frame.width
+        dialog.frame.size.height = screen_width/2*(dialog.image?.size.height)!/(dialog.image?.size.width)!
+        dialog_center_x = doll_normal.frame.maxX+dialog.frame.width/2
+        dialog_center_y = doll_normal.frame.minY+0.3*doll_normal.frame.height
+        dialog.center = CGPointMake(dialog_center_x, dialog_center_y)
+        dialog.contentMode = UIViewContentMode.ScaleAspectFit
+        self.view.addSubview(dialog)
+        
+        let dialog_string = "圖片題，" + category_name[category]! + "的。"
+        dialog_label = UILabel(frame: CGRect(x:0, y:0, width:0.9*dialog.frame.width, height:0.9*dialog.frame.height))
+        dialog_label.center = CGPoint(x: (dialog.frame.minX + dialog.frame.maxX)/2, y: 0.495*(dialog.frame.minY + dialog.frame.maxY))
+        dialog_label.text = dialog_string
+        dialog_label.font = UIFont(name:"HelveticaNeue-Bold", size: screen_width*0.05)
+        dialog_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        dialog_label.minimumScaleFactor = 16/dialog_label.font.pointSize
+        dialog_label.textAlignment = NSTextAlignment.Center
+        dialog_label.textColor = UIColorFromRGB(0x820c0c)
+        dialog_label.numberOfLines = 0
+        dialog_label.lineBreakMode = NSLineBreakMode.ByCharWrapping
+        self.view.addSubview(dialog_label)
     }
     
     func doll_talk(){
+        dialog.hidden = true
+        dialog_label.hidden = true
         btn_start_answer.hidden = false
     }
     
