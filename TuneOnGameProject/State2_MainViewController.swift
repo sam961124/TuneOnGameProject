@@ -21,6 +21,12 @@ class State2_MainViewController: ViewController {
     var item_name_label: UILabel!
     var item_intro_label: UILabel!
     
+    let btn_purchase_1: UIButton = UIButton()
+    let btn_purchase_2: UIButton = UIButton()
+    let btn_purchase_3: UIButton = UIButton()
+    let btn_purchase_4: UIButton = UIButton()
+    let btn_purchase_5: UIButton = UIButton()
+    let btn_purchase_6: UIButton = UIButton()
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -242,28 +248,42 @@ class State2_MainViewController: ViewController {
         third_box.layer.cornerRadius = 10
         third_box.alpha = 0.5
         scrollView.addSubview(third_box)
-        var btn_purchase_1: UIImageView
-        btn_purchase_1 = UIImageView(image: UIImage(named: "btn_product_money_1_disable.png"))
+        
+        if fb_status{
+            btn_purchase_1.setBackgroundImage(UIImage(named: "btn_product_money_1.png"), forState: UIControlState.Normal)
+        }else{
+            btn_purchase_1.setBackgroundImage(UIImage(named: "btn_product_money_1_disable.png"), forState: UIControlState.Normal)
+        }
         btn_purchase_1.frame.size.height = 4*first_box.frame.height/5
         btn_purchase_1.frame.size.width = first_box.frame.width/4
         btn_purchase_1.center = CGPointMake(third_box.frame.minX + third_box.frame.width/6,(third_box.frame.maxY+third_box.frame.minY)/2)
         btn_purchase_1.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(btn_purchase_1)
-        var btn_purchase_2: UIImageView
-        btn_purchase_2 = UIImageView(image: UIImage(named: "btn_product_money_2_disable.png"))
+        btn_purchase_1.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        if fb_status{
+            btn_purchase_2.setBackgroundImage(UIImage(named: "btn_product_money_2.png"), forState: UIControlState.Normal)
+        }else{
+            btn_purchase_2.setBackgroundImage(UIImage(named: "btn_product_money_2_disable.png"), forState: UIControlState.Normal)
+        }
         btn_purchase_2.frame.size.height = 4*first_box.frame.height/5
         btn_purchase_2.frame.size.width = first_box.frame.width/4
         btn_purchase_2.center = CGPointMake(third_box.frame.minX + 3*third_box.frame.width/6,(third_box.frame.maxY+third_box.frame.minY)/2)
         btn_purchase_2.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(btn_purchase_2)
-        var btn_purchase_3: UIImageView
-        btn_purchase_3 = UIImageView(image: UIImage(named: "btn_product_money_3_disable.png"))
+        btn_purchase_2.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        if fb_status{
+            btn_purchase_3.setBackgroundImage(UIImage(named: "btn_product_money_3.png"), forState: UIControlState.Normal)
+        }else{
+            btn_purchase_3.setBackgroundImage(UIImage(named: "btn_product_money_3_disable.png"), forState: UIControlState.Normal)
+        }
         btn_purchase_3.frame.size.height = 4*first_box.frame.height/5
         btn_purchase_3.frame.size.width = first_box.frame.width/4
         btn_purchase_3.center = CGPointMake(third_box.frame.minX + 5*third_box.frame.width/6,(third_box.frame.maxY+third_box.frame.minY)/2)
         btn_purchase_3.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(btn_purchase_3)
-        
+        btn_purchase_3.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         var forth_box: UIImageView
         forth_box = UIImageView(frame: CGRect(x:0.05*screen_width, y:0.05*screen_width + third_box.frame.maxY, width:0.9*scrollView.frame.width, height:0.9*scrollView.frame.width/2))
@@ -271,27 +291,42 @@ class State2_MainViewController: ViewController {
         forth_box.layer.cornerRadius = 10
         forth_box.alpha = 0.5
         scrollView.addSubview(forth_box)
-        var btn_purchase_4: UIImageView
-        btn_purchase_4 = UIImageView(image: UIImage(named: "btn_product_level_1_disable.png"))
+
+        if fb_status || level >= 6{
+            btn_purchase_4.setBackgroundImage(UIImage(named: "btn_product_level_1.png"), forState: UIControlState.Normal)
+        }else{
+            btn_purchase_4.setBackgroundImage(UIImage(named: "btn_product_level_1_disable.png"), forState: UIControlState.Normal)
+        }
         btn_purchase_4.frame.size.height = 4*first_box.frame.height/5
         btn_purchase_4.frame.size.width = first_box.frame.width/4
         btn_purchase_4.center = CGPointMake(forth_box.frame.minX + forth_box.frame.width/6,(forth_box.frame.maxY+forth_box.frame.minY)/2)
         btn_purchase_4.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(btn_purchase_4)
-        var btn_purchase_5: UIImageView
-        btn_purchase_5 = UIImageView(image: UIImage(named: "btn_product_level_2_disable.png"))
+        btn_purchase_4.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        if fb_status || level >= 10{
+            btn_purchase_5.setBackgroundImage(UIImage(named: "btn_product_level_2.png"), forState: UIControlState.Normal)
+        }else{
+            btn_purchase_5.setBackgroundImage(UIImage(named: "btn_product_level_2_disable.png"), forState: UIControlState.Normal)
+        }
         btn_purchase_5.frame.size.height = 4*first_box.frame.height/5
         btn_purchase_5.frame.size.width = first_box.frame.width/4
         btn_purchase_5.center = CGPointMake(forth_box.frame.minX + 3*forth_box.frame.width/6,(forth_box.frame.maxY+forth_box.frame.minY)/2)
         btn_purchase_5.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(btn_purchase_5)
-        var btn_purchase_6: UIImageView
-        btn_purchase_6 = UIImageView(image: UIImage(named: "btn_product_level_3_disable.png"))
+        btn_purchase_5.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        if fb_status || level >= 15{
+            btn_purchase_6.setBackgroundImage(UIImage(named: "btn_product_level_3.png"), forState: UIControlState.Normal)
+        }else{
+            btn_purchase_6.setBackgroundImage(UIImage(named: "btn_product_level_3_disable.png"), forState: UIControlState.Normal)
+        }
         btn_purchase_6.frame.size.height = 4*first_box.frame.height/5
         btn_purchase_6.frame.size.width = first_box.frame.width/4
         btn_purchase_6.center = CGPointMake(forth_box.frame.minX + 5*forth_box.frame.width/6,(forth_box.frame.maxY+forth_box.frame.minY)/2)
         btn_purchase_6.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(btn_purchase_6)
+        btn_purchase_6.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         //pop up view code
         pop_up_background = UIView(frame: CGRect(x: 0, y: 0, width: screen_width, height: screen_height))
@@ -334,7 +369,7 @@ class State2_MainViewController: ViewController {
         
         self.pop_up_view.addSubview(btn_cancel_use)
         self.pop_up_view.addSubview(btn_start_use)
-        btn_cancel_use.addTarget(self, action: #selector(State6_QuizViewController.btn_cancel_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        btn_cancel_use.addTarget(self, action: #selector(State2_MainViewController.btn_cancel_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         //label
         item_name_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*pop_up_view.frame.width, height:0.12*pop_up_view.frame.height))
@@ -352,15 +387,87 @@ class State2_MainViewController: ViewController {
         item_intro_label.textColor = UIColorFromRGB(0xfba928)
 
     }
+    func btn_purchase_click(button: UIButton) {
+        
+        item_image = UIImageView(image: UIImage(named: "fb_logo.png"))
+        item_image.frame.size.width = pop_up_view.frame.width/4
+        item_image.frame.size.height = pop_up_view.frame.width/4
+        item_image.contentMode = UIViewContentMode.ScaleAspectFit
+        item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
+        item_image.hidden = true
+        self.pop_up_view.addSubview(item_image)
+        
+        if !fb_status{
+            item_name_label.text = "無法購買本商品"
+            item_intro_label.text = "對不起啦!只有用臉書註冊過的玩家，才能購買商品的說。對了，我不會在你臉書發任何訊息的唷!"
+            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
+            self.pop_up_view.addSubview(item_name_label)
+            self.pop_up_view.addSubview(item_intro_label)
+            btn_start_use.hidden = true
+        }
+        else {
+            if button == btn_purchase_1{
+                
+            }
+            else if button == btn_purchase_2{
+                
+            }
+            else if button == btn_purchase_3{
+                
+            }
+            else if button == btn_purchase_4{
+                if level >= 6{
+                    item_name_label.text = "無法購買本商品"
+                    item_intro_label.text = "你的等級已經超過6級了喔"
+                    item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+                    item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
+                    self.pop_up_view.addSubview(item_name_label)
+                    self.pop_up_view.addSubview(item_intro_label)
+                    btn_start_use.hidden = true
+                }
+            }
+            else if button == btn_purchase_5{
+                if level >= 10{
+                    item_name_label.text = "無法購買本商品"
+                    item_intro_label.text = "你的等級已經超過10級了喔"
+                    item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+                    item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
+                    self.pop_up_view.addSubview(item_name_label)
+                    self.pop_up_view.addSubview(item_intro_label)
+                    btn_start_use.hidden = true
+                }
+            }
+            else{
+                if level >= 15{
+                    item_name_label.text = "無法購買本商品"
+                    item_intro_label.text = "你的等級已經超過15級了喔"
+                    item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+                    item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
+                    self.pop_up_view.addSubview(item_name_label)
+                    self.pop_up_view.addSubview(item_intro_label)
+                    btn_start_use.hidden = true
+                }
+            }
+            //purchase
+        }
+        UIView.animateWithDuration(0.2, animations: {
+            self.pop_up_view.alpha = 1.0
+        })
+        button.highlighted = true
+        pop_up_background.hidden = false
+    }
     
     func btn_fb_click(button: UIButton) {
+        
+        btn_start_use.hidden = false
         item_image = UIImageView(image: UIImage(named: "fb_logo.png"))
         item_image.frame.size.width = pop_up_view.frame.width/4
         item_image.frame.size.height = pop_up_view.frame.width/4
         item_image.contentMode = UIViewContentMode.ScaleAspectFit
         item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
         self.pop_up_view.addSubview(item_image)
-        
+    
         item_name_label.text = "推薦"
         item_intro_label.text = "肯在臉書上幫我推薦一下嗎?我會送你兩個免費道具當謝禮唷!"
         item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)

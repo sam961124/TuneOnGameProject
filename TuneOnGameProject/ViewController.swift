@@ -8,6 +8,7 @@
 
 import UIKit
 
+var fb_status = false
 var id: String = String()
 var level: Int = Int()
 var money: Int = Int()
