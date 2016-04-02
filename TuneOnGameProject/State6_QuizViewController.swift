@@ -39,8 +39,8 @@ class State6_QuizViewController: ViewController {
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
-        level = 100
-        freeitem_amount = 20
+        level = 10
+        freeitem_amount = 0
         //background code form here
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "brick.png")!)
         //end here
@@ -209,12 +209,16 @@ class State6_QuizViewController: ViewController {
         lock4.contentMode = UIViewContentMode.ScaleAspectFit
         
         //item playback
-        if freeitem_amount > 0 && level >= 10 {
+        if freeitem_amount > 0{
             btn_playback.setBackgroundImage(playback_image, forState: UIControlState.Normal)
             btn_playback.setBackgroundImage(UIImage(named: "btn_item_playback_pressed.png"), forState: UIControlState.Highlighted)
         }
-        else{
+        else if level < 10 || money < 200{
             btn_playback.setBackgroundImage(UIImage(named: "btn_item_playback_disable.png"), forState: UIControlState.Normal)
+        }
+        else {
+            btn_playback.setBackgroundImage(playback_image, forState: UIControlState.Normal)
+            btn_playback.setBackgroundImage(UIImage(named: "btn_item_playback_pressed.png"), forState: UIControlState.Highlighted)
         }
         btn_playback.contentMode = UIViewContentMode.ScaleAspectFit
         btn_playback.frame.size.height = item_height
@@ -222,18 +226,22 @@ class State6_QuizViewController: ViewController {
         btn_playback.center = CGPointMake(screen_width/8, item_y)
         self.view.addSubview(btn_playback)
         btn_playback.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        if level < 10{
+        if level < 10 && freeitem_amount == 0{
             lock1.center = CGPointMake(btn_playback.frame.width/2, btn_playback.frame.height/2)
             self.btn_playback.addSubview(lock1)
         }
         
         //item friend
-        if freeitem_amount > 0 && level >= 6{
+        if freeitem_amount > 0{
             btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_normal.png"), forState: UIControlState.Normal)
             btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_pressed.png"), forState: UIControlState.Highlighted)
         }
-        else{
+        else if level < 6 || money < 100{
             btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_disable.png"), forState: UIControlState.Normal)
+        }
+        else{
+            btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_normal.png"), forState: UIControlState.Normal)
+            btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_pressed.png"), forState: UIControlState.Highlighted)
         }
         btn_friend.frame.size.height = item_height
         btn_friend.frame.size.width = item_width
@@ -241,18 +249,22 @@ class State6_QuizViewController: ViewController {
         btn_friend.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_friend)
         btn_friend.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        if level < 6{
+        if level < 6 && freeitem_amount == 0{
             lock2.center = CGPointMake(btn_friend.frame.width/2, btn_friend.frame.height/2)
             self.btn_friend.addSubview(lock2)
         }
         
         //item remove
-        if freeitem_amount > 0 && level >= 15{
+        if freeitem_amount > 0{
             btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_normal.png"), forState: UIControlState.Normal)
             btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_pressed.png"), forState: UIControlState.Highlighted)
         }
-        else{
+        else if level < 15 || money < 200{
             btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_disable.png"), forState: UIControlState.Normal)
+        }
+        else{
+            btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_normal.png"), forState: UIControlState.Normal)
+            btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_pressed.png"), forState: UIControlState.Highlighted)
         }
         btn_remove.frame.size.height = item_height
         btn_remove.frame.size.width = item_width
@@ -260,7 +272,7 @@ class State6_QuizViewController: ViewController {
         btn_remove.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_remove)
         btn_remove.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        if level < 15{
+        if level < 15 && freeitem_amount == 0{
             lock3.center = CGPointMake(btn_remove.frame.width/2, btn_remove.frame.height/2)
             self.btn_remove.addSubview(lock3)
         }
@@ -383,22 +395,26 @@ class State6_QuizViewController: ViewController {
             item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
             self.pop_up_view.addSubview(item_image)
             
-            if freeitem_amount > 0 && level >= 10{
+            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+            if freeitem_amount > 0{
                 item_name_label.text = "重看一次(免費道具)"
                 item_intro_label.text = "無限次重看影片或圖片，使用一個免費道具，還有" + freeitem_amount_string + "個"
-                
+                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
             }
-            else if freeitem_amount == 0 && level >= 10{
-                item_name_label.text = "重看一次(購買道具)"
-                item_intro_label.text = "無限次重看影片或圖片，購買此道具，請支付200G"
-            }
-            else{
+            else if level < 10{
                 item_name_label.text = "重看一次(無法使用)"
-                item_intro_label.text = "無限次重看影片或圖片，需要Lv10以上"
+                item_intro_label.text = "無限次重看影片或圖片，需花費200G。需要Lv10以上。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
+                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
                 btn_start_use.hidden = true
             }
-            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
-            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
+            else{
+                item_name_label.text = "重看一次(購買道具)"
+                item_intro_label.text = "無限次重看影片或圖片，需花費200G。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
+                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
+                if money < 200{
+                    btn_start_use.hidden = true
+                }
+            }
         }
         else if button == btn_remove{
             item_image = UIImageView(image: UIImage(named: "btn_item_remove_normal.png"))
@@ -408,22 +424,26 @@ class State6_QuizViewController: ViewController {
             item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
             self.pop_up_view.addSubview(item_image)
             
-            if freeitem_amount > 0 && level >= 15{
+            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+            if freeitem_amount > 0{
                 item_name_label.text = "減少選項(免費道具)"
                 item_intro_label.text = "從四選一變成二選一，使用一個免費道具，還有" + freeitem_amount_string + "個"
-                
+                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
             }
-            else if freeitem_amount == 0 && level >= 15{
-                item_name_label.text = "減少選項(購買道具)"
-                item_intro_label.text = "從四選一變成二選一，購買此道具，請支付200G"
-            }
-            else{
+            else if level < 15{
                 item_name_label.text = "減少選項(無法使用)"
-                item_intro_label.text = "從四選一變成二選一，需要Lv15以上"
+                item_intro_label.text = "從四選一變成二選一，花費200G。需要Lv15以上。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
+                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
                 btn_start_use.hidden = true
             }
-            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
-            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
+            else{
+                item_name_label.text = "減少選項(購買道具)"
+                item_intro_label.text = "從四選一變成二選一，花費200G。。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
+                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
+                if money < 200{
+                    btn_start_use.hidden = true
+                }
+            }
         }
         else if button == btn_friend{
             item_image = UIImageView(image: UIImage(named: "btn_item_friend_normal.png"))
@@ -433,22 +453,26 @@ class State6_QuizViewController: ViewController {
             item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
             self.pop_up_view.addSubview(item_image)
             
-            if freeitem_amount > 0 && level >= 6{
+            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+            if freeitem_amount > 0{
                 item_name_label.text = "玩家記錄(免費道具)"
                 item_intro_label.text = "看其他玩家曾經選過的答案與次數，使用一個免費道具，還有" + freeitem_amount_string + "個"
-                
+                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
             }
-            else if freeitem_amount == 0 && level >= 6{
-                item_name_label.text = "玩家記錄(購買道具)"
-                item_intro_label.text = "看其他玩家曾經選過的答案與次數，購買此道具，請支付100G"
-            }
-            else{
+            else if level < 6{
                 item_name_label.text = "玩家記錄(無法使用)"
-                item_intro_label.text = "看其他玩家曾經選過的答案與次數，需要Lv6以上"
+                item_intro_label.text = "看其他玩家曾經選過的答案與次數，花費100G。需要Lv6以上。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
+                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
                 btn_start_use.hidden = true
             }
-            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
-            item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
+            else{
+                item_name_label.text = "玩家記錄(購買道具)"
+                item_intro_label.text = "看其他玩家曾經選過的答案與次數，花費100G。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
+                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
+                if money < 100{
+                    btn_start_use.hidden = true
+                }
+            }
         }
         else if button == btn_submit{
             item_image = UIImageView(image: UIImage(named: "btn_item_submit_normal.png"))

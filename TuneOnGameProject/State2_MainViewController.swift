@@ -176,41 +176,44 @@ class State2_MainViewController: ViewController {
         let ranking_string2 = player_ranking + " / " + player_amount
         let iq_string1 = "你的IQ"
         var iq_string2: String = String()
-        if level > 2{
-            iq_string2 = String(Int(sqrt(correct_rate)*20))
-        }
-        else{
-            iq_string2 = "將在 Lv3 開啟"
-        }
         let fb_string = "缺金幣?想升級?看排行?登入臉書進入進階模式!"
         
-        ranking_label1 = UILabel(frame: CGRect(x:second_box.frame.minX+0.05*second_box.frame.width, y:second_box.frame.height/12+second_box.frame.minY, width:0.4*second_box.frame.width, height:second_box.frame.height/12))
+        ranking_label1 = UILabel(frame: CGRect(x:second_box.frame.minX+0.05*second_box.frame.width, y:second_box.frame.height/12+second_box.frame.minY, width:0.4*second_box.frame.width, height:second_box.frame.height/10))
         ranking_label1.text = ranking_string1
-        ranking_label1.font = UIFont(name:"HelveticaNeue-Bold", size: 0.055*screen_width)
+        ranking_label1.font = UIFont(name:"HelveticaNeue-Bold", size: 0.05*screen_width)
         ranking_label1.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         ranking_label1.textColor = UIColorFromRGB(0x5c5c5c)
         scrollView.addSubview(ranking_label1)
         
         ranking_label2 = UILabel(frame: CGRect(x:second_box.frame.minX+0.7*second_box.frame.width, y:second_box.frame.height/12+second_box.frame.minY, width:0.25*second_box.frame.width, height:second_box.frame.height/10))
         ranking_label2.text = ranking_string2
-        ranking_label2.font = UIFont(name:"HelveticaNeue-Bold", size: 0.055*screen_width)
+        ranking_label2.font = UIFont(name:"HelveticaNeue-Bold", size: 0.05*screen_width)
         ranking_label2.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         ranking_label2.textAlignment = NSTextAlignment.Right
         ranking_label2.textColor = UIColorFromRGB(0x5c5c5c)
         scrollView.addSubview(ranking_label2)
         
-        iq_label1 = UILabel(frame: CGRect(x:second_box.frame.minX+0.05*second_box.frame.width, y:4*second_box.frame.height/12+second_box.frame.minY, width:0.2*second_box.frame.width, height:second_box.frame.height/12))
+        iq_label1 = UILabel(frame: CGRect(x:second_box.frame.minX+0.05*second_box.frame.width, y:4*second_box.frame.height/12+second_box.frame.minY, width:0.2*second_box.frame.width, height:second_box.frame.height/10))
         iq_label1.text = iq_string1
-        iq_label1.font = UIFont(name:"HelveticaNeue-Bold", size: 0.055*screen_width)
+        iq_label1.font = UIFont(name:"HelveticaNeue-Bold", size: 0.05*screen_width)
         iq_label1.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         iq_label1.textColor = UIColorFromRGB(0x5c5c5c)
         scrollView.addSubview(iq_label1)
         
-        iq_label2 = UILabel(frame: CGRect(x:second_box.frame.minX+0.7*second_box.frame.width, y:4*second_box.frame.height/12+second_box.frame.minY, width:0.25*second_box.frame.width, height:second_box.frame.height/10))
+        
+        if level > 2{
+            iq_string2 = String(Int(sqrt(correct_rate)*20))
+            iq_label2 = UILabel(frame: CGRect(x:second_box.frame.minX+0.7*second_box.frame.width, y:4*second_box.frame.height/12+second_box.frame.minY, width:0.25*second_box.frame.width, height:second_box.frame.height/10))
+            iq_label2.font = UIFont(name:"HelveticaNeue-Bold", size: 0.05*screen_width)
+        }
+        else{
+            iq_string2 = "將在Lv3開啟"
+            iq_label2 = UILabel(frame: CGRect(x:second_box.frame.minX+0.5*second_box.frame.width, y:4*second_box.frame.height/12+second_box.frame.minY, width:0.45*second_box.frame.width, height:second_box.frame.height/10))
+            iq_label2.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
+        }
         iq_label2.text = iq_string2
-        iq_label2.font = UIFont(name:"HelveticaNeue-Bold", size: 0.055*screen_width)
-        iq_label2.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         iq_label2.textAlignment = NSTextAlignment.Right
+        iq_label2.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         iq_label2.textColor = UIColorFromRGB(0x5c5c5c)
         scrollView.addSubview(iq_label2)
         
