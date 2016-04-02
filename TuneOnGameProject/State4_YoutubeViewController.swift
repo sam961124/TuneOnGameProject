@@ -11,16 +11,18 @@ import UIKit
 class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
     
     var youtube_player: YTPlayerView!
+    var dialog: UIImageView!
+    var dialog_label1: UILabel!
+    var dialog_label: UILabel!
+    var dialog_center_x: CGFloat!
+    var dialog_center_y: CGFloat!
     let btn_play_again: UIButton = UIButton()
     let play_again: UIImage = UIImage(named: "btn_play_again_normal.png")!
     let btn_start_answer: UIButton = UIButton()
     let start_answer: UIImage = UIImage(named: "btn_start_answer_normal.png")!
     var timer = NSTimer()
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -180,18 +182,61 @@ class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
         btn_play_again.addTarget(self, action: #selector(State4_YoutubeViewController.btn_play_again_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         //end here
         
+        //dialog code from here
+        dialog = UIImageView(image: UIImage(named: "dialog.png"))
+        dialog.frame.size.width = 1.2*doll_normal.frame.width
+        dialog.frame.size.height = screen_width/2*(dialog.image?.size.height)!/(dialog.image?.size.width)!
+        dialog_center_x = doll_normal.frame.maxX+dialog.frame.width/2
+        dialog_center_y = doll_normal.frame.minY+0.3*doll_normal.frame.height
+        dialog.center = CGPointMake(dialog_center_x, dialog_center_y)
+        dialog.contentMode = UIViewContentMode.ScaleAspectFit
+        self.view.addSubview(dialog)
+        
+        //dialog label
+        let dialog_string1 = "影片載入中..."
+        dialog_label1 = UILabel(frame: CGRect(x:0, y:0, width:0.9*dialog.frame.width, height:0.9*dialog.frame.height))
+        dialog_label1.center = CGPoint(x: (dialog.frame.minX + dialog.frame.maxX)/2, y: 0.495*(dialog.frame.minY + dialog.frame.maxY))
+        dialog_label1.text = dialog_string1
+        dialog_label1.font = UIFont(name:"HelveticaNeue-Bold", size: screen_width*0.05)
+        dialog_label1.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        dialog_label1.minimumScaleFactor = 16/dialog_label1.font.pointSize
+        dialog_label1.textAlignment = NSTextAlignment.Center
+        dialog_label1.textColor = UIColorFromRGB(0x820c0c)
+        self.view.addSubview(dialog_label1)
+        
+        let dialog_string = "影片題，" + category_name[category]! + "的。"
+        dialog_label = UILabel(frame: CGRect(x:0, y:0, width:0.9*dialog.frame.width, height:0.9*dialog.frame.height))
+        dialog_label.center = CGPoint(x: (dialog.frame.minX + dialog.frame.maxX)/2, y: 0.495*(dialog.frame.minY + dialog.frame.maxY))
+        dialog_label.text = dialog_string
+        dialog_label.font = UIFont(name:"HelveticaNeue-Bold", size: screen_width*0.05)
+        dialog_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+        dialog_label.minimumScaleFactor = 16/dialog_label.font.pointSize
+        dialog_label.textAlignment = NSTextAlignment.Center
+        dialog_label.textColor = UIColorFromRGB(0x820c0c)
+        dialog_label.numberOfLines = 0
+        dialog_label.lineBreakMode = NSLineBreakMode.ByCharWrapping
+        dialog_label.hidden = true
+        self.view.addSubview(dialog_label)
+        
     }
+    
     
     func playerViewDidBecomeReady(youtube_player: YTPlayerView) {
         self.youtube_player.playVideo()
+        dialog_label1.hidden = true
+        dialog_label.hidden = false
     }
 
     func doll_talk(){
+        dialog.hidden = true
+        dialog_label.hidden = true
         btn_start_answer.hidden = false
         btn_play_again.hidden = false
     }
     func btn_play_again_click(button: UIButton) {
         timer.invalidate()
+        dialog.hidden = false
+        dialog_label.hidden = false
         btn_play_again.hidden = true
         btn_start_answer.hidden = true
         timer = NSTimer.scheduledTimerWithTimeInterval(8, target: self, selector: #selector(State4_YoutubeViewController.doll_talk), userInfo: nil, repeats: false)

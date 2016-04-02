@@ -9,6 +9,10 @@
 import UIKit
 
 class State5_ImageViewController: ViewController {
+    
+    let btn_start_answer: UIButton = UIButton()
+    let start_answer: UIImage = UIImage(named: "btn_start_answer_normal.png")!
+    var timer = NSTimer()
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -16,6 +20,9 @@ class State5_ImageViewController: ViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //timer
+        timer = NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: #selector(State5_ImageViewController.doll_talk), userInfo: nil, repeats: false)
         
         //constant
         let screen_width = view.frame.width
@@ -140,8 +147,7 @@ class State5_ImageViewController: ViewController {
         //end here
         
         //start_answer code from here
-        let btn_start_answer: UIButton = UIButton()
-        let start_answer: UIImage = UIImage(named: "btn_start_answer_normal.png")!
+        btn_start_answer.hidden = true
         btn_start_answer.highlighted = false
         btn_start_answer.contentMode = UIViewContentMode.ScaleAspectFit
         btn_start_answer.setImage(start_answer, forState: UIControlState.Normal)
@@ -152,6 +158,10 @@ class State5_ImageViewController: ViewController {
         self.view.addSubview(btn_start_answer)
         btn_start_answer.addTarget(self, action: #selector(State5_ImageViewController.btn_start_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         //end here
+    }
+    
+    func doll_talk(){
+        btn_start_answer.hidden = false
     }
     
     func btn_start_answer_click(button: UIButton) {
