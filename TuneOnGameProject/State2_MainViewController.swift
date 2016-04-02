@@ -34,7 +34,7 @@ class State2_MainViewController: ViewController {
         let screen_width = view.frame.width
         let screen_height = view.frame.height
         
-        //background code form here
+        //background code form here    
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "stripe.png")!)
         //end here
         
@@ -44,8 +44,7 @@ class State2_MainViewController: ViewController {
         var real_exp_bar: UIImageView
         var level_bar: UIImageView
         var money_bar: UIImageView
-        let exp_rate:CGFloat = (CGFloat(right_count) - pow(CGFloat(level),2))/(pow(CGFloat(level+1),2) - pow(CGFloat(level),2))
-        
+        let exp_rate:CGFloat = ExpRate()
         top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
         top_bar.backgroundColor = UIColorFromRGB(0xfba928)
         self.view.addSubview(top_bar)
@@ -98,8 +97,7 @@ class State2_MainViewController: ViewController {
         
         //exp label
         var exp_label: UILabel
-        let exp_percent = String(Int(exp_rate*100))
-        let exp_string = "EXP (" + exp_percent + "/100)"
+        let exp_string = "EXP (\(Int(exp_rate*100))/100)"
         exp_label = UILabel(frame: CGRect(x:0, y:0, width:screen_width, height:top_bar.frame.height/4))
         exp_label.center = CGPointMake(screen_width/2, (exp_bar.frame.minY+exp_bar.frame.maxY)/2)
         exp_label.text = exp_string
@@ -175,10 +173,15 @@ class State2_MainViewController: ViewController {
         let player_ranking = "20"
         let player_amount = "600"
         let correct_rate = Float(right_count/(right_count + wrong_count))
-        let iq = Int(sqrt(correct_rate)*20)
         let ranking_string2 = player_ranking + " / " + player_amount
         let iq_string1 = "你的IQ"
-        let iq_string2 = String(iq)
+        var iq_string2: String = String()
+        if level > 2{
+            iq_string2 = String(Int(sqrt(correct_rate)*20))
+        }
+        else{
+            iq_string2 = "將在 Lv3 開啟"
+        }
         let fb_string = "缺金幣?想升級?看排行?登入臉書進入進階模式!"
         
         ranking_label1 = UILabel(frame: CGRect(x:second_box.frame.minX+0.05*second_box.frame.width, y:second_box.frame.height/12+second_box.frame.minY, width:0.4*second_box.frame.width, height:second_box.frame.height/12))

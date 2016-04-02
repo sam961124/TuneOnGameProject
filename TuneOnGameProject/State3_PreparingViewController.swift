@@ -50,7 +50,7 @@ class State3_PreparingViewController: ViewController {
             var money_bar: UIImageView
             let btn_home: UIButton = UIButton()
             let home: UIImage = UIImage(named: "home.png")!
-            let exp_rate:CGFloat = (CGFloat(right_count) - pow(CGFloat(level),2))/(pow(CGFloat(level+1),2) - pow(CGFloat(level),2))
+            let exp_rate:CGFloat = ExpRate()
             
             top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
             top_bar.backgroundColor = UIColorFromRGB(0xfba928)
@@ -112,8 +112,7 @@ class State3_PreparingViewController: ViewController {
             
             //exp label
             var exp_label: UILabel
-            let exp_percent = String(Int(exp_rate*100))
-            let exp_string = "EXP (" + exp_percent + "/100)"
+            let exp_string = "EXP (\(Int(exp_rate*100))/100)"
             exp_label = UILabel(frame: CGRect(x:0, y:0, width:screen_width, height:top_bar.frame.height/4))
             exp_label.center = CGPointMake(screen_width/2, (exp_bar.frame.minY+exp_bar.frame.maxY)/2)
             exp_label.text = exp_string
@@ -243,23 +242,14 @@ class State3_PreparingViewController: ViewController {
                     print(0)
                     print(question)
                     print(1)
-                    print(youtube_id)
-                    print(2)
-                    print(imageurl)
-                    print(3)
-                    print(4)
                     print(correct)
                     print(5)
                     if youtube_id == ""{
                         self.number = 5
                         image_url = imageurl as! String
-                        print(image_url)
-                        print(qid)
                     }
                     else if imageurl is NSNull{
                         self.number = 4
-                        print(youtube_id)
-                        print(eid)
                     }
                     else{
                         self.number = 0

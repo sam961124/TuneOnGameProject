@@ -25,7 +25,7 @@ class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
         super.viewDidLoad()
         
         //timer
-        timer = NSTimer.scheduledTimerWithTimeInterval(8, target: self, selector: "doll_talk", userInfo: nil, repeats: false)
+        timer = NSTimer.scheduledTimerWithTimeInterval(8, target: self, selector: #selector(State4_YoutubeViewController.doll_talk), userInfo: nil, repeats: false)
         
         
         
@@ -43,8 +43,7 @@ class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
         var level_bar: UIImageView
         var real_exp_bar: UIImageView
         var money_bar: UIImageView
-        let exp_rate:CGFloat = (CGFloat(right_count) - pow(CGFloat(level),2))/(pow(CGFloat(level+1),2) - pow(CGFloat(level),2))
-        
+        let exp_rate:CGFloat = ExpRate()
         top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
         top_bar.backgroundColor = UIColorFromRGB(0xfba928)
         self.view.addSubview(top_bar)
@@ -97,8 +96,7 @@ class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
         
         //exp label
         var exp_label: UILabel
-        let exp_percent = String(Int(exp_rate*100))
-        let exp_string = "EXP (" + exp_percent + "/100)"
+        let exp_string = "EXP (\(Int(exp_rate*100))/100)"
         exp_label = UILabel(frame: CGRect(x:0, y:0, width:screen_width, height:top_bar.frame.height/4))
         exp_label.center = CGPointMake(screen_width/2, (exp_bar.frame.minY+exp_bar.frame.maxY)/2)
         exp_label.text = exp_string
@@ -184,7 +182,7 @@ class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
         
     }
     
-    func playerViewDidBecomeReady(youtube_player: YTPlayerView!) {
+    func playerViewDidBecomeReady(youtube_player: YTPlayerView) {
         self.youtube_player.playVideo()
     }
 
@@ -196,7 +194,7 @@ class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
         timer.invalidate()
         btn_play_again.hidden = true
         btn_start_answer.hidden = true
-        timer = NSTimer.scheduledTimerWithTimeInterval(8, target: self, selector: "doll_talk", userInfo: nil, repeats: false)
+        timer = NSTimer.scheduledTimerWithTimeInterval(8, target: self, selector: #selector(State4_YoutubeViewController.doll_talk), userInfo: nil, repeats: false)
         button.highlighted = true
         self.youtube_player.seekToSeconds(0, allowSeekAhead: true)
     }

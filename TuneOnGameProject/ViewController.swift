@@ -21,7 +21,7 @@ var quiz_level: String = String()
 var youtube_id: String = String()
 var image_url: String = String()
 var question: String = String()
-var freeitem_amount: Int = Int()
+var freeitem: Int = Int()
 var choice_string = ["", "", "", ""]
 let category_name = ["100": "神秘題", "200": "演員題", "300": "產品題",
                      "400": "場景題", "500": "聲音題", "600": "圖形題",
@@ -67,6 +67,15 @@ class ViewController: UIViewController {
             }
         }
         task.resume()
+    }
+    
+    func ExpRate() -> CGFloat{
+        if CGFloat(right_count) > pow(CGFloat(level),2){
+            return (CGFloat(right_count) - pow(CGFloat(level),2))/(pow(CGFloat(level+1),2) - pow(CGFloat(level),2))
+        }
+        else{
+            return 0
+        }
     }
     
     func TurnPage(number: Int){

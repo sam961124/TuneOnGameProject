@@ -16,7 +16,8 @@ class State6_QuizViewController: ViewController {
     let btn_submit: UIButton = UIButton()
     let btn_start_use: UIButton = UIButton()
     var btn_choice: Array<UIButton> = []
-    let freeitem_amount = 0
+    var choice_label: Array<UILabel> = []
+    var freeitem_amount = 0
     
     //pop_up window element
     var pop_up_background: UIView!
@@ -38,6 +39,8 @@ class State6_QuizViewController: ViewController {
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
+        level = 100
+        freeitem_amount = 20
         //background code form here
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "brick.png")!)
         //end here
@@ -50,8 +53,7 @@ class State6_QuizViewController: ViewController {
         var money_bar: UIImageView
         let btn_home: UIButton = UIButton()
         let home: UIImage = UIImage(named: "home.png")!
-        let exp_rate:CGFloat = (CGFloat(right_count) - pow(CGFloat(level),2))/(pow(CGFloat(level+1),2) - pow(CGFloat(level),2))
-        
+        let exp_rate:CGFloat = ExpRate()
         top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
         top_bar.backgroundColor = UIColorFromRGB(0xfba928)
         self.view.addSubview(top_bar)
@@ -112,8 +114,7 @@ class State6_QuizViewController: ViewController {
         
         //exp label
         var exp_label: UILabel
-        let exp_percent = String(Int(exp_rate*100))
-        let exp_string = "EXP (" + exp_percent + "/100)"
+        let exp_string = "EXP (\(Int(exp_rate*100))/100)"
         exp_label = UILabel(frame: CGRect(x:0, y:0, width:screen_width, height:top_bar.frame.height/4))
         exp_label.center = CGPointMake(screen_width/2, (exp_bar.frame.minY+exp_bar.frame.maxY)/2)
         exp_label.text = exp_string
@@ -294,46 +295,17 @@ class State6_QuizViewController: ViewController {
         }
         
         //choice label
-        var choice1_label: UILabel
-        var choice2_label: UILabel
-        var choice3_label: UILabel
-        var choice4_label: UILabel
-        choice1_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice[0].frame.width, height:0.5*btn_choice[0].frame.height))
-        choice1_label.center = CGPointMake(screen_width/2, (btn_choice[0].frame.minY+btn_choice[0].frame.maxY)/2)
-        choice1_label.text = choice_string[0]
-        choice1_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
-        choice1_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        choice1_label.textAlignment = NSTextAlignment.Center
-        choice1_label.textColor = UIColorFromRGB(0x820c0c)
-        self.view.addSubview(choice1_label)
-        
-        choice2_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice[0].frame.width, height:0.5*btn_choice[0].frame.height))
-        choice2_label.center = CGPointMake(screen_width/2, (btn_choice[1].frame.minY+btn_choice[1].frame.maxY)/2)
-        choice2_label.text = choice_string[1]
-        choice2_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
-        choice2_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        choice2_label.minimumScaleFactor = 8/choice1_label.font.pointSize
-        choice2_label.textAlignment = NSTextAlignment.Center
-        choice2_label.textColor = UIColorFromRGB(0x820c0c)
-        self.view.addSubview(choice2_label)
-        choice3_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice[0].frame.width, height:0.5*btn_choice[0].frame.height))
-        choice3_label.center = CGPointMake(screen_width/2, (btn_choice[2].frame.minY+btn_choice[2].frame.maxY)/2)
-        choice3_label.text = choice_string[2]
-        choice3_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
-        choice3_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        choice3_label.minimumScaleFactor = 8/choice1_label.font.pointSize
-        choice3_label.textAlignment = NSTextAlignment.Center
-        choice3_label.textColor = UIColorFromRGB(0x820c0c)
-        self.view.addSubview(choice3_label)
-        choice4_label = UILabel(frame: CGRect(x:0, y:0, width:0.8*btn_choice[0].frame.width, height:0.5*btn_choice[0].frame.height))
-        choice4_label.center = CGPointMake(screen_width/2, (btn_choice[3].frame.minY+btn_choice[3].frame.maxY)/2)
-        choice4_label.text = choice_string[3]
-        choice4_label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
-        choice4_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
-        choice4_label.minimumScaleFactor = 8/choice1_label.font.pointSize
-        choice4_label.textAlignment = NSTextAlignment.Center
-        choice4_label.textColor = UIColorFromRGB(0x820c0c)
-        self.view.addSubview(choice4_label)
+        for i in 0...3 {
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0.8*btn_choice[i].frame.width, height: 0.5*btn_choice[i].frame.height))
+            label.center = CGPointMake(screen_width/2, (btn_choice[i].frame.minY+btn_choice[i].frame.maxY)/2)
+            label.text = choice_string[i]
+            label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
+            label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+            label.textAlignment = NSTextAlignment.Center
+            label.textColor = UIColorFromRGB(0x820c0c)
+            choice_label.insert(label, atIndex: i)
+            self.view.addSubview(choice_label[i])
+        }
         
         //pop up view code
         pop_up_background = UIView(frame: CGRect(x: 0, y: 0, width: screen_width, height: screen_height))
