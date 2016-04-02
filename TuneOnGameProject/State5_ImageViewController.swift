@@ -173,7 +173,8 @@ class State5_ImageViewController: ViewController {
         dialog.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(dialog)
         
-        let dialog_string = "圖片題，" + category_name[category]! + "的。"
+        let type_string = category_name[category]
+        let dialog_string = "圖片題，" + type_string! + "的。"
         dialog_label = UILabel(frame: CGRect(x:0, y:0, width:0.9*dialog.frame.width, height:0.9*dialog.frame.height))
         dialog_label.center = CGPoint(x: (dialog.frame.minX + dialog.frame.maxX)/2, y: 0.495*(dialog.frame.minY + dialog.frame.maxY))
         dialog_label.text = dialog_string

@@ -204,7 +204,8 @@ class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
         dialog_label1.textColor = UIColorFromRGB(0x820c0c)
         self.view.addSubview(dialog_label1)
         
-        let dialog_string = "影片題，" + category_name[category]! + "的。"
+        let type_syring = category_name[category]
+        let dialog_string = "影片題，" + type_syring! + "的。"
         dialog_label = UILabel(frame: CGRect(x:0, y:0, width:0.9*dialog.frame.width, height:0.9*dialog.frame.height))
         dialog_label.center = CGPoint(x: (dialog.frame.minX + dialog.frame.maxX)/2, y: 0.495*(dialog.frame.minY + dialog.frame.maxY))
         dialog_label.text = dialog_string
