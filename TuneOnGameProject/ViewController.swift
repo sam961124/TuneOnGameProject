@@ -8,8 +8,9 @@
 
 import UIKit
 
+let defaults = NSUserDefaults.standardUserDefaults()
 var fb_status = false
-var id: String = String()
+var id: Int = Int()
 var level: Int = Int()
 var money: Int = Int()
 var right_count: Int = Int()
@@ -80,7 +81,7 @@ class ViewController: UIViewController {
     }
     
     func TurnPage(number: Int){
-        let pages: [String] = ["State0_ErrorViewController", "State1_SplashViewController", "State2_MainViewController", "State3_PreparingViewController", "State4_YoutubeViewController", "State5_ImageViewController", "State6_QuizViewController", "State7_RightViewController", "State8_WrongViewController"]
+        let pages: [String] = ["State0_ErrorViewController", "State1_SplashViewController", "State2_MainViewController", "State3_PreparingViewController", "State4_YoutubeViewController", "State5_ImageViewController", "State6_QuizViewController", "State7_RightViewController", "State8_WrongViewController", "State9_LevelUpViewController"]
         let nextviewController:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier(pages[number])
         self.presentViewController(nextviewController, animated: true, completion: nil)
     }

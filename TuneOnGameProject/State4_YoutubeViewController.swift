@@ -252,6 +252,9 @@ class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        if (self.view.window == nil) {
+            self.view = nil
+        }
     }
     
 

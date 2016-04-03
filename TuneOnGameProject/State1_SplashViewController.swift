@@ -30,40 +30,59 @@ class State1_SplashViewController: ViewController {
         //server communicate code from here
         var requestNSData: NSData = NSData()
         var data: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
-        print(UIDevice.currentDevice().identifierForVendor?.UUIDString as String!)
-        print(UIDevice.currentDevice().model)
-        print(UIDevice.currentDevice().systemVersion)
-        if (false){
+        id = defaults.integerForKey("UserID")
+        if id == 0{
             data = ["cmd": "getid", "deviceId": (UIDevice.currentDevice().identifierForVendor?.UUIDString)!, "deviceType": UIDevice.currentDevice().model, "os": UIDevice.currentDevice().systemVersion]
+            do{
+                requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
+            } catch let error as NSError {
+                print(error)
+            }
+            HTTPPostJSON(requestNSData){
+                (response, error) -> Void in
+                if (error != nil){
+                    print(error)
+                    self.number = 0
+                }
+                do{
+                    let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
+                    id = json["appUser"]!!["id"] as! Int
+                    defaults.setInteger(id, forKey: "UserID")
+                    level = (json["appUser"]!!["level"] as! Int)
+                    money = (json["appUser"]!!["money"] as! Int)
+                    right_count = (json["appUser"]!!["rightcount"] as! Int)
+                    wrong_count = (json["appUser"]!!["wrongcount"] as! Int)
+                } catch{
+                    print("error serializaing JSON: \(error)")
+                }
+                self.number = 2
+            }
         }
         else{
-            data = ["cmd": "getid", "id": "632"]
-        }
-        do{
-            requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
-        } catch let error as NSError {
-            print(error)
-        }
-        HTTPPostJSON(requestNSData){
-            (response, error) -> Void in
-            if (error != nil){
-                print(error)
-                self.number = 0
-            }
+            data = ["cmd": "getid", "id": String(id)]
             do{
-                let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
-                id = (json["appUser"]!!["id"] as! String?)!
-                level = (json["appUser"]!!["level"] as! Int)
-                money = (json["appUser"]!!["money"] as! Int)
-                right_count = (json["appUser"]!!["rightcount"] as! Int)
-                wrong_count = (json["appUser"]!!["wrongcount"] as! Int)
-            } catch{
-                print("error serializaing JSON: \(error)")
+                requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
+            } catch let error as NSError {
+                print(error)
             }
-            print (id)
-            self.number = 2
+            HTTPPostJSON(requestNSData){
+                (response, error) -> Void in
+                if (error != nil){
+                    print(error)
+                    self.number = 0
+                }
+                do{
+                    let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
+                    level = (json["appUser"]!!["level"] as! Int)
+                    money = (json["appUser"]!!["money"] as! Int)
+                    right_count = (json["appUser"]!!["rightcount"] as! Int)
+                    wrong_count = (json["appUser"]!!["wrongcount"] as! Int)
+                } catch{
+                    print("error serializaing JSON: \(error)")
+                }
+                self.number = 2
+            }
         }
-        
         
         //tune_on_title animation code from here
         tune_on_title.frame.size.width /= 2
@@ -117,6 +136,9 @@ class State1_SplashViewController: ViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        if (self.view.window == nil) {
+            self.view = nil
+        }
     }
     
 

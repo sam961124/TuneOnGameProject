@@ -178,12 +178,14 @@ class State2_MainViewController: ViewController {
         let ranking_string1 = "你的線上排名"
         let player_ranking = "20"
         let player_amount = "600"
-        let correct_rate = Float(right_count/(right_count + wrong_count))
+        var correct_rate: Float = Float(0)
         let ranking_string2 = player_ranking + " / " + player_amount
         let iq_string1 = "你的IQ"
         var iq_string2: String = String()
         let fb_string = "缺金幣?想升級?看排行?登入臉書進入進階模式!"
-        
+        if right_count+wrong_count != 0{
+            correct_rate = Float(right_count/(right_count + wrong_count))
+        }
         ranking_label1 = UILabel(frame: CGRect(x:second_box.frame.minX+0.05*second_box.frame.width, y:second_box.frame.height/12+second_box.frame.minY, width:0.4*second_box.frame.width, height:second_box.frame.height/10))
         ranking_label1.text = ranking_string1
         ranking_label1.font = UIFont(name:"HelveticaNeue-Bold", size: 0.05*screen_width)
@@ -504,6 +506,9 @@ class State2_MainViewController: ViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        if (self.view.window == nil) {
+            self.view = nil
+        }
     }
     
 

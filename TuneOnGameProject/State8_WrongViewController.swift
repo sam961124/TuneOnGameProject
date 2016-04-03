@@ -33,6 +33,7 @@ class State8_WrongViewController: ViewController {
         var requestNSData: NSData = NSData()
         let data = ["cmd": "getquiz", "id": id]
         do{
+            print("yes")
             requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
         } catch let error as NSError {
             print(error)
@@ -45,32 +46,34 @@ class State8_WrongViewController: ViewController {
             }
             do{
                 let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
-                level = (json["appUser"]!!["level"] as! Int)
-                money = (json["appUser"]!!["money"] as! Int)
                 qid = (json["quiz"]!!["qid"] as! String)
+                defaults.setObject(qid, forKey: "qid")
                 eid = (json["quiz"]!!["eid"] as! String)
+                defaults.setObject(eid, forKey: "eid")
                 category = (json["quiz"]!!["category"] as! String)
+                defaults.setObject(category, forKey: "category")
                 quiz_level = (json["quiz"]!!["level"] as! String)
+                defaults.setObject(quiz_level, forKey: "quiz_level")
                 youtube_id = (json["quiz"]!!["youtube"] as! String)
+                defaults.setObject(youtube_id, forKey: "youtube_id")
                 let imageurl = (json["quiz"]!!["imageurl"])
                 question = (json["quiz"]!!["summary"] as! String)
+                defaults.setObject(question, forKey: "question")
                 let uries = (json["quiz"]!!["uries"])
                 for i in 0...3{
                     choice_string[i] = uries!![i]["hint"] as! String
+                    defaults.setObject(choice_string[i], forKey: "choice_string\(i)")
                     print(choice_string[i])
                     print(uries!![i]["subtypeid"])
                     if "501" == uries!![i]["subtypeid"] as! String{
                         correct = i
+                        defaults.setInteger(correct, forKey: "correct")
                     }
                 }
-                print(0)
-                print(question)
-                print(1)
-                print(correct)
-                print(5)
                 if youtube_id == ""{
                     self.number = 5
                     image_url = imageurl as! String
+                    defaults.setObject(image_url, forKey: "image_url")
                 }
                 else if imageurl is NSNull{
                     self.number = 4
@@ -78,11 +81,6 @@ class State8_WrongViewController: ViewController {
                 else{
                     self.number = 0
                 }
-                print(category)
-                print("----------------------------")
-                print(self.number)
-                print("----------------------------")
-                //freeitem_amount = 0
             } catch{
                 print("error serializaing JSON: \(error)")
             }
@@ -286,6 +284,9 @@ class State8_WrongViewController: ViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        if (self.view.window == nil) {
+            self.view = nil
+        }
     }
     
 
