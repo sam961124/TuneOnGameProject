@@ -25,6 +25,8 @@ var image_url: String = String()
 var question: String = String()
 var freeitem: Int = Int()
 var choice_string = ["", "", "", ""]
+var test: [Dictionary<String, AnyObject>] = []
+var action: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
 let category_name = ["100": "神秘類", "200": "演員類", "300": "產品類",
                      "400": "場景類", "500": "聲音類", "600": "圖形類",
                      "700": "數字類", "800": "臺詞類", "900": "趣味類"]
@@ -57,6 +59,7 @@ class ViewController: UIViewController {
         request.addValue("application/json",forHTTPHeaderField: "Accept")
         request.HTTPBody = data
         HTTPsendRequest(request, callback: callback)
+        print(data)
     }
     
     func HTTPsendRequest(request: NSMutableURLRequest, callback: (NSData, String?) -> Void){

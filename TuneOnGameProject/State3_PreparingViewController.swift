@@ -223,6 +223,10 @@ class State3_PreparingViewController: ViewController {
                     }
                     do{
                         let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
+                        level = (json["appUser"]!!["level"] as! Int)
+                        money = (json["appUser"]!!["money"] as! Int)
+                        right_count = (json["appUser"]!!["rightcount"] as! Int)
+                        wrong_count = (json["appUser"]!!["wrongcount"] as! Int)
                         qid = (json["quiz"]!!["qid"] as! String)
                         defaults.setObject(qid, forKey: "qid")
                         eid = (json["quiz"]!!["eid"] as! String)

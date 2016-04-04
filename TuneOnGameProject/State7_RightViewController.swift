@@ -21,6 +21,7 @@ class State7_RightViewController: ViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
        
+        action = [:]
         //dialog animation code from here
         UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
             self.dialog.frame.size.width *= 2
@@ -32,9 +33,6 @@ class State7_RightViewController: ViewController {
             self.dialog_label.center = CGPoint(x: self.dialog_center_x, y: self.dialog_center_y)
             }, completion: nil)
         //end here
-        
-        //shin animation
-        
         //timer
         timer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: #selector(State7_RightViewController.shin_rotate), userInfo: nil, repeats: false)
         timer = NSTimer.scheduledTimerWithTimeInterval(8.0, target: self, selector: #selector(State7_RightViewController.shin_rotate), userInfo: nil, repeats: true)
@@ -58,10 +56,11 @@ class State7_RightViewController: ViewController {
         
         //server communicate code from here
         var requestNSData: NSData = NSData()
-        let data = ["cmd": "getquiz", "id": id]
+        let data = ["cmd": "getquiz", "id": id, "actions": [action]]
         do{
             print("yes")
             requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
+            print(requestNSData)
         } catch let error as NSError {
             print(error)
         }
@@ -73,6 +72,10 @@ class State7_RightViewController: ViewController {
             }
             do{
                 let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
+                level = (json["appUser"]!!["level"] as! Int)
+                money = (json["appUser"]!!["money"] as! Int)
+                right_count = (json["appUser"]!!["rightcount"] as! Int)
+                wrong_count = (json["appUser"]!!["wrongcount"] as! Int)
                 qid = (json["quiz"]!!["qid"] as! String)
                 defaults.setObject(qid, forKey: "qid")
                 eid = (json["quiz"]!!["eid"] as! String)

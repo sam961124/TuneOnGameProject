@@ -21,9 +21,7 @@ class State2_MainViewController: ViewController {
     var item_name_label: UILabel!
     var item_intro_label: UILabel!
     
-    let btn_purchase_1: UIButton = UIButton()
-    let btn_purchase_2: UIButton = UIButton()
-    let btn_purchase_3: UIButton = UIButton()
+    var btn_purchase: Array<UIButton> = []
     let btn_purchase_4: UIButton = UIButton()
     let btn_purchase_5: UIButton = UIButton()
     let btn_purchase_6: UIButton = UIButton()
@@ -251,41 +249,21 @@ class State2_MainViewController: ViewController {
         third_box.alpha = 0.5
         scrollView.addSubview(third_box)
         
-        if fb_status{
-            btn_purchase_1.setBackgroundImage(UIImage(named: "btn_product_money_1.png"), forState: UIControlState.Normal)
-        }else{
-            btn_purchase_1.setBackgroundImage(UIImage(named: "btn_product_money_1_disable.png"), forState: UIControlState.Normal)
+        for i in 1...3{
+            let button: UIButton = UIButton()
+            if fb_status == true{
+                button.setBackgroundImage(UIImage(named: "btn_product_money_\(i).png"), forState: UIControlState.Normal)
+            }else{
+                button.setBackgroundImage(UIImage(named: "btn_product_money_\(i)_disable.png"), forState: UIControlState.Normal)
+            }
+            button.frame.size.height = 4*first_box.frame.height/5
+            button.frame.size.width = first_box.frame.width/4
+            button.center = CGPointMake(third_box.frame.minX + (2*CGFloat(i) - 1)*third_box.frame.width/6, (third_box.frame.maxY+third_box.frame.minY)/2)
+            button.contentMode = UIViewContentMode.ScaleAspectFit
+            btn_purchase.insert(button, atIndex: (i-1))
+            scrollView.addSubview(btn_purchase[i-1])
+            btn_purchase[i-1].addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         }
-        btn_purchase_1.frame.size.height = 4*first_box.frame.height/5
-        btn_purchase_1.frame.size.width = first_box.frame.width/4
-        btn_purchase_1.center = CGPointMake(third_box.frame.minX + third_box.frame.width/6,(third_box.frame.maxY+third_box.frame.minY)/2)
-        btn_purchase_1.contentMode = UIViewContentMode.ScaleAspectFit
-        scrollView.addSubview(btn_purchase_1)
-        btn_purchase_1.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        if fb_status{
-            btn_purchase_2.setBackgroundImage(UIImage(named: "btn_product_money_2.png"), forState: UIControlState.Normal)
-        }else{
-            btn_purchase_2.setBackgroundImage(UIImage(named: "btn_product_money_2_disable.png"), forState: UIControlState.Normal)
-        }
-        btn_purchase_2.frame.size.height = 4*first_box.frame.height/5
-        btn_purchase_2.frame.size.width = first_box.frame.width/4
-        btn_purchase_2.center = CGPointMake(third_box.frame.minX + 3*third_box.frame.width/6,(third_box.frame.maxY+third_box.frame.minY)/2)
-        btn_purchase_2.contentMode = UIViewContentMode.ScaleAspectFit
-        scrollView.addSubview(btn_purchase_2)
-        btn_purchase_2.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        if fb_status{
-            btn_purchase_3.setBackgroundImage(UIImage(named: "btn_product_money_3.png"), forState: UIControlState.Normal)
-        }else{
-            btn_purchase_3.setBackgroundImage(UIImage(named: "btn_product_money_3_disable.png"), forState: UIControlState.Normal)
-        }
-        btn_purchase_3.frame.size.height = 4*first_box.frame.height/5
-        btn_purchase_3.frame.size.width = first_box.frame.width/4
-        btn_purchase_3.center = CGPointMake(third_box.frame.minX + 5*third_box.frame.width/6,(third_box.frame.maxY+third_box.frame.minY)/2)
-        btn_purchase_3.contentMode = UIViewContentMode.ScaleAspectFit
-        scrollView.addSubview(btn_purchase_3)
-        btn_purchase_3.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         var forth_box: UIImageView
         forth_box = UIImageView(frame: CGRect(x:0.05*screen_width, y:0.05*screen_width + third_box.frame.maxY, width:0.9*scrollView.frame.width, height:0.9*scrollView.frame.width/2))
@@ -409,13 +387,13 @@ class State2_MainViewController: ViewController {
             btn_start_use.hidden = true
         }
         else {
-            if button == btn_purchase_1{
+            if button == btn_purchase[0]{
                 
             }
-            else if button == btn_purchase_2{
+            else if button == btn_purchase[1]{
                 
             }
-            else if button == btn_purchase_3{
+            else if button == btn_purchase[2]{
                 
             }
             else if button == btn_purchase_4{

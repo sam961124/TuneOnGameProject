@@ -39,7 +39,6 @@ class State6_QuizViewController: ViewController {
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
-        level = 10
         freeitem_amount = 0
         //background code form here
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "brick.png")!)
@@ -500,9 +499,18 @@ class State6_QuizViewController: ViewController {
     func btn_answer_click(button: UIButton){
         button.highlighted = true
         if button == btn_choice[correct]{
+            action = ["type": 1, "qid": qid, "param1": correct+1, "param2": Int(level)]
+            print(action)
             TurnPage(7)
         }
         else{
+            var ans: Int = Int()
+            for i in 0...3{
+                if button == btn_choice[i]{
+                    ans = i+1
+                }
+            }
+            action = ["type": 2, "qid": qid, "param1": ans, "param2": Int(level)/2]
             TurnPage(8)
         }
     }

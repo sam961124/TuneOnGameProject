@@ -16,6 +16,7 @@ class State8_WrongViewController: ViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        action = [:]
         UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
             self.dialog.center.y += self.dialog.frame.size.height/2
             self.dialog_label.center.y += self.dialog.frame.size.height/2
@@ -31,10 +32,11 @@ class State8_WrongViewController: ViewController {
         
         //server communicate code from here
         var requestNSData: NSData = NSData()
-        let data = ["cmd": "getquiz", "id": id]
+        let data = ["cmd": "getquiz", "id": id, "actions": [action]]
         do{
             print("yes")
             requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
+            print(requestNSData)
         } catch let error as NSError {
             print(error)
         }
@@ -46,6 +48,10 @@ class State8_WrongViewController: ViewController {
             }
             do{
                 let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
+                level = (json["appUser"]!!["level"] as! Int)
+                money = (json["appUser"]!!["money"] as! Int)
+                right_count = (json["appUser"]!!["rightcount"] as! Int)
+                wrong_count = (json["appUser"]!!["wrongcount"] as! Int)
                 qid = (json["quiz"]!!["qid"] as! String)
                 defaults.setObject(qid, forKey: "qid")
                 eid = (json["quiz"]!!["eid"] as! String)

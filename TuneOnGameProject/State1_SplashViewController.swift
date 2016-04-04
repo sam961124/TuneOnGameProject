@@ -130,9 +130,6 @@ class State1_SplashViewController: ViewController {
         TurnPage(number)
     }
     
-    override func viewWillDisappear(animated: Bool) {
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -140,8 +137,6 @@ class State1_SplashViewController: ViewController {
             self.view = nil
         }
     }
-    
-
     /*
     // MARK: - Navigation
 
