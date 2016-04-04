@@ -37,7 +37,8 @@ class State2_MainViewController: ViewController {
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
-        
+        print(defaults.objectForKey("youtube_id") as! String)
+        print(defaults.objectForKey("image_url") as! String)
         //background code form here    
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "stripe.png")!)
         //end here
