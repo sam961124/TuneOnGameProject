@@ -66,6 +66,9 @@ class State8_WrongViewController: ViewController {
                 question = (json["quiz"]!!["summary"] as! String)
                 defaults.setObject(question, forKey: "question")
                 let uries = (json["quiz"]!!["uries"])
+                
+                defaults.setBool(false, forKey: "playBack")
+                
                 for i in 0...3{
                     choice_string[i] = uries!![i]["hint"] as! String
                     defaults.setObject(choice_string[i], forKey: "choice_string\(i)")

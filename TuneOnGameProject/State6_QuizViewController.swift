@@ -347,6 +347,7 @@ class State6_QuizViewController: ViewController {
             item_image.contentMode = UIViewContentMode.ScaleAspectFit
             item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
             self.pop_up_view.addSubview(item_image)
+            btn_start_use.addTarget(self, action: #selector(State6_QuizViewController.btn_playBack_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             
             item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
             if freeitem_amount > 0{
@@ -448,6 +449,25 @@ class State6_QuizViewController: ViewController {
             self.pop_up_view.alpha = 1
         })
         pop_up_background.hidden = false
+    }
+    
+    func btn_playBack_click(button: UIButton){
+        defaults.setBool(true, forKey: "playBack")
+        var number = 0
+        if youtube_id == ""{
+            number = 5
+        }
+        else{
+            number = 4
+        }
+        button.highlighted = true
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {
+            button.center.x = self.view.frame.width
+            }, completion: nil)
+        let delay = 0.5 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue()){}
+        TurnPage(number)
     }
     
     func btn_answer_click(button: UIButton){
