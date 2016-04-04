@@ -37,8 +37,7 @@ class State2_MainViewController: ViewController {
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
-        print(defaults.objectForKey("youtube_id") as! String)
-        print(defaults.objectForKey("image_url") as! String)
+
         //background code form here    
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "stripe.png")!)
         //end here
@@ -273,7 +272,7 @@ class State2_MainViewController: ViewController {
         forth_box.alpha = 0.5
         scrollView.addSubview(forth_box)
 
-        if fb_status || level >= 6{
+        if fb_status && level < 6{
             btn_purchase_4.setBackgroundImage(UIImage(named: "btn_product_level_1.png"), forState: UIControlState.Normal)
         }else{
             btn_purchase_4.setBackgroundImage(UIImage(named: "btn_product_level_1_disable.png"), forState: UIControlState.Normal)
@@ -285,7 +284,7 @@ class State2_MainViewController: ViewController {
         scrollView.addSubview(btn_purchase_4)
         btn_purchase_4.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
-        if fb_status || level >= 10{
+        if fb_status && level < 10{
             btn_purchase_5.setBackgroundImage(UIImage(named: "btn_product_level_2.png"), forState: UIControlState.Normal)
         }else{
             btn_purchase_5.setBackgroundImage(UIImage(named: "btn_product_level_2_disable.png"), forState: UIControlState.Normal)
@@ -297,7 +296,7 @@ class State2_MainViewController: ViewController {
         scrollView.addSubview(btn_purchase_5)
         btn_purchase_5.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
-        if fb_status || level >= 15{
+        if fb_status && level < 15{
             btn_purchase_6.setBackgroundImage(UIImage(named: "btn_product_level_3.png"), forState: UIControlState.Normal)
         }else{
             btn_purchase_6.setBackgroundImage(UIImage(named: "btn_product_level_3_disable.png"), forState: UIControlState.Normal)

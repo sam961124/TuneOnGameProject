@@ -10,9 +10,7 @@ import UIKit
 
 class State6_QuizViewController: ViewController {
     //item button
-    let btn_playback: UIButton = UIButton()
-    let btn_friend: UIButton = UIButton()
-    let btn_remove: UIButton = UIButton()
+    var btn_item: Array<UIButton> = []
     let btn_submit: UIButton = UIButton()
     let btn_start_use: UIButton = UIButton()
     var btn_choice: Array<UIButton> = []
@@ -172,7 +170,7 @@ class State6_QuizViewController: ViewController {
         question_label.numberOfLines = 0
         question_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         question_label.textAlignment = NSTextAlignment.Center
-        question_label.textColor = UIColorFromRGB(0xffe155)
+        question_label.textColor = UIColorFromRGB(0xfba928)
         self.view.addSubview(question_label)
         
         var reward_label: UILabel
@@ -189,91 +187,47 @@ class State6_QuizViewController: ViewController {
         //end here
         
         //four item code from here
-        let lock1: UIImageView = UIImageView(image: UIImage(named: "lock.png"))
-        let lock2: UIImageView = UIImageView(image: UIImage(named: "lock.png"))
-        let lock3: UIImageView = UIImageView(image: UIImage(named: "lock.png"))
-        let lock4: UIImageView = UIImageView(image: UIImage(named: "lock.png"))
-        let item_width = screen_width/6
+        
+        var lock: Array<UIImageView> = []
+        let btn_image = ["playback", "friend", "remove", "submit"]
         let item_y = 11*screen_height/12
+        let item_level = [10, 6, 15]
+        let item_money = [200, 100, 200]
+        let item_width = screen_width/6
         let playback_image: UIImage = UIImage(named: "btn_item_playback_normal.png")!
         let item_height = (screen_width/6)*playback_image.size.height/playback_image.size.width
         //lock
-        lock1.frame.size.width = 0.1*screen_width
-        lock1.contentMode = UIViewContentMode.ScaleAspectFit
-        lock2.frame.size.width = 0.1*screen_width
-        lock2.contentMode = UIViewContentMode.ScaleAspectFit
-        lock3.frame.size.width = 0.1*screen_width
-        lock3.contentMode = UIViewContentMode.ScaleAspectFit
-        lock4.frame.size.width = 0.1*screen_width
-        lock4.contentMode = UIViewContentMode.ScaleAspectFit
-        
-        //item playback
-        if freeitem_amount > 0{
-            btn_playback.setBackgroundImage(playback_image, forState: UIControlState.Normal)
-            btn_playback.setBackgroundImage(UIImage(named: "btn_item_playback_pressed.png"), forState: UIControlState.Highlighted)
-        }
-        else if level < 10 || money < 200{
-            btn_playback.setBackgroundImage(UIImage(named: "btn_item_playback_disable.png"), forState: UIControlState.Normal)
-        }
-        else {
-            btn_playback.setBackgroundImage(playback_image, forState: UIControlState.Normal)
-            btn_playback.setBackgroundImage(UIImage(named: "btn_item_playback_pressed.png"), forState: UIControlState.Highlighted)
-        }
-        btn_playback.contentMode = UIViewContentMode.ScaleAspectFit
-        btn_playback.frame.size.height = item_height
-        btn_playback.frame.size.width = item_width
-        btn_playback.center = CGPointMake(screen_width/8, item_y)
-        self.view.addSubview(btn_playback)
-        btn_playback.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        if level < 10 && freeitem_amount == 0{
-            lock1.center = CGPointMake(btn_playback.frame.width/2, btn_playback.frame.height/2)
-            self.btn_playback.addSubview(lock1)
+        for i in 0...3{
+            let temp = UIImageView(image: UIImage(named: "lock.png"))
+            temp.frame.size.width = 0.1*screen_width
+            temp.contentMode = UIViewContentMode.ScaleAspectFit
+            lock.insert(temp, atIndex: i)
         }
         
-        //item friend
-        if freeitem_amount > 0{
-            btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_normal.png"), forState: UIControlState.Normal)
-            btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_pressed.png"), forState: UIControlState.Highlighted)
-        }
-        else if level < 6 || money < 100{
-            btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_disable.png"), forState: UIControlState.Normal)
-        }
-        else{
-            btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_normal.png"), forState: UIControlState.Normal)
-            btn_friend.setBackgroundImage(UIImage(named: "btn_item_friend_pressed.png"), forState: UIControlState.Highlighted)
-        }
-        btn_friend.frame.size.height = item_height
-        btn_friend.frame.size.width = item_width
-        btn_friend.center = CGPointMake(3*screen_width/8, item_y)
-        btn_friend.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(btn_friend)
-        btn_friend.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        if level < 6 && freeitem_amount == 0{
-            lock2.center = CGPointMake(btn_friend.frame.width/2, btn_friend.frame.height/2)
-            self.btn_friend.addSubview(lock2)
-        }
-        
-        //item remove
-        if freeitem_amount > 0{
-            btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_normal.png"), forState: UIControlState.Normal)
-            btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_pressed.png"), forState: UIControlState.Highlighted)
-        }
-        else if level < 15 || money < 200{
-            btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_disable.png"), forState: UIControlState.Normal)
-        }
-        else{
-            btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_normal.png"), forState: UIControlState.Normal)
-            btn_remove.setBackgroundImage(UIImage(named: "btn_item_remove_pressed.png"), forState: UIControlState.Highlighted)
-        }
-        btn_remove.frame.size.height = item_height
-        btn_remove.frame.size.width = item_width
-        btn_remove.center = CGPointMake(5*screen_width/8, item_y)
-        btn_remove.contentMode = UIViewContentMode.ScaleAspectFit
-        self.view.addSubview(btn_remove)
-        btn_remove.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        if level < 15 && freeitem_amount == 0{
-            lock3.center = CGPointMake(btn_remove.frame.width/2, btn_remove.frame.height/2)
-            self.btn_remove.addSubview(lock3)
+        for i in 0...2{
+            let temp = UIButton()
+            if freeitem_amount > 0{
+                temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_normal.png"), forState: UIControlState.Normal)
+                temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_pressed.png"), forState: UIControlState.Highlighted)
+            }
+            else if level < item_level[i] || money < item_money[i]{
+                temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_disable.png"), forState: UIControlState.Normal)
+            }
+            else {
+                temp.setBackgroundImage(playback_image, forState: UIControlState.Normal)
+                temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_pressed.png"), forState: UIControlState.Highlighted)
+            }
+            temp.contentMode = UIViewContentMode.ScaleAspectFit
+            temp.frame.size.height = item_height
+            temp.frame.size.width = item_width
+            temp.center = CGPointMake((CGFloat(i)*2+1)*screen_width/8, item_y)
+            btn_item.insert(temp, atIndex: i)
+            self.view.addSubview(btn_item[i])
+            btn_item[i].addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            if level < 10 && freeitem_amount == 0{
+                lock[i].center = CGPointMake(btn_item[i].frame.width/2, btn_item[i].frame.height/2)
+                self.btn_item[i].addSubview(lock[i])
+            }
         }
         
         //item submit
@@ -286,8 +240,8 @@ class State6_QuizViewController: ViewController {
         self.view.addSubview(btn_submit)
         btn_submit.addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
-        lock4.center = CGPointMake(btn_submit.frame.width/2, btn_submit.frame.height/2)
-        self.btn_submit.addSubview(lock4)
+        lock[3].center = CGPointMake(btn_submit.frame.width/2, btn_submit.frame.height/2)
+        self.btn_submit.addSubview(lock[3])
         //end here
         
         //choice code from here
@@ -386,7 +340,7 @@ class State6_QuizViewController: ViewController {
         let freeitem_amount_string = String(freeitem_amount)
         //item_image
         btn_start_use.hidden = false
-        if button == btn_playback{
+        if button == btn_item[0]{
             item_image = UIImageView(image: UIImage(named: "btn_item_playback_normal.png"))
             item_image.frame.size.width = pop_up_view.frame.width/4
             item_image.frame.size.height = pop_up_view.frame.width/4
@@ -415,7 +369,7 @@ class State6_QuizViewController: ViewController {
                 }
             }
         }
-        else if button == btn_remove{
+        else if button == btn_item[2]{
             item_image = UIImageView(image: UIImage(named: "btn_item_remove_normal.png"))
             item_image.frame.size.width = pop_up_view.frame.width/4
             item_image.frame.size.height = pop_up_view.frame.width/4
@@ -444,7 +398,7 @@ class State6_QuizViewController: ViewController {
                 }
             }
         }
-        else if button == btn_friend{
+        else if button == btn_item[1]{
             item_image = UIImageView(image: UIImage(named: "btn_item_friend_normal.png"))
             item_image.frame.size.width = pop_up_view.frame.width/4
             item_image.frame.size.height = pop_up_view.frame.width/4
