@@ -184,6 +184,12 @@ class State3_PreparingViewController: ViewController {
     
         func btn_success_next_click(button: UIButton) {
             button.highlighted = true
+            UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {
+                button.center.x = self.view.frame.width
+                }, completion: nil)
+            let delay = 0.5 * Double(NSEC_PER_SEC)
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+            dispatch_after(time, dispatch_get_main_queue()){}
             TurnPage(number)
         }
     
