@@ -250,7 +250,7 @@ class State3_PreparingViewController: ViewController {
                         
                         defaults.setBool(false, forKey: "playBack")
                         defaults.setBool(false, forKey: "friend")
-                        defaults.setBool(false, forKey: "Remove")
+                        defaults.setBool(false, forKey: "remove")
                         for i in 0...3{
                             sel[i] = (json["quiz"]!!["sel_\(i+1)"] as! Int)
                             defaults.setInteger(sel[i], forKey: "sel_\(i)")
