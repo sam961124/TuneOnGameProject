@@ -23,7 +23,6 @@ var quiz_level: String = String()
 var youtube_id: String = String()
 var image_url: String = String()
 var question: String = String()
-var freeitem: Int = Int()
 var number: Int = Int()
 var choice_string = ["", "", "", ""]
 var sel = [0, 0, 0, 0]

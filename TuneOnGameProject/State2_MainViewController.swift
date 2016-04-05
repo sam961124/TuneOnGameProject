@@ -208,8 +208,6 @@ class State2_MainViewController: ViewController {
         
         
         if level > 2{
-            print(correct_rate)
-            print(sqrt(correct_rate))
             iq_string2 = String(Int(sqrt(correct_rate)*200))
             iq_label2 = UILabel(frame: CGRect(x:second_box.frame.minX+0.7*second_box.frame.width, y:4*second_box.frame.height/12+second_box.frame.minY, width:0.25*second_box.frame.width, height:second_box.frame.height/10))
             iq_label2.font = UIFont(name:"HelveticaNeue-Bold", size: 0.05*screen_width)
@@ -262,53 +260,35 @@ class State2_MainViewController: ViewController {
             button.frame.size.width = first_box.frame.width/4
             button.center = CGPointMake(third_box.frame.minX + (2*CGFloat(i) - 1)*third_box.frame.width/6, (third_box.frame.maxY+third_box.frame.minY)/2)
             button.contentMode = UIViewContentMode.ScaleAspectFit
-            btn_purchase.insert(button, atIndex: (i-1))
+            btn_purchase.append(button)
             scrollView.addSubview(btn_purchase[i-1])
             btn_purchase[i-1].addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         }
         
         var forth_box: UIImageView
+        let item_level = [6, 10, 15]
         forth_box = UIImageView(frame: CGRect(x:0.05*screen_width, y:0.05*screen_width + third_box.frame.maxY, width:0.9*scrollView.frame.width, height:0.9*scrollView.frame.width/2))
         forth_box.backgroundColor = UIColorFromRGB(0xfffb96)
         forth_box.layer.cornerRadius = 10
         forth_box.alpha = 0.5
         scrollView.addSubview(forth_box)
-
-        if fb_status && level < 6{
-            btn_purchase_4.setBackgroundImage(UIImage(named: "btn_product_level_1.png"), forState: UIControlState.Normal)
-        }else{
-            btn_purchase_4.setBackgroundImage(UIImage(named: "btn_product_level_1_disable.png"), forState: UIControlState.Normal)
-        }
-        btn_purchase_4.frame.size.height = 4*first_box.frame.height/5
-        btn_purchase_4.frame.size.width = first_box.frame.width/4
-        btn_purchase_4.center = CGPointMake(forth_box.frame.minX + forth_box.frame.width/6,(forth_box.frame.maxY+forth_box.frame.minY)/2)
-        btn_purchase_4.contentMode = UIViewContentMode.ScaleAspectFit
-        scrollView.addSubview(btn_purchase_4)
-        btn_purchase_4.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
-        if fb_status && level < 10{
-            btn_purchase_5.setBackgroundImage(UIImage(named: "btn_product_level_2.png"), forState: UIControlState.Normal)
-        }else{
-            btn_purchase_5.setBackgroundImage(UIImage(named: "btn_product_level_2_disable.png"), forState: UIControlState.Normal)
+        for i in 1...3{
+            let button = UIButton()
+            if fb_status && level < item_level[i-1]{
+                button.setBackgroundImage(UIImage(named: "btn_product_level_\(i).png"), forState: UIControlState.Normal)
+            }
+            else{
+                button.setBackgroundImage(UIImage(named: "btn_product_level_\(i)_disable.png"), forState: UIControlState.Normal)
+            }
+            button.frame.size.height = 4*first_box.frame.height/5
+            button.frame.size.width = first_box.frame.width/4
+            button.center = CGPointMake(forth_box.frame.minX + (CGFloat(i)*2-1)*forth_box.frame.width/6,(forth_box.frame.maxY+forth_box.frame.minY)/2)
+            button.contentMode = UIViewContentMode.ScaleAspectFit
+            btn_purchase.append(button)
+            scrollView.addSubview(btn_purchase[i+2])
+            btn_purchase[i+2].addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         }
-        btn_purchase_5.frame.size.height = 4*first_box.frame.height/5
-        btn_purchase_5.frame.size.width = first_box.frame.width/4
-        btn_purchase_5.center = CGPointMake(forth_box.frame.minX + 3*forth_box.frame.width/6,(forth_box.frame.maxY+forth_box.frame.minY)/2)
-        btn_purchase_5.contentMode = UIViewContentMode.ScaleAspectFit
-        scrollView.addSubview(btn_purchase_5)
-        btn_purchase_5.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        if fb_status && level < 15{
-            btn_purchase_6.setBackgroundImage(UIImage(named: "btn_product_level_3.png"), forState: UIControlState.Normal)
-        }else{
-            btn_purchase_6.setBackgroundImage(UIImage(named: "btn_product_level_3_disable.png"), forState: UIControlState.Normal)
-        }
-        btn_purchase_6.frame.size.height = 4*first_box.frame.height/5
-        btn_purchase_6.frame.size.width = first_box.frame.width/4
-        btn_purchase_6.center = CGPointMake(forth_box.frame.minX + 5*forth_box.frame.width/6,(forth_box.frame.maxY+forth_box.frame.minY)/2)
-        btn_purchase_6.contentMode = UIViewContentMode.ScaleAspectFit
-        scrollView.addSubview(btn_purchase_6)
-        btn_purchase_6.addTarget(self, action: #selector(State2_MainViewController.btn_purchase_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         //pop up view code
         pop_up_background = UIView(frame: CGRect(x: 0, y: 0, width: screen_width, height: screen_height))
@@ -398,7 +378,7 @@ class State2_MainViewController: ViewController {
             else if button == btn_purchase[2]{
                 
             }
-            else if button == btn_purchase_4{
+            else if button == btn_purchase[3]{
                 if level >= 6{
                     item_name_label.text = "無法購買本商品"
                     item_intro_label.text = "你的等級已經超過6級了喔"
@@ -409,7 +389,7 @@ class State2_MainViewController: ViewController {
                     btn_start_use.hidden = true
                 }
             }
-            else if button == btn_purchase_5{
+            else if button == btn_purchase[4]{
                 if level >= 10{
                     item_name_label.text = "無法購買本商品"
                     item_intro_label.text = "你的等級已經超過10級了喔"
@@ -420,7 +400,7 @@ class State2_MainViewController: ViewController {
                     btn_start_use.hidden = true
                 }
             }
-            else{
+            else if button == btn_purchase[5]{
                 if level >= 15{
                     item_name_label.text = "無法購買本商品"
                     item_intro_label.text = "你的等級已經超過15級了喔"

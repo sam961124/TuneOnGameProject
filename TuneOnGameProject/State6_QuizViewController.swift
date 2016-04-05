@@ -17,7 +17,6 @@ class State6_QuizViewController: ViewController {
     var note: Array<UIImageView> = []
     var noteLabel: Array<UILabel> = []
     var choice_label: Array<UILabel> = []
-    var freeitem_amount = 0
     
     //pop_up window element
     var pop_up_background: UIView!
@@ -28,6 +27,7 @@ class State6_QuizViewController: ViewController {
     
     var item_name_label: UILabel!
     var item_intro_label: UILabel!
+    let freeitem_amount = 2
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -39,7 +39,6 @@ class State6_QuizViewController: ViewController {
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
-        freeitem_amount = 0
         defaults.setBool(true, forKey: "Answering")
         //background code form here
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "brick.png")!)
