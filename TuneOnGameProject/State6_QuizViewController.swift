@@ -14,6 +14,8 @@ class State6_QuizViewController: ViewController {
     let btn_submit: UIButton = UIButton()
     let btn_start_use: UIButton = UIButton()
     var btn_choice: Array<UIButton> = []
+    var note: Array<UIImageView> = []
+    var noteLabel: Array<UILabel> = []
     var choice_label: Array<UILabel> = []
     var freeitem_amount = 0
     
@@ -214,7 +216,7 @@ class State6_QuizViewController: ViewController {
                 temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_disable.png"), forState: UIControlState.Normal)
             }
             else {
-                temp.setBackgroundImage(playback_image, forState: UIControlState.Normal)
+                temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_normal.png"), forState: UIControlState.Normal)
                 temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_pressed.png"), forState: UIControlState.Highlighted)
             }
             temp.contentMode = UIViewContentMode.ScaleAspectFit
@@ -257,6 +259,15 @@ class State6_QuizViewController: ViewController {
             btn_choice.insert(button, atIndex: i)
             self.view.addSubview(btn_choice[i])
             btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            var iMage: UIImageView
+            iMage = UIImageView(image: UIImage(named: "note.png"))
+            iMage.frame.size.height = choice_area/6
+            //iMage.frame.size.width = (iMage.image?.size.width)!/(iMage.image?.size.height)!
+            iMage.center = CGPointMake(button.frame.minX + 9/10 * button.frame.size.width, question_box.frame.maxY + CGFloat(i+1)*0.2*choice_area)
+            iMage.contentMode = UIViewContentMode.ScaleAspectFit
+            iMage.hidden = true
+            note.insert(iMage, atIndex: i)
+            self.view.addSubview(note[i])
         }
         
         //choice label
@@ -270,6 +281,25 @@ class State6_QuizViewController: ViewController {
             label.textColor = UIColorFromRGB(0x820c0c)
             choice_label.insert(label, atIndex: i)
             self.view.addSubview(choice_label[i])
+        }
+        let total_sel = sel[0]+sel[1]+sel[2]+sel[3]
+        for i in 0...3{
+            let label = UILabel(frame: CGRect(x: 0, y:0, width: 0.8 * note[i].frame.width, height: 0.8 * note[i].frame.height))
+            label.center = CGPointMake(note[i].frame.minX + note[i].frame.width/2, note[i].frame.minY + note[i].frame.height/2)
+            label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
+            if(total_sel == 0){
+                label.text = "0%"
+            }
+            else{
+                label.text = "\((100*sel[i]) / total_sel)%"
+            }
+            label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+            label.textAlignment = NSTextAlignment.Center
+            label.textColor = UIColorFromRGB(0x820c0c)
+            label.hidden = true
+            noteLabel.insert(label, atIndex: i)
+            self.view.addSubview(noteLabel[i])
+
         }
         
         //pop up view code
@@ -406,6 +436,7 @@ class State6_QuizViewController: ViewController {
             item_image.contentMode = UIViewContentMode.ScaleAspectFit
             item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
             self.pop_up_view.addSubview(item_image)
+            btn_start_use.addTarget(self, action: #selector(State6_QuizViewController.btn_friend_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             
             item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
             if freeitem_amount > 0{
@@ -468,6 +499,19 @@ class State6_QuizViewController: ViewController {
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue()){}
         TurnPage(number)
+    }
+    func btn_friend_click(button: UIButton){
+        defaults.setBool(true, forKey: "friend")
+        button.highlighted = true
+        for i in 0...3{
+            note[i].hidden = false
+            noteLabel[i].hidden = false
+        }
+        pop_up_background.hidden = true
+        UIView.animateWithDuration(0.2, animations: {
+            self.pop_up_view.alpha = 0
+        })
+        
     }
     
     func btn_answer_click(button: UIButton){

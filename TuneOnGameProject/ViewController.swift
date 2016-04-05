@@ -25,6 +25,7 @@ var image_url: String = String()
 var question: String = String()
 var freeitem: Int = Int()
 var choice_string = ["", "", "", ""]
+var sel = [0, 0, 0, 0]
 var test: [Dictionary<String, AnyObject>] = []
 var action: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
 let category_name = ["100": "神秘類", "200": "演員類", "300": "產品類",

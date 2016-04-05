@@ -249,6 +249,10 @@ class State3_PreparingViewController: ViewController {
                         let uries = (json["quiz"]!!["uries"])
                         
                         defaults.setBool(false, forKey: "playBack")
+                        defaults.setBool(false, forKey: "friend")
+                        for i in 0...3{
+                            sel[i] = (json["quiz"]!!["sel_\(i+1)"] as! Int)
+                        }
                         
                         for i in 0...3{
                             choice_string[i] = uries!![i]["hint"] as! String
