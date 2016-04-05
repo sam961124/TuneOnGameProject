@@ -14,14 +14,16 @@ class State7_RightViewController: ViewController {
     var dialog_label: UILabel!
     var dialog_center_x: CGFloat!
     var dialog_center_y: CGFloat!
-    var number = 0
     var shin: UIImageView!
     var timer = NSTimer()
+    var exp_rate:CGFloat = CGFloat()
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-       
-        action = [:]
+        if number != 0{
+            defaults.setBool(false, forKey: "Answering")
+            action.removeAll()
+        }
         //dialog animation code from here
         UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
             self.dialog.frame.size.width *= 2
@@ -36,14 +38,10 @@ class State7_RightViewController: ViewController {
         //timer
         timer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: #selector(State7_RightViewController.shin_rotate), userInfo: nil, repeats: false)
         timer = NSTimer.scheduledTimerWithTimeInterval(8.0, target: self, selector: #selector(State7_RightViewController.shin_rotate), userInfo: nil, repeats: true)
-        
-        //end
-
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         //dialog animation code from here
         dialog.frame.size.width /= 2
         dialog.frame.size.height /= 2
@@ -56,7 +54,7 @@ class State7_RightViewController: ViewController {
         
         //server communicate code from here
         var requestNSData: NSData = NSData()
-        let data = ["cmd": "getquiz", "id": id, "actions": [action]]
+        let data = ["cmd": "getquiz", "id": id, "actions": action]
         do{
             print("yes")
             requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
@@ -68,7 +66,7 @@ class State7_RightViewController: ViewController {
             (response, error) -> Void in
             if (error != nil){
                 print(error)
-                self.number = 0
+                number = 0
             }
             do{
                 let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
@@ -97,9 +95,6 @@ class State7_RightViewController: ViewController {
                 for i in 0...3{
                     sel[i] = (json["quiz"]!!["sel_\(i+1)"] as! Int)
                     defaults.setInteger(sel[i], forKey: "sel_\(i)")
-                }
-                
-                for i in 0...3{
                     choice_string[i] = uries!![i]["hint"] as! String
                     defaults.setObject(choice_string[i], forKey: "choice_string\(i)")
                     print(choice_string[i])
@@ -110,15 +105,15 @@ class State7_RightViewController: ViewController {
                     }
                 }
                 if youtube_id == ""{
-                    self.number = 5
+                    number = 5
                     image_url = imageurl as! String
                     defaults.setObject(image_url, forKey: "image_url")
                 }
                 else if imageurl is NSNull{
-                    self.number = 4
+                    number = 4
                 }
                 else{
-                    self.number = 0
+                    number = 0
                 }
             } catch{
                 print("error serializaing JSON: \(error)")
@@ -156,7 +151,7 @@ class State7_RightViewController: ViewController {
         var money_bar: UIImageView
         let btn_home: UIButton = UIButton()
         let home: UIImage = UIImage(named: "home.png")!
-        let exp_rate:CGFloat = ExpRate()
+        exp_rate = (CGFloat(right_count+1) - pow(CGFloat(level),2))/(pow(CGFloat(level+1),2) - pow(CGFloat(level),2))
         top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
         top_bar.backgroundColor = UIColorFromRGB(0xfba928)
         self.view.addSubview(top_bar)
@@ -274,7 +269,6 @@ class State7_RightViewController: ViewController {
         self.view.addSubview(doll_smile)
         //end here
         
-        
         //dialog code from here
         //var dialog: UIImageView
         dialog = UIImageView(image: UIImage(named: "dialog.png"))
@@ -321,7 +315,12 @@ class State7_RightViewController: ViewController {
         let delay = 0.5 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue()){}
-        TurnPage(number)
+        if exp_rate == 1{
+            TurnPage(9)
+        }
+        else{
+            TurnPage(number)
+        }
     }
     
     override func didReceiveMemoryWarning() {

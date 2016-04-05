@@ -257,6 +257,9 @@ class State4_YoutubeViewController: ViewController, YTPlayerViewDelegate {
         }
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        youtube_player.removeWebView()
+    }
 
     /*
     // MARK: - Navigation

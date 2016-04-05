@@ -10,7 +10,6 @@ import UIKit
 
 class State1_SplashViewController: ViewController {
     
-    var number = 0
     var tune_on_title: UIImageView!
     
     override func viewDidAppear(animated: Bool) {
@@ -42,7 +41,7 @@ class State1_SplashViewController: ViewController {
                 (response, error) -> Void in
                 if (error != nil){
                     print(error)
-                    self.number = 0
+                    number = 0
                 }
                 do{
                     let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
@@ -55,7 +54,7 @@ class State1_SplashViewController: ViewController {
                 } catch{
                     print("error serializaing JSON: \(error)")
                 }
-                self.number = 2
+                number = 2
             }
         }
         else{
@@ -69,7 +68,7 @@ class State1_SplashViewController: ViewController {
                 (response, error) -> Void in
                 if (error != nil){
                     print(error)
-                    self.number = 0
+                    number = 0
                 }
                 do{
                     let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
@@ -80,7 +79,7 @@ class State1_SplashViewController: ViewController {
                 } catch{
                     print("error serializaing JSON: \(error)")
                 }
-                self.number = 2
+                number = 2
             }
         }
         

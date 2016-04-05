@@ -40,6 +40,7 @@ class State6_QuizViewController: ViewController {
         let screen_width = view.frame.width
         let screen_height = view.frame.height
         freeitem_amount = 0
+        defaults.setBool(true, forKey: "Answering")
         //background code form here
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "brick.png")!)
         //end here
@@ -189,7 +190,6 @@ class State6_QuizViewController: ViewController {
         //end here
         
         //four item code from here
-        
         var lock: Array<UIImageView> = []
         let btn_image = ["playback", "friend", "remove", "submit"]
         let item_y = 11*screen_height/12
@@ -204,6 +204,7 @@ class State6_QuizViewController: ViewController {
             temp.frame.size.width = 0.1*screen_width
             temp.contentMode = UIViewContentMode.ScaleAspectFit
             lock.insert(temp, atIndex: i)
+            print(sel[i])
         }
         
         for i in 0...2{
@@ -226,7 +227,7 @@ class State6_QuizViewController: ViewController {
             btn_item.insert(temp, atIndex: i)
             self.view.addSubview(btn_item[i])
             btn_item[i].addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            if level < 10 && freeitem_amount == 0{
+            if level < item_level[i] && freeitem_amount == 0{
                 lock[i].center = CGPointMake(btn_item[i].frame.width/2, btn_item[i].frame.height/2)
                 self.btn_item[i].addSubview(lock[i])
             }
@@ -578,8 +579,7 @@ class State6_QuizViewController: ViewController {
     func btn_answer_click(button: UIButton){
         button.highlighted = true
         if button == btn_choice[correct]{
-            action = ["type": 1, "qid": qid, "param1": correct+1, "param2": Int(level)]
-            print(action)
+            action.append(["type": 1, "qid": qid, "param1": correct+1, "param2": Int(level)])
             TurnPage(7)
         }
         else{
@@ -589,7 +589,7 @@ class State6_QuizViewController: ViewController {
                     ans = i+1
                 }
             }
-            action = ["type": 2, "qid": qid, "param1": ans, "param2": Int(level)/2]
+            action.append(["type": 2, "qid": qid, "param1": ans, "param2": (Int(level)/2)])
             TurnPage(8)
         }
     }

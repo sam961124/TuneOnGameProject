@@ -14,7 +14,6 @@ class State9_LevelUpViewController: ViewController {
     var dialog_label: UILabel!
     var dialog_center_x: CGFloat!
     var dialog_center_y: CGFloat!
-    var number = 0
     var shin: UIImageView!
     var timer = NSTimer()
     
@@ -54,66 +53,6 @@ class State9_LevelUpViewController: ViewController {
         dialog_label.center = CGPoint(x: dialog_center_x, y: dialog_center_y)
         //end here
         
-        /*
-        //server communicate code from here
-        var requestNSData: NSData = NSData()
-        let data = ["cmd": "getquiz", "id": id]
-        do{
-            requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
-        } catch let error as NSError {
-            print(error)
-        }
-        HTTPPostJSON(requestNSData){
-            (response, error) -> Void in
-            if (error != nil){
-                print(error)
-                self.number = 0
-            }
-            do{
-                let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
-                level = (json["appUser"]!!["level"] as! Int)
-                money = (json["appUser"]!!["money"] as! Int)
-                qid = (json["quiz"]!!["qid"] as! String)
-                eid = (json["quiz"]!!["eid"] as! String)
-                category = (json["quiz"]!!["category"] as! String)
-                quiz_level = (json["quiz"]!!["level"] as! String)
-                youtube_id = (json["quiz"]!!["youtube"] as! String)
-                let imageurl = (json["quiz"]!!["imageurl"])
-                question = (json["quiz"]!!["summary"] as! String)
-                let uries = (json["quiz"]!!["uries"])
-                for i in 0...3{
-                    choice_string[i] = uries!![i]["hint"] as! String
-                    print(choice_string[i])
-                    print(uries!![i]["subtypeid"])
-                    if "501" == uries!![i]["subtypeid"] as! String{
-                        correct = i
-                    }
-                }
-                print(0)
-                print(question)
-                print(1)
-                print(correct)
-                print(5)
-                if youtube_id == ""{
-                    self.number = 5
-                    image_url = imageurl as! String
-                }
-                else if imageurl is NSNull{
-                    self.number = 4
-                }
-                else{
-                    self.number = 0
-                }
-                print(category)
-                print("----------------------------")
-                print(self.number)
-                print("----------------------------")
-                //freeitem_amount = 0
-            } catch{
-                print("error serializaing JSON: \(error)")
-            }
-        }
- */
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -194,7 +133,7 @@ class State9_LevelUpViewController: ViewController {
         
         //money label
         var money_label: UILabel
-        let money_string = "\(money) G + \(quiz_level) G"
+        let money_string = "\(money) G"
         money_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/2, height:0.8*money_bar.frame.height))
         money_label.center = CGPointMake((money_bar.frame.minX+money_bar.frame.maxX)/2, (money_bar.frame.minY+money_bar.frame.maxY)/2)
         money_label.text = money_string

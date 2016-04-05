@@ -174,15 +174,15 @@ class State2_MainViewController: ViewController {
         var iq_label2: UILabel
         var fb_login_label: UILabel
         let ranking_string1 = "你的線上排名"
-        let player_ranking = "20"
-        let player_amount = "600"
-        var correct_rate: Float = Float(0)
-        let ranking_string2 = player_ranking + " / " + player_amount
+//        let player_ranking = "20"
+//        let player_amount = "600"
+        var correct_rate: Float = 0
+        let ranking_string2 = "-- / --"
         let iq_string1 = "你的IQ"
         var iq_string2: String = String()
         let fb_string = "缺金幣?想升級?看排行?登入臉書進入進階模式!"
         if right_count+wrong_count != 0{
-            correct_rate = Float(right_count/(right_count + wrong_count))
+            correct_rate = Float(right_count)/Float(right_count + wrong_count)
         }
         ranking_label1 = UILabel(frame: CGRect(x:second_box.frame.minX+0.05*second_box.frame.width, y:second_box.frame.height/12+second_box.frame.minY, width:0.4*second_box.frame.width, height:second_box.frame.height/10))
         ranking_label1.text = ranking_string1
@@ -208,7 +208,9 @@ class State2_MainViewController: ViewController {
         
         
         if level > 2{
-            iq_string2 = String(Int(sqrt(correct_rate)*20))
+            print(correct_rate)
+            print(sqrt(correct_rate))
+            iq_string2 = String(Int(sqrt(correct_rate)*200))
             iq_label2 = UILabel(frame: CGRect(x:second_box.frame.minX+0.7*second_box.frame.width, y:4*second_box.frame.height/12+second_box.frame.minY, width:0.25*second_box.frame.width, height:second_box.frame.height/10))
             iq_label2.font = UIFont(name:"HelveticaNeue-Bold", size: 0.05*screen_width)
         }
@@ -473,7 +475,31 @@ class State2_MainViewController: ViewController {
     
     func btn_start_answer_click(button: UIButton) {
         button.highlighted = true
-        TurnPage(3)
+        let status = defaults.boolForKey("Answering")
+        if status{
+            qid = defaults.objectForKey("qid") as! String
+            eid = defaults.objectForKey("eid") as! String
+            category = defaults.objectForKey("category") as! String
+            quiz_level = defaults.objectForKey("quiz_level") as! String
+            youtube_id = defaults.objectForKey("youtube_id") as! String
+            question = defaults.objectForKey("question") as! String
+            correct = defaults.integerForKey("correct")
+            for i in 0...3{
+                choice_string[i] = defaults.objectForKey("choice_string\(i)") as! String
+                sel[i] = defaults.integerForKey("sel_\(i)")
+            }
+            if youtube_id == ""{
+                image_url = defaults.objectForKey("image_url") as! String
+                number = 5
+            }
+            else{
+                number = 4
+            }
+            TurnPage(6)
+        }
+        else{
+            TurnPage(3)
+        }
     }
     
     

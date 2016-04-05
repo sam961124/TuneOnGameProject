@@ -12,11 +12,12 @@ class State8_WrongViewController: ViewController {
 
     var dialog: UIImageView!
     var dialog_label: UILabel!
-    var number = 0
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        action = [:]
+        if number != 0{
+            defaults.setBool(false, forKey: "Answering")
+            action.removeAll()
+        }
         UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 8, options: UIViewAnimationOptions.CurveLinear, animations: {
             self.dialog.center.y += self.dialog.frame.size.height/2
             self.dialog_label.center.y += self.dialog.frame.size.height/2
@@ -32,7 +33,7 @@ class State8_WrongViewController: ViewController {
         
         //server communicate code from here
         var requestNSData: NSData = NSData()
-        let data = ["cmd": "getquiz", "id": id, "actions": [action]]
+        let data = ["cmd": "getquiz", "id": id, "actions": action]
         do{
             print("yes")
             requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
@@ -44,7 +45,7 @@ class State8_WrongViewController: ViewController {
             (response, error) -> Void in
             if (error != nil){
                 print(error)
-                self.number = 0
+                number = 0
             }
             do{
                 let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
@@ -73,9 +74,6 @@ class State8_WrongViewController: ViewController {
                 for i in 0...3{
                     sel[i] = (json["quiz"]!!["sel_\(i+1)"] as! Int)
                     defaults.setInteger(sel[i], forKey: "sel_\(i)")
-                }
-                
-                for i in 0...3{
                     choice_string[i] = uries!![i]["hint"] as! String
                     defaults.setObject(choice_string[i], forKey: "choice_string\(i)")
                     print(choice_string[i])
@@ -86,15 +84,15 @@ class State8_WrongViewController: ViewController {
                     }
                 }
                 if youtube_id == ""{
-                    self.number = 5
+                    number = 5
                     image_url = imageurl as! String
                     defaults.setObject(image_url, forKey: "image_url")
                 }
                 else if imageurl is NSNull{
-                    self.number = 4
+                    number = 4
                 }
                 else{
-                    self.number = 0
+                    number = 0
                 }
             } catch{
                 print("error serializaing JSON: \(error)")

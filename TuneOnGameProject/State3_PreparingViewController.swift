@@ -14,7 +14,6 @@ class State3_PreparingViewController: ViewController {
     var dialog_label: UILabel!
     var dialog_center_x: CGFloat!
     var dialog_center_y: CGFloat!
-    var number = 0
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -213,94 +212,66 @@ class State3_PreparingViewController: ViewController {
             //server communicate code from here
             var requestNSData: NSData = NSData()
             let data = ["cmd": "getquiz", "id": id]
-            qid = defaults.objectForKey("qid") as? String ?? ""
-            if qid == ""{
-                do{
-                    print("yes")
-                    requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
-                } catch let error as NSError {
-                    print(error)
-                }
-                HTTPPostJSON(requestNSData){
-                    (response, error) -> Void in
-                    if (error != nil){
-                        print(error)
-                        self.number = 0
-                    }
-                    do{
-                        let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
-                        level = (json["appUser"]!!["level"] as! Int)
-                        money = (json["appUser"]!!["money"] as! Int)
-                        right_count = (json["appUser"]!!["rightcount"] as! Int)
-                        wrong_count = (json["appUser"]!!["wrongcount"] as! Int)
-                        qid = (json["quiz"]!!["qid"] as! String)
-                        defaults.setObject(qid, forKey: "qid")
-                        eid = (json["quiz"]!!["eid"] as! String)
-                        defaults.setObject(eid, forKey: "eid")
-                        category = (json["quiz"]!!["category"] as! String)
-                        defaults.setObject(category, forKey: "category")
-                        quiz_level = (json["quiz"]!!["level"] as! String)
-                        defaults.setObject(quiz_level, forKey: "quiz_level")
-                        youtube_id = (json["quiz"]!!["youtube"] as! String)
-                        defaults.setObject(youtube_id, forKey: "youtube_id")
-                        let imageurl = (json["quiz"]!!["imageurl"])
-                        question = (json["quiz"]!!["summary"] as! String)
-                        defaults.setObject(question, forKey: "question")
-                        let uries = (json["quiz"]!!["uries"])
-                        
-                        defaults.setBool(false, forKey: "playBack")
-                        defaults.setBool(false, forKey: "friend")
-                        defaults.setBool(false, forKey: "remove")
-                        for i in 0...3{
-                            sel[i] = (json["quiz"]!!["sel_\(i+1)"] as! Int)
-                            defaults.setInteger(sel[i], forKey: "sel_\(i)")
-                        }
-                        
-                        for i in 0...3{
-                            choice_string[i] = uries!![i]["hint"] as! String
-                            defaults.setObject(choice_string[i], forKey: "choice_string\(i)")
-                            print(choice_string[i])
-                            print(uries!![i]["subtypeid"])
-                            if "501" == uries!![i]["subtypeid"] as! String{
-                                correct = i
-                                defaults.setInteger(correct, forKey: "correct")
-                            }
-                        }
-                        if youtube_id == ""{
-                            self.number = 5
-                            image_url = imageurl as! String
-                            defaults.setObject(image_url, forKey: "image_url")
-                        }
-                        else if imageurl is NSNull{
-                            self.number = 4
-                        }
-                        else{
-                            self.number = 0
-                        }
-                    } catch{
-                        print("error serializaing JSON: \(error)")
-                    }
-                }
+            do{
+                requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
+            } catch let error as NSError {
+                print(error)
             }
-            else{
-                eid = defaults.objectForKey("eid") as! String
-                category = defaults.objectForKey("category") as! String
-                quiz_level = defaults.objectForKey("quiz_level") as! String
-                youtube_id = defaults.objectForKey("youtube_id") as! String
-                question = defaults.objectForKey("question") as! String
-                correct = defaults.integerForKey("correct")
-                for i in 0...3{
-                    choice_string[i] = defaults.objectForKey("choice_string\(i)") as! String
+            HTTPPostJSON(requestNSData){
+                (response, error) -> Void in
+                if (error != nil){
+                    print(error)
+                    number = 0
                 }
-                for i in 0...3{
-                    sel[i] = defaults.integerForKey("sel_\(i)")
-                }
-                if youtube_id == ""{
-                    image_url = defaults.objectForKey("image_url") as! String
-                    number = 5
-                }
-                else{
-                    number = 4
+                do{
+                    let json = try NSJSONSerialization.JSONObjectWithData(response, options: .AllowFragments)
+                    level = (json["appUser"]!!["level"] as! Int)
+                    money = (json["appUser"]!!["money"] as! Int)
+                    right_count = (json["appUser"]!!["rightcount"] as! Int)
+                    wrong_count = (json["appUser"]!!["wrongcount"] as! Int)
+                    qid = (json["quiz"]!!["qid"] as! String)
+                    defaults.setObject(qid, forKey: "qid")
+                    eid = (json["quiz"]!!["eid"] as! String)
+                    defaults.setObject(eid, forKey: "eid")
+                    category = (json["quiz"]!!["category"] as! String)
+                    defaults.setObject(category, forKey: "category")
+                    quiz_level = (json["quiz"]!!["level"] as! String)
+                    defaults.setObject(quiz_level, forKey: "quiz_level")
+                    youtube_id = (json["quiz"]!!["youtube"] as! String)
+                    defaults.setObject(youtube_id, forKey: "youtube_id")
+                    let imageurl = (json["quiz"]!!["imageurl"])
+                    question = (json["quiz"]!!["summary"] as! String)
+                    defaults.setObject(question, forKey: "question")
+                    let uries = (json["quiz"]!!["uries"])
+                    
+                    defaults.setBool(false, forKey: "playBack")
+                    defaults.setBool(false, forKey: "friend")
+                    defaults.setBool(false, forKey: "remove")
+                    for i in 0...3{
+                        sel[i] = (json["quiz"]!!["sel_\(i+1)"] as! Int)
+                        defaults.setInteger(sel[i], forKey: "sel_\(i)")
+                        choice_string[i] = uries!![i]["hint"] as! String
+                        defaults.setObject(choice_string[i], forKey: "choice_string\(i)")
+                        print(choice_string[i])
+                        print(uries!![i]["subtypeid"])
+                        if "501" == uries!![i]["subtypeid"] as! String{
+                            correct = i
+                            defaults.setInteger(correct, forKey: "correct")
+                        }
+                    }
+                    if youtube_id == ""{
+                        number = 5
+                        image_url = imageurl as! String
+                        defaults.setObject(image_url, forKey: "image_url")
+                    }
+                    else if imageurl is NSNull{
+                        number = 4
+                    }
+                    else{
+                        number = 0
+                    }
+                } catch{
+                    print("error serializaing JSON: \(error)")
                 }
             }
         }

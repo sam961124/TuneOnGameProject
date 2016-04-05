@@ -213,7 +213,7 @@ class State0_ErrorViewController: ViewController {
     
     func btn_fail_next_click(button: UIButton) {
         button.highlighted = true
-        TurnPage(1)
+        TurnPage(2)
     }
     
     override func viewWillAppear(animated: Bool) {

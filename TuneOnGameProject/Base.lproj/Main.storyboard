@@ -88,7 +88,7 @@
         <!--State9 Level Up View Controller-->
         <scene sceneID="lGJ-tW-L79">
             <objects>
-                <viewController id="QeT-Cm-J3F" customClass="State9_LevelUpViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="State9_LevelUpViewController" id="QeT-Cm-J3F" customClass="State9_LevelUpViewController" customModule="TuneOnGameProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ahZ-8f-hQo"/>
                         <viewControllerLayoutGuide type="bottom" id="mrS-Gg-UD5"/>

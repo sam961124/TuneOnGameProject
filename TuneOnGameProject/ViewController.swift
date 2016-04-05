@@ -24,10 +24,11 @@ var youtube_id: String = String()
 var image_url: String = String()
 var question: String = String()
 var freeitem: Int = Int()
+var number: Int = Int()
 var choice_string = ["", "", "", ""]
 var sel = [0, 0, 0, 0]
 var test: [Dictionary<String, AnyObject>] = []
-var action: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+var action: Array<Dictionary<String, AnyObject>> = []
 let category_name = ["100": "神秘類", "200": "演員類", "300": "產品類",
                      "400": "場景類", "500": "聲音類", "600": "圖形類",
                      "700": "數字類", "800": "臺詞類", "900": "趣味類"]
@@ -76,7 +77,7 @@ class ViewController: UIViewController {
     }
     
     func ExpRate() -> CGFloat{
-        if CGFloat(right_count) > pow(CGFloat(level),2){
+        if right_count > 1{
             return (CGFloat(right_count) - pow(CGFloat(level),2))/(pow(CGFloat(level+1),2) - pow(CGFloat(level),2))
         }
         else{
