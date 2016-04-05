@@ -89,7 +89,7 @@ class State7_RightViewController: ViewController {
                 defaults.setObject(question, forKey: "question")
                 let uries = (json["quiz"]!!["uries"])
                 
-                defaults.setBool(false, forKey: "playBack")
+                defaults.setBool(false, forKey: "playback")
                 defaults.setBool(false, forKey: "friend")
                 defaults.setBool(false, forKey: "remove")
                 for i in 0...3{

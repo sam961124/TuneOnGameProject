@@ -10,13 +10,18 @@ import UIKit
 
 class State6_QuizViewController: ViewController {
     //item button
+    var money_label: UILabel = UILabel()
     var btn_item: Array<UIButton> = []
     let btn_submit: UIButton = UIButton()
     let btn_start_use: UIButton = UIButton()
     var btn_choice: Array<UIButton> = []
     var note: Array<UIImageView> = []
+    var lock: Array<UIImageView> = []
     var noteLabel: Array<UILabel> = []
     var choice_label: Array<UILabel> = []
+    let btn_image = ["playback", "friend", "remove", "submit"]
+    let item_level = [10, 6, 15]
+    let item_money = [200, 100, 200]
     
     //pop_up window element
     var pop_up_background: UIView!
@@ -27,7 +32,9 @@ class State6_QuizViewController: ViewController {
     
     var item_name_label: UILabel!
     var item_intro_label: UILabel!
-    let freeitem_amount = 2
+    var freeitem_amount = defaults.integerForKey("FreeItemAmount")
+    var friend = defaults.boolForKey("friend")
+    var remove = defaults.boolForKey("remove")
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -99,7 +106,6 @@ class State6_QuizViewController: ViewController {
         self.view.addSubview(level_label)
         
         //money label
-        var money_label: UILabel
         let money_string = "\(money) G"
         money_label = UILabel(frame: CGRect(x:0, y:0, width:top_bar.frame.width/2, height:0.8*money_bar.frame.height))
         money_label.center = CGPointMake((money_bar.frame.minX+money_bar.frame.maxX)/2, (money_bar.frame.minY+money_bar.frame.maxY)/2)
@@ -189,11 +195,7 @@ class State6_QuizViewController: ViewController {
         //end here
         
         //four item code from here
-        var lock: Array<UIImageView> = []
-        let btn_image = ["playback", "friend", "remove", "submit"]
         let item_y = 11*screen_height/12
-        let item_level = [10, 6, 15]
-        let item_money = [200, 100, 200]
         let item_width = screen_width/6
         let playback_image: UIImage = UIImage(named: "btn_item_playback_normal.png")!
         let item_height = (screen_width/6)*playback_image.size.height/playback_image.size.width
@@ -203,22 +205,13 @@ class State6_QuizViewController: ViewController {
             temp.frame.size.width = 0.1*screen_width
             temp.contentMode = UIViewContentMode.ScaleAspectFit
             lock.insert(temp, atIndex: i)
-            print(sel[i])
         }
         
         for i in 0...2{
             let temp = UIButton()
-            if freeitem_amount > 0{
-                temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_normal.png"), forState: UIControlState.Normal)
-                temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_pressed.png"), forState: UIControlState.Highlighted)
-            }
-            else if level < item_level[i] || money < item_money[i]{
-                temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_disable.png"), forState: UIControlState.Normal)
-            }
-            else {
-                temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_normal.png"), forState: UIControlState.Normal)
-                temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_pressed.png"), forState: UIControlState.Highlighted)
-            }
+            temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_normal.png"), forState: UIControlState.Normal)
+            temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_pressed.png"), forState: UIControlState.Highlighted)
+            temp.setBackgroundImage(UIImage(named: "btn_item_\(btn_image[i])_disable.png"), forState: UIControlState.Selected)
             temp.contentMode = UIViewContentMode.ScaleAspectFit
             temp.frame.size.height = item_height
             temp.frame.size.width = item_width
@@ -226,12 +219,8 @@ class State6_QuizViewController: ViewController {
             btn_item.insert(temp, atIndex: i)
             self.view.addSubview(btn_item[i])
             btn_item[i].addTarget(self, action: #selector(State6_QuizViewController.btn_item_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            if level < item_level[i] && freeitem_amount == 0{
-                lock[i].center = CGPointMake(btn_item[i].frame.width/2, btn_item[i].frame.height/2)
-                self.btn_item[i].addSubview(lock[i])
-            }
         }
-        
+        update_four_item_status()
         //item submit
         btn_submit.setBackgroundImage(UIImage(named: "btn_item_submit_disable.png"), forState: UIControlState.Normal)
         //btn_submit.setImage(UIImage(named: "btn_item_submit_pressed.png"), forState: UIControlState.Highlighted)
@@ -247,6 +236,7 @@ class State6_QuizViewController: ViewController {
         //end here
         
         //choice code from here
+        let remove_value = defaults.integerForKey("remove_value")
         let choice_area = red_bar.frame.minY - question_box.frame.maxY
         for i in 0...3{
             let button: UIButton = UIButton()
@@ -268,6 +258,23 @@ class State6_QuizViewController: ViewController {
             iMage.hidden = true
             note.insert(iMage, atIndex: i)
             self.view.addSubview(note[i])
+        }
+        
+        if(remove == true){
+            for i in 0...3{
+                btn_choice[i].selected = true
+                btn_choice[i].removeTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            }
+            for i in 0...3{
+                if(i == correct){
+                    btn_choice[i].selected = false
+                    btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+                }
+                else if(i > correct && i == (remove_value+1)) || (i < correct && i == remove_value){
+                    btn_choice[i].selected = false
+                    btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+                }
+            }
         }
         
         //choice label
@@ -362,134 +369,85 @@ class State6_QuizViewController: ViewController {
         // Do any additional setup after loading the view.
         
         // state control
-        let friend = defaults.boolForKey("friend")
         if(friend == true){
             for i in 0...3{
                 note[i].hidden = false
                 noteLabel[i].hidden = false
             }
         }
-        let remove = defaults.boolForKey("remove")
-        let remove_value = defaults.integerForKey("remove_value")
-        if(remove == true){
-            for i in 0...3{
-                btn_choice[i].selected = true
-                btn_choice[i].removeTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    }
+    
+    func update_four_item_status(){
+        for i in 0...2{
+            if defaults.boolForKey(btn_image[i]) && i != 0{
+                btn_item[i].selected = true
             }
-            for i in 0...3{
-                if(i == correct){
-                    btn_choice[i].selected = false
-                    btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-                }
-                else if(i > correct && i == (remove_value+1)){
-                    btn_choice[i].selected = false
-                    btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-                }
-                else if(i < correct && i == remove_value){
-                    btn_choice[i].selected = false
-                    btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-                }
+            else if !((level >= item_level[i] && money >= item_money[i]) || freeitem_amount > 0){
+                btn_item[i].selected = true
+            }
+            if level < item_level[i] && freeitem_amount < 1{
+                lock[i].center = CGPointMake(btn_item[i].frame.width/2, btn_item[i].frame.height/2)
+                self.btn_item[i].addSubview(lock[i])
             }
         }
     }
-    
     func btn_home_click(button: UIButton){
         TurnPage(2)
     }
     
     func btn_item_click(button: UIButton) {
-        let freeitem_amount_string = String(freeitem_amount)
         //item_image
+        let function = ["重看一次", "玩家記錄", "減少選項"]
+        let description = ["無限次重看影片或圖片", "看其他玩家曾經選過的答案與次數", "從四選一變成二選一"]
         btn_start_use.hidden = false
-        if button == btn_item[0]{
-            item_image = UIImageView(image: UIImage(named: "btn_item_playback_normal.png"))
-            item_image.frame.size.width = pop_up_view.frame.width/4
-            item_image.frame.size.height = pop_up_view.frame.width/4
-            item_image.contentMode = UIViewContentMode.ScaleAspectFit
-            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
-            self.pop_up_view.addSubview(item_image)
+        for i in 0...2{
+            if button == btn_item[i]{
+                item_image = UIImageView(image: UIImage(named: "btn_item_\(btn_image[i])_normal.png"))
+                item_image.frame.size.width = pop_up_view.frame.width/4
+                item_image.frame.size.height = pop_up_view.frame.width/4
+                item_image.contentMode = UIViewContentMode.ScaleAspectFit
+                item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
+                self.pop_up_view.addSubview(item_image)
+                item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
+                if defaults.boolForKey(btn_image[i]){
+                    item_name_label.text = "\(function[i])(已使用)"
+                    item_intro_label.text = "\(description[i])囉！"
+                    item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
+                    if i != 0{
+                        btn_start_use.hidden = true
+                    }
+                }
+                else if freeitem_amount > 0{
+                    item_name_label.text = "\(function[i])(免費道具)"
+                    item_intro_label.text = "\(description[i])，使用一個免費道具，還有\(freeitem_amount)個"
+                    item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
+                }
+                else if level < item_level[i]{
+                    item_name_label.text = "\(function[i])(無法使用)"
+                    item_intro_label.text = "\(description[i])，需花費\(item_money[i])G。需要Lv\(item_level[i])以上。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
+                    item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
+                    btn_start_use.hidden = true
+                }
+                else{
+                    item_name_label.text = "\(function[i])(購買道具)"
+                    item_intro_label.text = "\(description[i])，需花費\(item_money[i])G。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
+                    item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
+                    if money < item_money[i]{
+                        btn_start_use.hidden = true
+                    }
+                }
+                break
+            }
+        }
+        
+        if button == btn_item[0] && btn_item[0].selected == false{
             btn_start_use.addTarget(self, action: #selector(State6_QuizViewController.btn_playBack_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            
-            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
-            if freeitem_amount > 0{
-                item_name_label.text = "重看一次(免費道具)"
-                item_intro_label.text = "無限次重看影片或圖片，使用一個免費道具，還有" + freeitem_amount_string + "個"
-                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
-            }
-            else if level < 10{
-                item_name_label.text = "重看一次(無法使用)"
-                item_intro_label.text = "無限次重看影片或圖片，需花費200G。需要Lv10以上。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
-                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
-                btn_start_use.hidden = true
-            }
-            else{
-                item_name_label.text = "重看一次(購買道具)"
-                item_intro_label.text = "無限次重看影片或圖片，需花費200G。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
-                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
-                if money < 200{
-                    btn_start_use.hidden = true
-                }
-            }
         }
-        else if button == btn_item[2]{
-            item_image = UIImageView(image: UIImage(named: "btn_item_remove_normal.png"))
-            item_image.frame.size.width = pop_up_view.frame.width/4
-            item_image.frame.size.height = pop_up_view.frame.width/4
-            item_image.contentMode = UIViewContentMode.ScaleAspectFit
-            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
-            self.pop_up_view.addSubview(item_image)
-            btn_start_use.addTarget(self, action: #selector(State6_QuizViewController.btn_remove_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            
-            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
-            if freeitem_amount > 0{
-                item_name_label.text = "減少選項(免費道具)"
-                item_intro_label.text = "從四選一變成二選一，使用一個免費道具，還有" + freeitem_amount_string + "個"
-                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
-            }
-            else if level < 15{
-                item_name_label.text = "減少選項(無法使用)"
-                item_intro_label.text = "從四選一變成二選一，花費200G。需要Lv15以上。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
-                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
-                btn_start_use.hidden = true
-            }
-            else{
-                item_name_label.text = "減少選項(購買道具)"
-                item_intro_label.text = "從四選一變成二選一，花費200G。。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
-                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
-                if money < 200{
-                    btn_start_use.hidden = true
-                }
-            }
-        }
-        else if button == btn_item[1]{
-            item_image = UIImageView(image: UIImage(named: "btn_item_friend_normal.png"))
-            item_image.frame.size.width = pop_up_view.frame.width/4
-            item_image.frame.size.height = pop_up_view.frame.width/4
-            item_image.contentMode = UIViewContentMode.ScaleAspectFit
-            item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
-            self.pop_up_view.addSubview(item_image)
+        else if button == btn_item[1] && btn_item[1].selected == false{
             btn_start_use.addTarget(self, action: #selector(State6_QuizViewController.btn_friend_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            
-            item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
-            if freeitem_amount > 0{
-                item_name_label.text = "玩家記錄(免費道具)"
-                item_intro_label.text = "看其他玩家曾經選過的答案與次數，使用一個免費道具，還有" + freeitem_amount_string + "個"
-                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
-            }
-            else if level < 6{
-                item_name_label.text = "玩家記錄(無法使用)"
-                item_intro_label.text = "看其他玩家曾經選過的答案與次數，花費100G。需要Lv6以上。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
-                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
-                btn_start_use.hidden = true
-            }
-            else{
-                item_name_label.text = "玩家記錄(購買道具)"
-                item_intro_label.text = "看其他玩家曾經選過的答案與次數，花費100G。PS.用首頁左上角的FB按鈕點個讚，送兩個免費道具唷!"
-                item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.04*pop_up_view.frame.height)
-                if money < 100{
-                    btn_start_use.hidden = true
-                }
-            }
+        }
+        else if button == btn_item[2] && btn_item[2].selected == false{
+            btn_start_use.addTarget(self, action: #selector(State6_QuizViewController.btn_remove_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         }
         else if button == btn_submit{
             item_image = UIImageView(image: UIImage(named: "btn_item_submit_normal.png"))
@@ -515,7 +473,6 @@ class State6_QuizViewController: ViewController {
     }
     
     func btn_playBack_click(button: UIButton){
-        defaults.setBool(true, forKey: "playBack")
         var number = 0
         if youtube_id == ""{
             number = 5
@@ -530,11 +487,23 @@ class State6_QuizViewController: ViewController {
         let delay = 0.5 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue()){}
+        if defaults.boolForKey("playback"){
+            
+        }
+        else if freeitem_amount > 0{
+            freeitem_amount -= 1
+            defaults.setInteger(freeitem_amount, forKey: "FreeItemAmount")
+        }
+        else{
+            money_label.text = "\(money-200) G"
+            action.append(["type": 10, "qid": qid, "param1": 0, "param2": 0])
+        }
+        defaults.setBool(true, forKey: "playback")
+        update_four_item_status()
         TurnPage(number)
     }
     
     func btn_friend_click(button: UIButton){
-        defaults.setBool(true, forKey: "friend")
         button.highlighted = true
         for i in 0...3{
             note[i].hidden = false
@@ -544,10 +513,19 @@ class State6_QuizViewController: ViewController {
         UIView.animateWithDuration(0.2, animations: {
             self.pop_up_view.alpha = 0
         })
-        
+        friend = true
+        if freeitem_amount > 0{
+            freeitem_amount -= 1
+            defaults.setInteger(freeitem_amount, forKey: "FreeItemAmount")
+        }
+        else{
+            money_label.text = "\(money-100) G"
+            action.append(["type": 11, "qid": qid, "param1": 0, "param2": 0])
+        }
+        defaults.setBool(true, forKey: "friend")
+        update_four_item_status()
     }
     func btn_remove_click(button: UIButton){
-        defaults.setBool(true, forKey: "remove")
         let remove_value = Int(arc4random_uniform(3))
         defaults.setInteger(remove_value, forKey: "remove_value")
         print(remove_value)
@@ -573,6 +551,17 @@ class State6_QuizViewController: ViewController {
         UIView.animateWithDuration(0.2, animations: {
             self.pop_up_view.alpha = 0
         })
+        remove = true
+        if freeitem_amount > 0{
+            freeitem_amount -= 1
+            defaults.setInteger(freeitem_amount, forKey: "FreeItemAmount")
+        }
+        else{
+            money_label.text = "\(money-200) G"
+            action.append(["type": 12, "qid": qid, "param1": 0, "param2": 0])
+        }
+        defaults.setBool(true, forKey: "remove")
+        update_four_item_status()
     }
     
     func btn_answer_click(button: UIButton){
@@ -586,6 +575,7 @@ class State6_QuizViewController: ViewController {
             for i in 0...3{
                 if button == btn_choice[i]{
                     ans = i+1
+                    break
                 }
             }
             action.append(["type": 2, "qid": qid, "param1": ans, "param2": (Int(level)/2)])
