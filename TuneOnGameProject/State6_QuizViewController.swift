@@ -289,7 +289,7 @@ class State6_QuizViewController: ViewController {
             label.center = CGPointMake(note[i].frame.minX + note[i].frame.width/2, note[i].frame.minY + note[i].frame.height/2)
             label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
             if(total_sel == 0){
-                label.text = "0%"
+                label.text = "25%"
             }
             else{
                 label.text = "\((100*sel[i]) / total_sel)%"
