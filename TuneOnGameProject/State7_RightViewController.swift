@@ -312,15 +312,17 @@ class State7_RightViewController: ViewController {
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {
             button.center.x = self.view.frame.width
             }, completion: nil)
-        let delay = 0.5 * Double(NSEC_PER_SEC)
+        let delay = 0.3 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue()){}
-        if exp_rate == 1{
-            TurnPage(9)
+        dispatch_after(time, dispatch_get_main_queue()){
+            if self.exp_rate == 1{
+                self.TurnPage(9)
+            }
+            else{
+                self.TurnPage(number)
+            }
         }
-        else{
-            TurnPage(number)
-        }
+        
     }
     
     override func didReceiveMemoryWarning() {

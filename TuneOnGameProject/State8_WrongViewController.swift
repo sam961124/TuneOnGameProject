@@ -12,6 +12,8 @@ class State8_WrongViewController: ViewController {
 
     var dialog: UIImageView!
     var dialog_label: UILabel!
+    var shadow: Array<UIImageView> = []
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if number != 0{
@@ -23,6 +25,12 @@ class State8_WrongViewController: ViewController {
             self.dialog_label.center.y += self.dialog.frame.size.height/2
             }, completion: nil)
         
+        UIView.animateWithDuration(0.8, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            for i in 0...7{
+                self.shadow[i].center.y = (self.view.frame.width*5/28)+(self.shadow[i].frame.size.height/2)
+            }
+            }, completion: nil)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -30,6 +38,10 @@ class State8_WrongViewController: ViewController {
         
         dialog.center.y -= dialog.frame.size.height/2
         dialog_label.center.y -= dialog.frame.size.height/2
+        
+        for i in 0...7{
+            shadow[i].center.y = view.frame.height*2/28
+        }
         
         //server communicate code from here
         var requestNSData: NSData = NSData()
@@ -105,6 +117,20 @@ class State8_WrongViewController: ViewController {
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
+        
+        //shadow code from here
+        let shadow_image = UIImage(named: "shadow.png")
+        let center: [CGFloat] = [9/120, 9/60, 14/60, 18/60, 42/60, 46/60, 51/60, 111/120]
+        for i in 0...7 {
+            let temp = UIImageView(image: shadow_image)
+            temp.frame.size.width = screen_width/30
+            temp.frame.size.height = (screen_width/30)*(shadow_image!.size.height)/(shadow_image!.size.width)
+            temp.contentMode = UIViewContentMode.ScaleAspectFit
+            temp.center = CGPointMake(screen_width*center[i], (screen_width*5/28)+(temp.frame.size.height/2))
+            shadow.insert(temp, atIndex: i)
+            self.view.addSubview(shadow[i])
+        }
+        //end here
         
         //top_bar code from here
         var top_bar: UIImageView
@@ -207,19 +233,6 @@ class State8_WrongViewController: ViewController {
         self.view.addSubview(txt_fail)
         //end here
         
-        //shadow code from here
-        let shadow_image = UIImage(named: "shadow.png")
-        let center: [CGFloat] = [9/120, 9/60, 14/60, 18/60, 42/60, 46/60, 51/60, 111/120]
-        for i in 0...7 {
-            let shadow: UIImageView = UIImageView(image: shadow_image)
-            shadow.frame.size.width = screen_width/30
-            shadow.frame.size.height = (screen_width/30)*(shadow_image!.size.height)/(shadow_image!.size.width)
-            shadow.contentMode = UIViewContentMode.ScaleAspectFit
-            shadow.center = CGPointMake(screen_width*center[i], (screen_width*5/28)+(shadow.frame.size.height/2))
-            self.view.addSubview(shadow)
-        }
-        //end here
-        
         //btn_fail_next code from here
         let btn_fail_next: UIButton = UIButton()
         let fail_next: UIImage = UIImage(named: "btn_fail_next_normal.png")!
@@ -287,10 +300,12 @@ class State8_WrongViewController: ViewController {
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {
             button.center.x = self.view.frame.width
             }, completion: nil)
-        let delay = 0.5 * Double(NSEC_PER_SEC)
+        let delay = 0.3 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue()){}
-        TurnPage(number)
+        dispatch_after(time, dispatch_get_main_queue()){
+            self.TurnPage(number)
+        }
+
     }
     
     func btn_home_click(button: UIButton){
