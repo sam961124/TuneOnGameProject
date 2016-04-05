@@ -407,6 +407,7 @@ class State6_QuizViewController: ViewController {
             item_image.contentMode = UIViewContentMode.ScaleAspectFit
             item_image.center = CGPointMake(pop_up_view.frame.width/2, 0.12*pop_up_view.frame.height)
             self.pop_up_view.addSubview(item_image)
+            btn_start_use.addTarget(self, action: #selector(State6_QuizViewController.btn_remove_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             
             item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
             if freeitem_amount > 0{
@@ -500,6 +501,7 @@ class State6_QuizViewController: ViewController {
         dispatch_after(time, dispatch_get_main_queue()){}
         TurnPage(number)
     }
+    
     func btn_friend_click(button: UIButton){
         defaults.setBool(true, forKey: "friend")
         button.highlighted = true
@@ -512,6 +514,34 @@ class State6_QuizViewController: ViewController {
             self.pop_up_view.alpha = 0
         })
         
+    }
+    func btn_remove_click(button: UIButton){
+        defaults.setBool(true, forKey: "remove")
+        let x = Int(arc4random_uniform(3) + 1)
+        defaults.setInteger(x, forKey: "remove_value")
+        print(x)
+        for i in 0...3{
+            btn_choice[i].selected = true
+            btn_choice[i].removeTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        }
+        for i in 0...3{
+            if(i == correct){
+                btn_choice[i].selected = false
+                btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            }
+            else if(i > correct && i == (x+1)){
+                btn_choice[i].selected = false
+                btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            }
+            else if(i < correct && i == x){
+                btn_choice[i].selected = false
+                btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            }
+        }
+        pop_up_background.hidden = true
+        UIView.animateWithDuration(0.2, animations: {
+            self.pop_up_view.alpha = 0
+        })
     }
     
     func btn_answer_click(button: UIButton){

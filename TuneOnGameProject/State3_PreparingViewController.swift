@@ -250,8 +250,10 @@ class State3_PreparingViewController: ViewController {
                         
                         defaults.setBool(false, forKey: "playBack")
                         defaults.setBool(false, forKey: "friend")
+                        defaults.setBool(false, forKey: "Remove")
                         for i in 0...3{
                             sel[i] = (json["quiz"]!!["sel_\(i+1)"] as! Int)
+                            defaults.setInteger(sel[i], forKey: "sel_\(i)")
                         }
                         
                         for i in 0...3{
@@ -289,6 +291,9 @@ class State3_PreparingViewController: ViewController {
                 correct = defaults.integerForKey("correct")
                 for i in 0...3{
                     choice_string[i] = defaults.objectForKey("choice_string\(i)") as! String
+                }
+                for i in 0...3{
+                    sel[i] = defaults.integerForKey("sel_\(i)")
                 }
                 if youtube_id == ""{
                     image_url = defaults.objectForKey("image_url") as! String
