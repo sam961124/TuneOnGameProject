@@ -360,6 +360,37 @@ class State6_QuizViewController: ViewController {
         item_intro_label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
         item_intro_label.textColor = UIColorFromRGB(0xfba928)
         // Do any additional setup after loading the view.
+        
+        // state control
+        let friend = defaults.boolForKey("friend")
+        if(friend == true){
+            for i in 0...3{
+                note[i].hidden = false
+                noteLabel[i].hidden = false
+            }
+        }
+        let remove = defaults.boolForKey("remove")
+        let remove_value = defaults.integerForKey("remove_value")
+        if(remove == true){
+            for i in 0...3{
+                btn_choice[i].selected = true
+                btn_choice[i].removeTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            }
+            for i in 0...3{
+                if(i == correct){
+                    btn_choice[i].selected = false
+                    btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+                }
+                else if(i > correct && i == (remove_value+1)){
+                    btn_choice[i].selected = false
+                    btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+                }
+                else if(i < correct && i == remove_value){
+                    btn_choice[i].selected = false
+                    btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+                }
+            }
+        }
     }
     
     func btn_home_click(button: UIButton){
@@ -517,9 +548,9 @@ class State6_QuizViewController: ViewController {
     }
     func btn_remove_click(button: UIButton){
         defaults.setBool(true, forKey: "remove")
-        let x = Int(arc4random_uniform(3) + 1)
-        defaults.setInteger(x, forKey: "remove_value")
-        print(x)
+        let remove_value = Int(arc4random_uniform(3) + 1)
+        defaults.setInteger(remove_value, forKey: "remove_value")
+        print(remove_value)
         for i in 0...3{
             btn_choice[i].selected = true
             btn_choice[i].removeTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -529,11 +560,11 @@ class State6_QuizViewController: ViewController {
                 btn_choice[i].selected = false
                 btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             }
-            else if(i > correct && i == (x+1)){
+            else if(i > correct && i == (remove_value+1)){
                 btn_choice[i].selected = false
                 btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             }
-            else if(i < correct && i == x){
+            else if(i < correct && i == remove_value){
                 btn_choice[i].selected = false
                 btn_choice[i].addTarget(self, action: #selector(State6_QuizViewController.btn_answer_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             }
