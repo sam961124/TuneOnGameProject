@@ -39,7 +39,7 @@ class State6_QuizViewController: ViewController {
         //constant
         let screen_width = view.frame.width
         let screen_height = view.frame.height
-        freeitem_amount = 0
+        freeitem_amount = 10
         defaults.setBool(true, forKey: "Answering")
         //background code form here
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "brick.png")!)
@@ -549,7 +549,7 @@ class State6_QuizViewController: ViewController {
     }
     func btn_remove_click(button: UIButton){
         defaults.setBool(true, forKey: "remove")
-        let remove_value = Int(arc4random_uniform(3) + 1)
+        let remove_value = Int(arc4random_uniform(3))
         defaults.setInteger(remove_value, forKey: "remove_value")
         print(remove_value)
         for i in 0...3{
