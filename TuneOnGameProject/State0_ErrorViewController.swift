@@ -44,7 +44,8 @@ class State0_ErrorViewController: ViewController {
         var real_exp_bar: UIImageView
         var level_bar: UIImageView
         var money_bar: UIImageView
-        var btn_home: UIImageView
+        let btn_home: UIButton = UIButton()
+        let home: UIImage = UIImage(named: "home.png")!
         let exp_rate:CGFloat = ExpRate()
         
         top_bar = UIImageView(frame: CGRect(x:0, y:0, width:screen_width, height:screen_width/7))
@@ -71,12 +72,13 @@ class State0_ErrorViewController: ViewController {
         money_bar.backgroundColor = UIColorFromRGB(0xffe155)
         self.view.addSubview(money_bar)
         
-        btn_home = UIImageView(image: UIImage(named: "home.png"))
+        btn_home.setImage(home, forState: UIControlState.Normal)
         btn_home.frame.size.width = 0.8*level_bar.frame.minX
-        btn_home.frame.size.height = 0.8*level_bar.frame.minX*(btn_home.image?.size.height)!/(btn_home.image?.size.width)!
+        btn_home.frame.size.height = 0.8*level_bar.frame.minX*(home.size.height)/(home.size.width)
         btn_home.center = CGPointMake(level_bar.frame.minX/2, top_bar.frame.height/2)
         btn_home.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(btn_home)
+        btn_home.addTarget(self, action: #selector(State0_ErrorViewController.btn_home_click(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         //level label
         var level_label: UILabel
@@ -213,6 +215,9 @@ class State0_ErrorViewController: ViewController {
     
     func btn_fail_next_click(button: UIButton) {
         button.highlighted = true
+        TurnPage(2)
+    }
+    func btn_home_click(button: UIButton){
         TurnPage(2)
     }
     

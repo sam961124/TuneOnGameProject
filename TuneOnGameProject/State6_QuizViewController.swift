@@ -288,7 +288,7 @@ class State6_QuizViewController: ViewController {
             label.center = CGPointMake(note[i].frame.minX + note[i].frame.width/2, note[i].frame.minY + note[i].frame.height/2)
             label.font = UIFont(name:"HelveticaNeue-Bold", size: 0.04*screen_width)
             if(total_sel == 0){
-                label.text = "0%"
+                label.text = "25%"
             }
             else{
                 label.text = "\((100*sel[i]) / total_sel)%"
@@ -548,7 +548,7 @@ class State6_QuizViewController: ViewController {
     }
     func btn_remove_click(button: UIButton){
         defaults.setBool(true, forKey: "remove")
-        let remove_value = Int(arc4random_uniform(3) + 1)
+        let remove_value = Int(arc4random_uniform(3))
         defaults.setInteger(remove_value, forKey: "remove_value")
         print(remove_value)
         for i in 0...3{
