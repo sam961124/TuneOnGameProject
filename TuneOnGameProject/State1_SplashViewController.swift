@@ -30,6 +30,8 @@ class State1_SplashViewController: ViewController {
         var requestNSData: NSData = NSData()
         var data: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
         id = defaults.integerForKey("UserID")
+        print(id)
+        print((UIDevice.currentDevice().identifierForVendor?.UUIDString)!)
         if id == 0{
             data = ["cmd": "getid", "deviceId": (UIDevice.currentDevice().identifierForVendor?.UUIDString)!, "deviceType": UIDevice.currentDevice().model, "os": UIDevice.currentDevice().systemVersion]
             do{

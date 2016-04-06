@@ -232,6 +232,7 @@ class State3_PreparingViewController: ViewController {
                     right_count = (json["appUser"]!!["rightcount"] as! Int)
                     wrong_count = (json["appUser"]!!["wrongcount"] as! Int)
                     qid = (json["quiz"]!!["qid"] as! String)
+                    print(qid)
                     defaults.setObject(qid, forKey: "qid")
                     eid = (json["quiz"]!!["eid"] as! String)
                     defaults.setObject(eid, forKey: "eid")
@@ -249,6 +250,7 @@ class State3_PreparingViewController: ViewController {
                     defaults.setBool(false, forKey: "playback")
                     defaults.setBool(false, forKey: "friend")
                     defaults.setBool(false, forKey: "remove")
+                    print("\n\n\n\n\(question)")
                     for i in 0...3{
                         sel[i] = (json["quiz"]!!["sel_\(i+1)"] as! Int)
                         defaults.setInteger(sel[i], forKey: "sel_\(i)")

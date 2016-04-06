@@ -60,7 +60,6 @@ class ViewController: UIViewController {
         request.addValue("application/json",forHTTPHeaderField: "Accept")
         request.HTTPBody = data
         HTTPsendRequest(request, callback: callback)
-        print(data)
     }
     
     func HTTPsendRequest(request: NSMutableURLRequest, callback: (NSData, String?) -> Void){

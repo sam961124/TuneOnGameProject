@@ -241,7 +241,6 @@ class State2_MainViewController: ViewController {
         btn_fb_login.frame.size.width = 4*btn_fb_login.frame.height
         btn_fb_login.center = CGPointMake(screen_width/2, 10*second_box.frame.height/12+second_box.frame.minY)
         scrollView.addSubview(btn_fb_login)
-        
         var third_box: UIImageView
         third_box = UIImageView(frame: CGRect(x:0.05*screen_width, y:0.05*screen_width + second_box.frame.maxY, width:0.9*scrollView.frame.width, height:0.9*scrollView.frame.width/2))
         third_box.backgroundColor = UIColorFromRGB(0xfffb96)

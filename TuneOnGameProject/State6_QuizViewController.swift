@@ -411,7 +411,7 @@ class State6_QuizViewController: ViewController {
                 item_name_label.center = CGPointMake(pop_up_view.frame.width/2, item_image.frame.maxY+0.05*pop_up_view.frame.height)
                 if defaults.boolForKey(btn_image[i]){
                     item_name_label.text = "\(function[i])(已使用)"
-                    item_intro_label.text = "\(description[i])囉！"
+                    item_intro_label.text = "\(description[i])。這個道具已經使用過囉！"
                     item_intro_label.center = CGPointMake(pop_up_view.frame.width/2, item_name_label.frame.maxY+0.02*pop_up_view.frame.height)
                     if i != 0{
                         btn_start_use.hidden = true
@@ -567,7 +567,7 @@ class State6_QuizViewController: ViewController {
     func btn_answer_click(button: UIButton){
         button.highlighted = true
         if button == btn_choice[correct]{
-            action.append(["type": 1, "qid": qid, "param1": correct+1, "param2": Int(level)])
+            action.append(["type": 1, "qid": qid, "param1": correct+1, "param2": Int(quiz_level)!])
             TurnPage(7)
         }
         else{
@@ -578,7 +578,7 @@ class State6_QuizViewController: ViewController {
                     break
                 }
             }
-            action.append(["type": 2, "qid": qid, "param1": ans, "param2": (Int(level)/2)])
+            action.append(["type": 2, "qid": qid, "param1": ans, "param2": Int(quiz_level)!/2])
             TurnPage(8)
         }
     }

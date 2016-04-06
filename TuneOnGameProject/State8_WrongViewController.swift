@@ -47,9 +47,7 @@ class State8_WrongViewController: ViewController {
         var requestNSData: NSData = NSData()
         let data = ["cmd": "getquiz", "id": id, "actions": action]
         do{
-            print("yes")
             requestNSData = try NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
-            print(requestNSData)
         } catch let error as NSError {
             print(error)
         }
@@ -83,6 +81,7 @@ class State8_WrongViewController: ViewController {
                 defaults.setBool(false, forKey: "playback")
                 defaults.setBool(false, forKey: "friend")
                 defaults.setBool(false, forKey: "remove")
+                print("\n\n\n\n\(question)")
                 for i in 0...3{
                     sel[i] = (json["quiz"]!!["sel_\(i+1)"] as! Int)
                     defaults.setInteger(sel[i], forKey: "sel_\(i)")
