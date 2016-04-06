@@ -60,8 +60,6 @@ class State9_LevelUpViewController: ViewController {
         let screen_width = view.frame.width
         let screen_height = view.frame.height
         
-        level = 10
-        
         //gradient_color code from here
         let top_color = UIColorFromRGB(0xfdca41)
         let buttom_color = UIColorFromRGB(0xfffb96)
