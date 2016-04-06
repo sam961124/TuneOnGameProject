@@ -60,6 +60,8 @@ class State9_LevelUpViewController: ViewController {
         let screen_width = view.frame.width
         let screen_height = view.frame.height
         
+        level = 10
+        
         //gradient_color code from here
         let top_color = UIColorFromRGB(0xfdca41)
         let buttom_color = UIColorFromRGB(0xfffb96)
@@ -160,9 +162,24 @@ class State9_LevelUpViewController: ViewController {
         
         //txt_success code from here
         var txt_success:UIImageView
-        txt_success = UIImageView(image: UIImage(named: "txt_success.png"))
-        txt_success.frame.size.height = screen_height
-        txt_success.frame.size.width = 2*screen_width/3
+        if level == 6{
+            txt_success = UIImageView(image: UIImage(named:"btn_item_friend_normal.png"))
+            txt_success.frame.size.height = screen_width/5
+            txt_success.frame.size.width = screen_width/5
+        }else if level == 10{
+            txt_success = UIImageView(image: UIImage(named:"btn_item_playback_normal.png"))
+            txt_success.frame.size.height = screen_width/5
+            txt_success.frame.size.width = screen_width/5
+        }else if level == 15{
+            txt_success = UIImageView(image: UIImage(named:"btn_item_remove_normal.png"))
+            txt_success.frame.size.height = screen_width/5
+            txt_success.frame.size.width = screen_width/5
+            
+        }else{
+            txt_success = UIImageView(image: UIImage(named: "txt_success.png"))
+            txt_success.frame.size.height = screen_height
+            txt_success.frame.size.width = 2*screen_width/3
+        }
         txt_success.center = CGPointMake(screen_width/2, 0.22*screen_height)
         txt_success.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(txt_success)
@@ -217,7 +234,10 @@ class State9_LevelUpViewController: ViewController {
         
         //dialog label
         //var dialog_label: UILabel
-        let dialog_string = "升級了!"
+        var dialog_string = "升級了!"
+        if level == 6 || level == 10 || level == 15{
+            dialog_string = "道具解鎖!"
+        }
         dialog_label = UILabel(frame: CGRect(x:0, y:0, width:0.7*dialog.frame.width, height:0.9*dialog.frame.height))
         dialog_label.center = CGPoint(x: (dialog.frame.minX + dialog.frame.maxX)/2, y: 0.495*(dialog.frame.minY + dialog.frame.maxY))
         dialog_label.text = dialog_string
@@ -245,10 +265,14 @@ class State9_LevelUpViewController: ViewController {
     
     func btn_success_next_click(button: UIButton) {
         button.highlighted = true
-        UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {
             button.center.x = self.view.frame.width
             }, completion: nil)
-        TurnPage(number)
+        let delay = 0.3 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue()){
+            self.TurnPage(number)
+        }
     }
     
     override func didReceiveMemoryWarning() {
